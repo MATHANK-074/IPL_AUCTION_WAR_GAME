@@ -1,0 +1,262 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --neon-gold: #F9CD1C;
+  --neon-blue: #00D2FF;
+  --neon-pink: #FF00E5;
+  --glass-bg: rgba(15, 23, 42, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --dark-bg: #020617;
+  --dark-surface: #0f1729;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--dark-bg);
+  color: #e2e8f0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── BACKGROUND GRID ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(250, 204, 28, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(250, 204, 28, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── GLASSMORPHISM ── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+}
+
+.glass-dark {
+  background: rgba(6, 8, 24, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+}
+
+/* ── ANTIGRAVITY FLOAT ANIMATION ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(2deg); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(249,205,28,0.2); }
+  50% { transform: scale(1.05); box-shadow: 0 0 40px rgba(249,205,28,0.5); }
+}
+
+@keyframes pulse-glow-red {
+  0%, 100% { box-shadow: 0 0 10px rgba(255, 59, 92, 0.4); }
+  50%       { box-shadow: 0 0 35px rgba(255, 59, 92, 0.9), 0 0 70px rgba(255, 59, 92, 0.5); }
+}
+
+@keyframes sold-slam {
+  0%   { transform: scale(0.2) rotate(-15deg); opacity: 0; }
+  60%  { transform: scale(1.15) rotate(3deg); opacity: 1; }
+  80%  { transform: scale(0.95) rotate(-1deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes timer-urgent {
+  0%, 100% { color: #FF3B5C; transform: scale(1); }
+  50%       { color: #ff7a8a; transform: scale(1.05); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes badge-pop {
+  0%   { transform: scale(0); opacity: 0; }
+  70%  { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes fade-up {
+  from { transform: translateY(30px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.animate-float         { animation: float 6s ease-in-out infinite; }
+.animate-float-slow    { animation: float-slow 12s ease-in-out infinite; }
+.animate-pulse-gold    { animation: pulse-gold 2s ease-in-out infinite; }
+.animate-pulse-red     { animation: pulse-glow-red 1.2s ease-in-out infinite; }
+.animate-timer-urgent  { animation: timer-urgent 0.6s ease-in-out infinite; }
+.animate-sold          { animation: sold-slam 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+.animate-badge-pop     { animation: badge-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+.animate-fade-up       { animation: fade-up 0.5s ease-out forwards; }
+
+/* ── SHIMMER TEXT ── */
+.shimmer-text {
+  background: linear-gradient(90deg, #F9CD1C, #fff, #F9CD1C, #fff, #F9CD1C);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ── NEON BUTTONS ── */
+.btn-neon-gold {
+  background: linear-gradient(135deg, #F9CD1C, #e6a800);
+  color: #060818;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 2rem;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(249, 205, 28, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-neon-gold::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.2);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.btn-neon-gold:hover::after { transform: translateX(100%); }
+.btn-neon-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(249, 205, 28, 0.55); }
+.btn-neon-gold:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+.btn-glass {
+  background: var(--glass-bg);
+  color: #e2e8f0;
+  font-weight: 600;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 0.75rem 2rem;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(10px);
+}
+
+.btn-glass:hover { background: rgba(255,255,255,0.14); border-color: rgba(249,205,28,0.5); color: #F9CD1C; transform: translateY(-2px); }
+.btn-glass:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+.btn-bid {
+  background: linear-gradient(135deg, #00BFFF, #0080ff);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  padding: 0.875rem 2.5rem;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(0, 191, 255, 0.35);
+}
+
+.btn-bid:hover:not(:disabled) { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 30px rgba(0, 191, 255, 0.6); }
+.btn-bid:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.btn-rtm {
+  background: linear-gradient(135deg, #FF3B5C, #c0003f);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1.75rem;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(255, 59, 92, 0.35);
+  letter-spacing: 0.05em;
+}
+
+.btn-rtm:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255, 59, 92, 0.6); }
+.btn-rtm:disabled { opacity: 0.35; cursor: not-allowed; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(249, 205, 28, 0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(249, 205, 28, 0.6); }
+
+/* ── IPL TEAM COLOR BORDERS ── */
+.team-CSK  { --team-color: #F9CD1C; }
+.team-MI   { --team-color: #004BA0; }
+.team-RCB  { --team-color: #EC1C24; }
+.team-KKR  { --team-color: #2E0854; }
+.team-SRH  { --team-color: #FF822A; }
+.team-DC   { --team-color: #0078BC; }
+.team-PBKS { --team-color: #AA4545; }
+.team-RR   { --team-color: #254AA5; }
+.team-GT   { --team-color: #1C1C5A; }
+.team-LSG  { --team-color: #A72058; }
+
+.team-border { border-color: var(--team-color) !important; }
+.team-glow   { box-shadow: 0 0 20px color-mix(in srgb, var(--team-color) 60%, transparent); }
+
+/* ── INPUT ── */
+.input-glass {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 0.875rem 1.25rem;
+  color: #e2e8f0;
+  font-size: 1rem;
+  width: 100%;
+  outline: none;
+  transition: all 0.25s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.input-glass:focus {
+  border-color: rgba(249, 205, 28, 0.6);
+  box-shadow: 0 0 0 3px rgba(249, 205, 28, 0.1);
+  background: rgba(255,255,255,0.09);
+}
+
+.input-glass::placeholder { color: rgba(226,232,240,0.4); }
+
+/* ── ROLE BADGE ── */
+.role-Batsman      { background: rgba(0, 191, 255, 0.15); color: #00BFFF; border: 1px solid rgba(0,191,255,0.3); }
+.role-Bowler       { background: rgba(255, 59, 92, 0.15); color: #FF3B5C; border: 1px solid rgba(255,59,92,0.3); }
+.role-All-rounder  { background: rgba(249, 205, 28, 0.15); color: #F9CD1C; border: 1px solid rgba(249,205,28,0.3); }

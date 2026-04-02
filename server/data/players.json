@@ -1,0 +1,5085 @@
+[
+  {
+    "name": "Virat Kohli",
+    "role": "Batsman",
+    "tier": "Marquee",
+    "ipl_team": "RCB",
+    "base_price": 2.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 133,
+      "runs": 4651,
+      "avg": 40.34,
+      "sr": 156.85,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 1
+  },
+  {
+    "name": "Rohit Sharma",
+    "role": "Batsman",
+    "tier": "Marquee",
+    "ipl_team": "MI",
+    "base_price": 2.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 147,
+      "runs": 5752,
+      "avg": 36.78,
+      "sr": 140.67,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 2
+  },
+  {
+    "name": "Jasprit Bumrah",
+    "role": "Bowler",
+    "tier": "Marquee",
+    "ipl_team": "MI",
+    "base_price": 2.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 185,
+      "runs": 206,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 143,
+      "economy": 6.76
+    },
+    "id": 3
+  },
+  {
+    "name": "MS Dhoni",
+    "role": "Batsman",
+    "tier": "Marquee",
+    "ipl_team": "CSK",
+    "base_price": 2.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 229,
+      "runs": 2135,
+      "avg": 36.69,
+      "sr": 158.04,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 4
+  },
+  {
+    "name": "Rashid Khan",
+    "role": "Bowler",
+    "tier": "Marquee",
+    "ipl_team": "GT",
+    "base_price": 2.0,
+    "nationality": "Afghanistan",
+    "stats": {
+      "matches": 178,
+      "runs": 87,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 168,
+      "economy": 7.37
+    },
+    "id": 5
+  },
+  {
+    "name": "Pat Cummins",
+    "role": "Bowler",
+    "tier": "Marquee",
+    "ipl_team": "SRH",
+    "base_price": 2.0,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 142,
+      "runs": 76,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 170,
+      "economy": 8.45
+    },
+    "id": 6
+  },
+  {
+    "name": "Mitchell Starc",
+    "role": "Bowler",
+    "tier": "Marquee",
+    "ipl_team": "KKR",
+    "base_price": 2.0,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 244,
+      "runs": 484,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 161,
+      "economy": 8.41
+    },
+    "id": 7
+  },
+  {
+    "name": "Jos Buttler",
+    "role": "Batsman",
+    "tier": "Marquee",
+    "ipl_team": "RR",
+    "base_price": 2.0,
+    "nationality": "England",
+    "stats": {
+      "matches": 132,
+      "runs": 6093,
+      "avg": 34.98,
+      "sr": 141.61,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 8
+  },
+  {
+    "name": "Heinrich Klaasen",
+    "role": "Batsman",
+    "tier": "Marquee",
+    "ipl_team": "SRH",
+    "base_price": 2.0,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 164,
+      "runs": 5903,
+      "avg": 39.01,
+      "sr": 144.3,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 9
+  },
+  {
+    "name": "Hardik Pandya",
+    "role": "All-rounder",
+    "tier": "Marquee",
+    "ipl_team": "MI",
+    "base_price": 2.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 151,
+      "runs": 3644,
+      "avg": 32.15,
+      "sr": 158.2,
+      "wickets": 144,
+      "economy": 8.41
+    },
+    "id": 10
+  },
+  {
+    "name": "David Warner",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "DC",
+    "base_price": 2.0,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 142,
+      "runs": 2402,
+      "avg": 38.73,
+      "sr": 141.83,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 11
+  },
+  {
+    "name": "Kane Williamson",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "GT",
+    "base_price": 2.0,
+    "nationality": "NZ",
+    "stats": {
+      "matches": 98,
+      "runs": 2683,
+      "avg": 31.09,
+      "sr": 132.0,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 12
+  },
+  {
+    "name": "Babar Azam",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "FREE AGENT",
+    "base_price": 2.0,
+    "nationality": "Pakistan",
+    "stats": {
+      "matches": 102,
+      "runs": 2551,
+      "avg": 36.19,
+      "sr": 143.41,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 13
+  },
+  {
+    "name": "Quinton de Kock",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "LSG",
+    "base_price": 2.0,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 139,
+      "runs": 1897,
+      "avg": 39.12,
+      "sr": 129.93,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 14
+  },
+  {
+    "name": "Aiden Markram",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "SRH",
+    "base_price": 2.0,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 120,
+      "runs": 1277,
+      "avg": 34.32,
+      "sr": 134.26,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 15
+  },
+  {
+    "name": "Travis Head",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "SRH",
+    "base_price": 2.0,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 138,
+      "runs": 3703,
+      "avg": 30.14,
+      "sr": 134.66,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 16
+  },
+  {
+    "name": "Daryl Mitchell",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "CSK",
+    "base_price": 2.0,
+    "nationality": "NZ",
+    "stats": {
+      "matches": 84,
+      "runs": 1860,
+      "avg": 34.23,
+      "sr": 145.82,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 17
+  },
+  {
+    "name": "David Miller",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "GT",
+    "base_price": 2.0,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 141,
+      "runs": 1668,
+      "avg": 39.4,
+      "sr": 126.72,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 18
+  },
+  {
+    "name": "Faf du Plessis",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "RCB",
+    "base_price": 2.0,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 72,
+      "runs": 3527,
+      "avg": 33.21,
+      "sr": 125.45,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 19
+  },
+  {
+    "name": "Devon Conway",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "CSK",
+    "base_price": 2.0,
+    "nationality": "NZ",
+    "stats": {
+      "matches": 74,
+      "runs": 3722,
+      "avg": 31.05,
+      "sr": 136.53,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 20
+  },
+  {
+    "name": "Nicholas Pooran",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "LSG",
+    "base_price": 2.0,
+    "nationality": "West Indies",
+    "stats": {
+      "matches": 106,
+      "runs": 2979,
+      "avg": 28.25,
+      "sr": 131.44,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 21
+  },
+  {
+    "name": "Phil Salt",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "KKR",
+    "base_price": 2.0,
+    "nationality": "England",
+    "stats": {
+      "matches": 78,
+      "runs": 2018,
+      "avg": 36.7,
+      "sr": 148.49,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 22
+  },
+  {
+    "name": "Harry Brook",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "DC",
+    "base_price": 2.0,
+    "nationality": "England",
+    "stats": {
+      "matches": 95,
+      "runs": 3761,
+      "avg": 32.62,
+      "sr": 140.66,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 23
+  },
+  {
+    "name": "Rachin Ravindra",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "CSK",
+    "base_price": 2.0,
+    "nationality": "NZ",
+    "stats": {
+      "matches": 81,
+      "runs": 3804,
+      "avg": 35.57,
+      "sr": 144.03,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 24
+  },
+  {
+    "name": "Reeza Hendricks",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "FREE AGENT",
+    "base_price": 2.0,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 103,
+      "runs": 1368,
+      "avg": 30.78,
+      "sr": 132.96,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 25
+  },
+  {
+    "name": "Rovman Powell",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "RR",
+    "base_price": 2.0,
+    "nationality": "West Indies",
+    "stats": {
+      "matches": 112,
+      "runs": 1434,
+      "avg": 31.99,
+      "sr": 133.95,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 26
+  },
+  {
+    "name": "Shimron Hetmyer",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "RR",
+    "base_price": 2.0,
+    "nationality": "West Indies",
+    "stats": {
+      "matches": 94,
+      "runs": 1161,
+      "avg": 37.86,
+      "sr": 140.67,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 27
+  },
+  {
+    "name": "Joe Root",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "RR",
+    "base_price": 2.0,
+    "nationality": "England",
+    "stats": {
+      "matches": 97,
+      "runs": 2339,
+      "avg": 28.16,
+      "sr": 130.2,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 28
+  },
+  {
+    "name": "Steve Smith",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "FREE AGENT",
+    "base_price": 2.0,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 94,
+      "runs": 1436,
+      "avg": 35.1,
+      "sr": 142.55,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 29
+  },
+  {
+    "name": "James Vince",
+    "role": "Batsman",
+    "tier": "International Top",
+    "ipl_team": "FREE AGENT",
+    "base_price": 2.0,
+    "nationality": "England",
+    "stats": {
+      "matches": 61,
+      "runs": 3602,
+      "avg": 29.14,
+      "sr": 138.09,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 30
+  },
+  {
+    "name": "Shubman Gill",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "GT",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 58,
+      "runs": 2107,
+      "avg": 25.31,
+      "sr": 138.75,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 31
+  },
+  {
+    "name": "Yashasvi Jaiswal",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "RR",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 79,
+      "runs": 2095,
+      "avg": 30.75,
+      "sr": 132.67,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 32
+  },
+  {
+    "name": "Ruturaj Gaikwad",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "CSK",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 56,
+      "runs": 1057,
+      "avg": 30.86,
+      "sr": 125.74,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 33
+  },
+  {
+    "name": "Suryakumar Yadav",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "MI",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 69,
+      "runs": 1053,
+      "avg": 23.57,
+      "sr": 125.33,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 34
+  },
+  {
+    "name": "Rinku Singh",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "KKR",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 91,
+      "runs": 676,
+      "avg": 23.08,
+      "sr": 125.7,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 35
+  },
+  {
+    "name": "Ishan Kishan",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "MI",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 58,
+      "runs": 1954,
+      "avg": 26.96,
+      "sr": 136.95,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 36
+  },
+  {
+    "name": "Tilak Varma",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "MI",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 98,
+      "runs": 1403,
+      "avg": 23.54,
+      "sr": 126.25,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 37
+  },
+  {
+    "name": "Shreyas Iyer",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "KKR",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 37,
+      "runs": 1996,
+      "avg": 26.38,
+      "sr": 124.95,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 38
+  },
+  {
+    "name": "KL Rahul",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "LSG",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 98,
+      "runs": 763,
+      "avg": 29.3,
+      "sr": 135.08,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 39
+  },
+  {
+    "name": "Sanju Samson",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "RR",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 87,
+      "runs": 2263,
+      "avg": 31.41,
+      "sr": 137.7,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 40
+  },
+  {
+    "name": "Sai Sudharsan",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "GT",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 65,
+      "runs": 2360,
+      "avg": 26.63,
+      "sr": 127.65,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 41
+  },
+  {
+    "name": "Abhishek Sharma",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "SRH",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 44,
+      "runs": 2292,
+      "avg": 27.37,
+      "sr": 131.86,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 42
+  },
+  {
+    "name": "Prithvi Shaw",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "DC",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 40,
+      "runs": 1990,
+      "avg": 23.26,
+      "sr": 120.37,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 43
+  },
+  {
+    "name": "Mayank Agarwal",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "SRH",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 59,
+      "runs": 1528,
+      "avg": 30.59,
+      "sr": 126.4,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 44
+  },
+  {
+    "name": "Rahul Tripathi",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "SRH",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 99,
+      "runs": 2433,
+      "avg": 24.13,
+      "sr": 132.34,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 45
+  },
+  {
+    "name": "Devdutt Padikkal",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "LSG",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 46,
+      "runs": 991,
+      "avg": 22.37,
+      "sr": 129.62,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 46
+  },
+  {
+    "name": "Nitish Rana",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "KKR",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 34,
+      "runs": 1553,
+      "avg": 30.29,
+      "sr": 128.05,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 47
+  },
+  {
+    "name": "Venkatesh Iyer",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "KKR",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 54,
+      "runs": 1786,
+      "avg": 27.15,
+      "sr": 122.78,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 48
+  },
+  {
+    "name": "Deepak Hooda",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "LSG",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 50,
+      "runs": 2111,
+      "avg": 31.77,
+      "sr": 120.88,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 49
+  },
+  {
+    "name": "Manish Pandey",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "KKR",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 88,
+      "runs": 2190,
+      "avg": 23.74,
+      "sr": 132.9,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 50
+  },
+  {
+    "name": "Ajinkya Rahane",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "CSK",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 62,
+      "runs": 1712,
+      "avg": 24.84,
+      "sr": 127.59,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 51
+  },
+  {
+    "name": "Vijay Shankar",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "GT",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 99,
+      "runs": 529,
+      "avg": 27.95,
+      "sr": 120.78,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 52
+  },
+  {
+    "name": "Shahrukh Khan",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "GT",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 63,
+      "runs": 1748,
+      "avg": 26.46,
+      "sr": 135.78,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 53
+  },
+  {
+    "name": "Rajat Patidar",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "RCB",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 84,
+      "runs": 1932,
+      "avg": 25.58,
+      "sr": 135.37,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 54
+  },
+  {
+    "name": "Anmolpreet Singh",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "SRH",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 73,
+      "runs": 625,
+      "avg": 25.98,
+      "sr": 123.36,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 55
+  },
+  {
+    "name": "Ayush Badoni",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "LSG",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 79,
+      "runs": 1276,
+      "avg": 30.66,
+      "sr": 120.09,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 56
+  },
+  {
+    "name": "Dhruv Jurel",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "RR",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 47,
+      "runs": 2142,
+      "avg": 24.28,
+      "sr": 136.5,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 57
+  },
+  {
+    "name": "Prabhsimran Singh",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "PBKS",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 88,
+      "runs": 1756,
+      "avg": 31.64,
+      "sr": 127.14,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 58
+  },
+  {
+    "name": "Jitesh Sharma",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "PBKS",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 35,
+      "runs": 601,
+      "avg": 28.26,
+      "sr": 125.47,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 59
+  },
+  {
+    "name": "Sarfaraz Khan",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "DC",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 62,
+      "runs": 1662,
+      "avg": 26.42,
+      "sr": 123.21,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 60
+  },
+  {
+    "name": "Karun Nair",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "LSG",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 72,
+      "runs": 1688,
+      "avg": 27.08,
+      "sr": 128.13,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 61
+  },
+  {
+    "name": "Mandeep Singh",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "KKR",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 84,
+      "runs": 689,
+      "avg": 26.46,
+      "sr": 132.14,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 62
+  },
+  {
+    "name": "Atharva Taide",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "PBKS",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 38,
+      "runs": 1488,
+      "avg": 25.41,
+      "sr": 131.3,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 63
+  },
+  {
+    "name": "Sameer Rizvi",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "CSK",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 62,
+      "runs": 2190,
+      "avg": 23.05,
+      "sr": 124.55,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 64
+  },
+  {
+    "name": "Lalit Yadav",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "DC",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 74,
+      "runs": 818,
+      "avg": 23.7,
+      "sr": 128.45,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 65
+  },
+  {
+    "name": "Aaradhya Yadav",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 36,
+      "runs": 1153,
+      "avg": 23.19,
+      "sr": 130.84,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 66
+  },
+  {
+    "name": "Mahipal Lomror",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "RCB",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 61,
+      "runs": 1897,
+      "avg": 23.62,
+      "sr": 138.55,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 67
+  },
+  {
+    "name": "Anuj Rawat",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "RCB",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 93,
+      "runs": 1868,
+      "avg": 26.75,
+      "sr": 138.65,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 68
+  },
+  {
+    "name": "Suyash Prabhudessai",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "RCB",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 94,
+      "runs": 1837,
+      "avg": 29.65,
+      "sr": 124.1,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 69
+  },
+  {
+    "name": "Abdul Samad",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "SRH",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 37,
+      "runs": 1908,
+      "avg": 22.25,
+      "sr": 129.16,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 70
+  },
+  {
+    "name": "Vivrant Sharma",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "SRH",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 47,
+      "runs": 2125,
+      "avg": 30.09,
+      "sr": 134.85,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 71
+  },
+  {
+    "name": "Mayank Yadav",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "LSG",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 48,
+      "runs": 2116,
+      "avg": 27.54,
+      "sr": 120.14,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 72
+  },
+  {
+    "name": "Swapnil Singh",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "RCB",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 56,
+      "runs": 2056,
+      "avg": 25.2,
+      "sr": 132.9,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 73
+  },
+  {
+    "name": "Abhishek Porel",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "DC",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 89,
+      "runs": 1579,
+      "avg": 29.19,
+      "sr": 125.05,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 74
+  },
+  {
+    "name": "Ramandeep Singh",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "KKR",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 78,
+      "runs": 738,
+      "avg": 24.29,
+      "sr": 123.83,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 75
+  },
+  {
+    "name": "Angkrish Raghuvanshi",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "KKR",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 89,
+      "runs": 1750,
+      "avg": 26.82,
+      "sr": 138.38,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 76
+  },
+  {
+    "name": "Nehal Wadhera",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "MI",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 59,
+      "runs": 2115,
+      "avg": 22.97,
+      "sr": 122.05,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 77
+  },
+  {
+    "name": "Vishnu Vinod",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "MI",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 43,
+      "runs": 1795,
+      "avg": 30.57,
+      "sr": 131.33,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 78
+  },
+  {
+    "name": "Kumar Kushagra",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "DC",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 78,
+      "runs": 1453,
+      "avg": 22.98,
+      "sr": 120.88,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 79
+  },
+  {
+    "name": "Shubham Dubey",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "RR",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 100,
+      "runs": 639,
+      "avg": 28.44,
+      "sr": 127.5,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 80
+  },
+  {
+    "name": "Robin Minz",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "GT",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 59,
+      "runs": 2352,
+      "avg": 25.08,
+      "sr": 132.04,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 81
+  },
+  {
+    "name": "Sumit Kumar",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "DC",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 90,
+      "runs": 786,
+      "avg": 26.97,
+      "sr": 138.05,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 82
+  },
+  {
+    "name": "Ricky Bhui",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "DC",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 52,
+      "runs": 572,
+      "avg": 28.45,
+      "sr": 133.98,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 83
+  },
+  {
+    "name": "Naman Dhir",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "MI",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 54,
+      "runs": 2110,
+      "avg": 31.24,
+      "sr": 126.6,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 84
+  },
+  {
+    "name": "Shivalik Sharma",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "MI",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 39,
+      "runs": 1125,
+      "avg": 24.4,
+      "sr": 137.77,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 85
+  },
+  {
+    "name": "Ashutosh Sharma",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "PBKS",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 64,
+      "runs": 748,
+      "avg": 26.49,
+      "sr": 136.74,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 86
+  },
+  {
+    "name": "Saurav Chauhan",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "RCB",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 97,
+      "runs": 548,
+      "avg": 25.58,
+      "sr": 134.96,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 87
+  },
+  {
+    "name": "Shaik Rasheed",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "CSK",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 97,
+      "runs": 1035,
+      "avg": 23.64,
+      "sr": 130.84,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 88
+  },
+  {
+    "name": "Kunwar Singh",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 35,
+      "runs": 1668,
+      "avg": 25.36,
+      "sr": 121.41,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 89
+  },
+  {
+    "name": "Arshin Kulkarni",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "LSG",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 36,
+      "runs": 1217,
+      "avg": 31.25,
+      "sr": 132.78,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 90
+  },
+  {
+    "name": "Swaastik Chikara",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "DC",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 85,
+      "runs": 1100,
+      "avg": 25.2,
+      "sr": 122.13,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 91
+  },
+  {
+    "name": "Sumeet Verma",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 53,
+      "runs": 657,
+      "avg": 30.6,
+      "sr": 134.57,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 92
+  },
+  {
+    "name": "Ravi Teja",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 44,
+      "runs": 1698,
+      "avg": 31.55,
+      "sr": 135.03,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 93
+  },
+  {
+    "name": "Tanay Thyagarajan",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "PBKS",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 31,
+      "runs": 2011,
+      "avg": 31.61,
+      "sr": 134.78,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 94
+  },
+  {
+    "name": "Manav Suthar",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "GT",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 78,
+      "runs": 1219,
+      "avg": 27.0,
+      "sr": 128.29,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 95
+  },
+  {
+    "name": "Glenn Phillips",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "SRH",
+    "base_price": 1.5,
+    "nationality": "NZ",
+    "stats": {
+      "matches": 77,
+      "runs": 1844,
+      "avg": 28.01,
+      "sr": 123.9,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 96
+  },
+  {
+    "name": "Tom Latham",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.5,
+    "nationality": "NZ",
+    "stats": {
+      "matches": 86,
+      "runs": 638,
+      "avg": 22.92,
+      "sr": 125.92,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 97
+  },
+  {
+    "name": "Finn Allen",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "RCB",
+    "base_price": 1.5,
+    "nationality": "NZ",
+    "stats": {
+      "matches": 99,
+      "runs": 1742,
+      "avg": 30.14,
+      "sr": 130.94,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 98
+  },
+  {
+    "name": "Will Young",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.5,
+    "nationality": "NZ",
+    "stats": {
+      "matches": 39,
+      "runs": 608,
+      "avg": 27.94,
+      "sr": 132.48,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 99
+  },
+  {
+    "name": "Mark Chapman",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.5,
+    "nationality": "NZ",
+    "stats": {
+      "matches": 66,
+      "runs": 2198,
+      "avg": 26.53,
+      "sr": 138.35,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 100
+  },
+  {
+    "name": "Dawid Malan",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "PBKS",
+    "base_price": 1.5,
+    "nationality": "England",
+    "stats": {
+      "matches": 74,
+      "runs": 2397,
+      "avg": 28.34,
+      "sr": 132.39,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 101
+  },
+  {
+    "name": "Liam Livingstone",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "PBKS",
+    "base_price": 1.5,
+    "nationality": "England",
+    "stats": {
+      "matches": 65,
+      "runs": 2441,
+      "avg": 25.51,
+      "sr": 133.24,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 102
+  },
+  {
+    "name": "Ben Duckett",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.5,
+    "nationality": "England",
+    "stats": {
+      "matches": 68,
+      "runs": 1483,
+      "avg": 27.67,
+      "sr": 136.36,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 103
+  },
+  {
+    "name": "Ollie Pope",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.5,
+    "nationality": "England",
+    "stats": {
+      "matches": 77,
+      "runs": 1894,
+      "avg": 26.83,
+      "sr": 136.65,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 104
+  },
+  {
+    "name": "Zak Crawley",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.5,
+    "nationality": "England",
+    "stats": {
+      "matches": 84,
+      "runs": 2453,
+      "avg": 24.71,
+      "sr": 127.53,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 105
+  },
+  {
+    "name": "Temba Bavuma",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.5,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 89,
+      "runs": 1143,
+      "avg": 30.15,
+      "sr": 129.18,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 106
+  },
+  {
+    "name": "Rassie van der Dussen",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "RR",
+    "base_price": 1.5,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 54,
+      "runs": 1121,
+      "avg": 29.81,
+      "sr": 134.58,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 107
+  },
+  {
+    "name": "Tony de Zorzi",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.5,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 88,
+      "runs": 1616,
+      "avg": 28.26,
+      "sr": 121.35,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 108
+  },
+  {
+    "name": "Tristan Stubbs",
+    "role": "Batsman",
+    "tier": "Medium",
+    "ipl_team": "DC",
+    "base_price": 1.5,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 87,
+      "runs": 2422,
+      "avg": 27.3,
+      "sr": 120.08,
+      "wickets": 0,
+      "economy": 0
+    },
+    "id": 109
+  },
+  {
+    "name": "Mohammed Shami",
+    "role": "Bowler",
+    "tier": "Star",
+    "ipl_team": "GT",
+    "base_price": 2.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 14,
+      "runs": 63,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 5,
+      "economy": 10.03
+    },
+    "id": 110
+  },
+  {
+    "name": "Mohammed Siraj",
+    "role": "Bowler",
+    "tier": "Star",
+    "ipl_team": "RCB",
+    "base_price": 2.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 28,
+      "runs": 81,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 14,
+      "economy": 9.14
+    },
+    "id": 111
+  },
+  {
+    "name": "Yuzvendra Chahal",
+    "role": "Bowler",
+    "tier": "Star",
+    "ipl_team": "RR",
+    "base_price": 2.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 18,
+      "runs": 42,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 11,
+      "economy": 10.33
+    },
+    "id": 112
+  },
+  {
+    "name": "Kuldeep Yadav",
+    "role": "Bowler",
+    "tier": "Star",
+    "ipl_team": "DC",
+    "base_price": 2.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 39,
+      "runs": 52,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 16,
+      "economy": 10.2
+    },
+    "id": 113
+  },
+  {
+    "name": "Trent Boult",
+    "role": "Bowler",
+    "tier": "Star",
+    "ipl_team": "RR",
+    "base_price": 2.0,
+    "nationality": "NZ",
+    "stats": {
+      "matches": 15,
+      "runs": 75,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 6,
+      "economy": 10.39
+    },
+    "id": 114
+  },
+  {
+    "name": "Kagiso Rabada",
+    "role": "Bowler",
+    "tier": "Star",
+    "ipl_team": "PBKS",
+    "base_price": 2.0,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 20,
+      "runs": 64,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 9,
+      "economy": 9.12
+    },
+    "id": 115
+  },
+  {
+    "name": "Anrich Nortje",
+    "role": "Bowler",
+    "tier": "Star",
+    "ipl_team": "DC",
+    "base_price": 2.0,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 9,
+      "runs": 96,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 30,
+      "economy": 10.22
+    },
+    "id": 116
+  },
+  {
+    "name": "Josh Hazlewood",
+    "role": "Bowler",
+    "tier": "Star",
+    "ipl_team": "RCB",
+    "base_price": 2.0,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 12,
+      "runs": 87,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 26,
+      "economy": 10.87
+    },
+    "id": 117
+  },
+  {
+    "name": "Adam Zampa",
+    "role": "Bowler",
+    "tier": "Star",
+    "ipl_team": "RR",
+    "base_price": 2.0,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 13,
+      "runs": 46,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 21,
+      "economy": 9.96
+    },
+    "id": 118
+  },
+  {
+    "name": "Wanindu Hasaranga",
+    "role": "Bowler",
+    "tier": "Star",
+    "ipl_team": "SRH",
+    "base_price": 2.0,
+    "nationality": "Sri Lanka",
+    "stats": {
+      "matches": 27,
+      "runs": 11,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 22,
+      "economy": 10.02
+    },
+    "id": 119
+  },
+  {
+    "name": "Matheesha Pathirana",
+    "role": "Bowler",
+    "tier": "Star",
+    "ipl_team": "CSK",
+    "base_price": 2.0,
+    "nationality": "Sri Lanka",
+    "stats": {
+      "matches": 34,
+      "runs": 77,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 13,
+      "economy": 9.8
+    },
+    "id": 120
+  },
+  {
+    "name": "Arshdeep Singh",
+    "role": "Bowler",
+    "tier": "Star",
+    "ipl_team": "PBKS",
+    "base_price": 2.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 30,
+      "runs": 10,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 11,
+      "economy": 10.97
+    },
+    "id": 121
+  },
+  {
+    "name": "Bhuvneshwar Kumar",
+    "role": "Bowler",
+    "tier": "Star",
+    "ipl_team": "SRH",
+    "base_price": 2.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 39,
+      "runs": 28,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 24,
+      "economy": 10.17
+    },
+    "id": 122
+  },
+  {
+    "name": "Sandeep Sharma",
+    "role": "Bowler",
+    "tier": "Star",
+    "ipl_team": "RR",
+    "base_price": 2.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 10,
+      "runs": 73,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 26,
+      "economy": 9.93
+    },
+    "id": 123
+  },
+  {
+    "name": "Mohit Sharma",
+    "role": "Bowler",
+    "tier": "Star",
+    "ipl_team": "GT",
+    "base_price": 2.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 39,
+      "runs": 12,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 14,
+      "economy": 9.93
+    },
+    "id": 124
+  },
+  {
+    "name": "Gerald Coetzee",
+    "role": "Bowler",
+    "tier": "International Top",
+    "ipl_team": "MI",
+    "base_price": 2.0,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 77,
+      "runs": 144,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 114,
+      "economy": 7.83
+    },
+    "id": 125
+  },
+  {
+    "name": "Dilshan Madushanka",
+    "role": "Bowler",
+    "tier": "International Top",
+    "ipl_team": "MI",
+    "base_price": 2.0,
+    "nationality": "Sri Lanka",
+    "stats": {
+      "matches": 108,
+      "runs": 107,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 86,
+      "economy": 8.75
+    },
+    "id": 126
+  },
+  {
+    "name": "Spencer Johnson",
+    "role": "Bowler",
+    "tier": "International Top",
+    "ipl_team": "GT",
+    "base_price": 2.0,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 61,
+      "runs": 247,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 61,
+      "economy": 8.76
+    },
+    "id": 127
+  },
+  {
+    "name": "Nuwan Thushara",
+    "role": "Bowler",
+    "tier": "International Top",
+    "ipl_team": "MI",
+    "base_price": 2.0,
+    "nationality": "Sri Lanka",
+    "stats": {
+      "matches": 86,
+      "runs": 236,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 71,
+      "economy": 8.78
+    },
+    "id": 128
+  },
+  {
+    "name": "Alzarri Joseph",
+    "role": "Bowler",
+    "tier": "International Top",
+    "ipl_team": "RCB",
+    "base_price": 2.0,
+    "nationality": "West Indies",
+    "stats": {
+      "matches": 84,
+      "runs": 35,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 116,
+      "economy": 8.78
+    },
+    "id": 129
+  },
+  {
+    "name": "Naveen-ul-Haq",
+    "role": "Bowler",
+    "tier": "International Top",
+    "ipl_team": "LSG",
+    "base_price": 2.0,
+    "nationality": "Afghanistan",
+    "stats": {
+      "matches": 79,
+      "runs": 101,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 52,
+      "economy": 8.87
+    },
+    "id": 130
+  },
+  {
+    "name": "Fazalhaq Farooqi",
+    "role": "Bowler",
+    "tier": "International Top",
+    "ipl_team": "SRH",
+    "base_price": 2.0,
+    "nationality": "Afghanistan",
+    "stats": {
+      "matches": 112,
+      "runs": 214,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 77,
+      "economy": 8.49
+    },
+    "id": 131
+  },
+  {
+    "name": "Maheesh Theekshana",
+    "role": "Bowler",
+    "tier": "International Top",
+    "ipl_team": "CSK",
+    "base_price": 2.0,
+    "nationality": "Sri Lanka",
+    "stats": {
+      "matches": 51,
+      "runs": 79,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 62,
+      "economy": 7.74
+    },
+    "id": 132
+  },
+  {
+    "name": "Marco Jansen",
+    "role": "Bowler",
+    "tier": "International Top",
+    "ipl_team": "SRH",
+    "base_price": 2.0,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 61,
+      "runs": 141,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 86,
+      "economy": 7.76
+    },
+    "id": 133
+  },
+  {
+    "name": "Chris Woakes",
+    "role": "Bowler",
+    "tier": "International Top",
+    "ipl_team": "PBKS",
+    "base_price": 2.0,
+    "nationality": "England",
+    "stats": {
+      "matches": 95,
+      "runs": 77,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 72,
+      "economy": 8.5
+    },
+    "id": 134
+  },
+  {
+    "name": "Reece Topley",
+    "role": "Bowler",
+    "tier": "International Top",
+    "ipl_team": "RCB",
+    "base_price": 2.0,
+    "nationality": "England",
+    "stats": {
+      "matches": 132,
+      "runs": 204,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 53,
+      "economy": 8.92
+    },
+    "id": 135
+  },
+  {
+    "name": "Jhye Richardson",
+    "role": "Bowler",
+    "tier": "International Top",
+    "ipl_team": "DC",
+    "base_price": 2.0,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 74,
+      "runs": 169,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 120,
+      "economy": 8.94
+    },
+    "id": 136
+  },
+  {
+    "name": "Nathan Ellis",
+    "role": "Bowler",
+    "tier": "International Top",
+    "ipl_team": "PBKS",
+    "base_price": 2.0,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 74,
+      "runs": 52,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 119,
+      "economy": 8.86
+    },
+    "id": 137
+  },
+  {
+    "name": "Lockie Ferguson",
+    "role": "Bowler",
+    "tier": "International Top",
+    "ipl_team": "RCB",
+    "base_price": 2.0,
+    "nationality": "NZ",
+    "stats": {
+      "matches": 77,
+      "runs": 203,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 71,
+      "economy": 7.81
+    },
+    "id": 138
+  },
+  {
+    "name": "Noor Ahmad",
+    "role": "Bowler",
+    "tier": "International Top",
+    "ipl_team": "GT",
+    "base_price": 2.0,
+    "nationality": "Afghanistan",
+    "stats": {
+      "matches": 92,
+      "runs": 97,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 113,
+      "economy": 8.1
+    },
+    "id": 139
+  },
+  {
+    "name": "T Natarajan",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "SRH",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 78,
+      "runs": 160,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 65,
+      "economy": 8.67
+    },
+    "id": 140
+  },
+  {
+    "name": "Avesh Khan",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "RR",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 88,
+      "runs": 151,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 77,
+      "economy": 9.67
+    },
+    "id": 141
+  },
+  {
+    "name": "Umran Malik",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "SRH",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 89,
+      "runs": 49,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 71,
+      "economy": 9.47
+    },
+    "id": 142
+  },
+  {
+    "name": "Shardul Thakur",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "CSK",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 32,
+      "runs": 28,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 26,
+      "economy": 8.21
+    },
+    "id": 143
+  },
+  {
+    "name": "Deepak Chahar",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "CSK",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 51,
+      "runs": 30,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 27,
+      "economy": 9.58
+    },
+    "id": 144
+  },
+  {
+    "name": "Harshal Patel",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "PBKS",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 36,
+      "runs": 197,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 72,
+      "economy": 9.47
+    },
+    "id": 145
+  },
+  {
+    "name": "Varun Chakaravarthy",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "KKR",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 80,
+      "runs": 172,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 24,
+      "economy": 9.79
+    },
+    "id": 146
+  },
+  {
+    "name": "Ravi Bishnoi",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "LSG",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 68,
+      "runs": 24,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 37,
+      "economy": 8.44
+    },
+    "id": 147
+  },
+  {
+    "name": "Khaleel Ahmed",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "DC",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 67,
+      "runs": 93,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 27,
+      "economy": 8.29
+    },
+    "id": 148
+  },
+  {
+    "name": "Mukesh Kumar",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "DC",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 79,
+      "runs": 27,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 59,
+      "economy": 8.23
+    },
+    "id": 149
+  },
+  {
+    "name": "Prasidh Krishna",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "RR",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 60,
+      "runs": 45,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 22,
+      "economy": 9.99
+    },
+    "id": 150
+  },
+  {
+    "name": "Chetan Sakariya",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "KKR",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 51,
+      "runs": 60,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 49,
+      "economy": 8.38
+    },
+    "id": 151
+  },
+  {
+    "name": "Tushar Deshpande",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "CSK",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 86,
+      "runs": 62,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 74,
+      "economy": 8.84
+    },
+    "id": 152
+  },
+  {
+    "name": "Akash Madhwal",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "MI",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 88,
+      "runs": 173,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 52,
+      "economy": 8.05
+    },
+    "id": 153
+  },
+  {
+    "name": "Yash Dayal",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "RCB",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 98,
+      "runs": 161,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 67,
+      "economy": 9.05
+    },
+    "id": 154
+  },
+  {
+    "name": "Arjun Tendulkar",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "MI",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 90,
+      "runs": 190,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 61,
+      "economy": 8.77
+    },
+    "id": 155
+  },
+  {
+    "name": "Vaibhav Arora",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "KKR",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 42,
+      "runs": 171,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 60,
+      "economy": 8.16
+    },
+    "id": 156
+  },
+  {
+    "name": "Harshit Rana",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "KKR",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 35,
+      "runs": 51,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 33,
+      "economy": 9.82
+    },
+    "id": 157
+  },
+  {
+    "name": "Mayank Markande",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "SRH",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 73,
+      "runs": 127,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 70,
+      "economy": 9.37
+    },
+    "id": 158
+  },
+  {
+    "name": "Kartik Tyagi",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "GT",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 74,
+      "runs": 94,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 52,
+      "economy": 9.48
+    },
+    "id": 159
+  },
+  {
+    "name": "Ishant Sharma",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "DC",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 81,
+      "runs": 38,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 79,
+      "economy": 9.41
+    },
+    "id": 160
+  },
+  {
+    "name": "Umesh Yadav",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "GT",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 95,
+      "runs": 46,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 24,
+      "economy": 8.16
+    },
+    "id": 161
+  },
+  {
+    "name": "Jaydev Unadkat",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "SRH",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 68,
+      "runs": 130,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 44,
+      "economy": 9.98
+    },
+    "id": 162
+  },
+  {
+    "name": "Kamlesh Nagarkoti",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "DC",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 69,
+      "runs": 37,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 78,
+      "economy": 8.56
+    },
+    "id": 163
+  },
+  {
+    "name": "Shivam Mavi",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "LSG",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 79,
+      "runs": 165,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 70,
+      "economy": 8.56
+    },
+    "id": 164
+  },
+  {
+    "name": "Navdeep Saini",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "RR",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 82,
+      "runs": 123,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 22,
+      "economy": 9.65
+    },
+    "id": 165
+  },
+  {
+    "name": "Kuldip Yadav",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "RR",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 75,
+      "runs": 103,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 55,
+      "economy": 9.94
+    },
+    "id": 166
+  },
+  {
+    "name": "Rasikh Salam",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "DC",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 95,
+      "runs": 160,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 23,
+      "economy": 8.28
+    },
+    "id": 167
+  },
+  {
+    "name": "Mohsin Khan",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "LSG",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 62,
+      "runs": 180,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 63,
+      "economy": 8.64
+    },
+    "id": 168
+  },
+  {
+    "name": "Yudhvir Singh",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "LSG",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 35,
+      "runs": 52,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 52,
+      "economy": 8.84
+    },
+    "id": 169
+  },
+  {
+    "name": "Simarjeet Singh",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "CSK",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 58,
+      "runs": 73,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 45,
+      "economy": 8.65
+    },
+    "id": 170
+  },
+  {
+    "name": "Rajvardhan Hangargekar",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "CSK",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 98,
+      "runs": 173,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 55,
+      "economy": 8.2
+    },
+    "id": 171
+  },
+  {
+    "name": "Vidhwath Kaverappa",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "PBKS",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 74,
+      "runs": 32,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 42,
+      "economy": 8.43
+    },
+    "id": 172
+  },
+  {
+    "name": "Vyshak Vijaykumar",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "RCB",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 68,
+      "runs": 164,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 49,
+      "economy": 8.79
+    },
+    "id": 173
+  },
+  {
+    "name": "Himanshu Sharma",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "RCB",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 88,
+      "runs": 83,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 37,
+      "economy": 9.24
+    },
+    "id": 174
+  },
+  {
+    "name": "Sushant Mishra",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "GT",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 76,
+      "runs": 154,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 62,
+      "economy": 10.0
+    },
+    "id": 175
+  },
+  {
+    "name": "Nandre Burger",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "RR",
+    "base_price": 1.0,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 100,
+      "runs": 104,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 53,
+      "economy": 8.72
+    },
+    "id": 176
+  },
+  {
+    "name": "Ishan Porel",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 89,
+      "runs": 103,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 75,
+      "economy": 8.1
+    },
+    "id": 177
+  },
+  {
+    "name": "Basil Thampi",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 93,
+      "runs": 39,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 78,
+      "economy": 9.55
+    },
+    "id": 178
+  },
+  {
+    "name": "Sandeep Warrier",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "GT",
+    "base_price": 1.0,
+    "nationality": "India",
+    "stats": {
+      "matches": 82,
+      "runs": 89,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 77,
+      "economy": 8.63
+    },
+    "id": 179
+  },
+  {
+    "name": "Dushmantha Chameera",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "KKR",
+    "base_price": 1.0,
+    "nationality": "Sri Lanka",
+    "stats": {
+      "matches": 38,
+      "runs": 32,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 30,
+      "economy": 8.81
+    },
+    "id": 180
+  },
+  {
+    "name": "Mustafizur Rahman",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "CSK",
+    "base_price": 1.0,
+    "nationality": "Bangladesh",
+    "stats": {
+      "matches": 51,
+      "runs": 123,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 53,
+      "economy": 9.75
+    },
+    "id": 181
+  },
+  {
+    "name": "Shoriful Islam",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "Bangladesh",
+    "stats": {
+      "matches": 64,
+      "runs": 65,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 80,
+      "economy": 8.29
+    },
+    "id": 182
+  },
+  {
+    "name": "Taskin Ahmed",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "Bangladesh",
+    "stats": {
+      "matches": 94,
+      "runs": 50,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 23,
+      "economy": 8.04
+    },
+    "id": 183
+  },
+  {
+    "name": "Lungi Ngidi",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "DC",
+    "base_price": 1.0,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 78,
+      "runs": 63,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 56,
+      "economy": 9.17
+    },
+    "id": 184
+  },
+  {
+    "name": "Tabraiz Shamsi",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "RR",
+    "base_price": 1.0,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 92,
+      "runs": 179,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 22,
+      "economy": 9.03
+    },
+    "id": 185
+  },
+  {
+    "name": "Keshav Maharaj",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "RR",
+    "base_price": 1.0,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 78,
+      "runs": 137,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 65,
+      "economy": 9.09
+    },
+    "id": 186
+  },
+  {
+    "name": "Wayne Parnell",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 44,
+      "runs": 109,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 25,
+      "economy": 8.22
+    },
+    "id": 187
+  },
+  {
+    "name": "Dwaine Pretorius",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 100,
+      "runs": 158,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 69,
+      "economy": 9.27
+    },
+    "id": 188
+  },
+  {
+    "name": "Scott Kuggeleijn",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "NZ",
+    "stats": {
+      "matches": 39,
+      "runs": 158,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 52,
+      "economy": 8.94
+    },
+    "id": 189
+  },
+  {
+    "name": "Kyle Jamieson",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "NZ",
+    "stats": {
+      "matches": 67,
+      "runs": 27,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 26,
+      "economy": 8.41
+    },
+    "id": 190
+  },
+  {
+    "name": "Ish Sodhi",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "NZ",
+    "stats": {
+      "matches": 40,
+      "runs": 33,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 21,
+      "economy": 8.98
+    },
+    "id": 191
+  },
+  {
+    "name": "Tim Southee",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "NZ",
+    "stats": {
+      "matches": 57,
+      "runs": 67,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 40,
+      "economy": 8.42
+    },
+    "id": 192
+  },
+  {
+    "name": "Matt Henry",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "LSG",
+    "base_price": 1.0,
+    "nationality": "NZ",
+    "stats": {
+      "matches": 30,
+      "runs": 158,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 53,
+      "economy": 8.59
+    },
+    "id": 193
+  },
+  {
+    "name": "Mark Wood",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "LSG",
+    "base_price": 1.0,
+    "nationality": "England",
+    "stats": {
+      "matches": 40,
+      "runs": 59,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 42,
+      "economy": 9.84
+    },
+    "id": 194
+  },
+  {
+    "name": "Gus Atkinson",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "KKR",
+    "base_price": 1.0,
+    "nationality": "England",
+    "stats": {
+      "matches": 50,
+      "runs": 190,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 60,
+      "economy": 9.85
+    },
+    "id": 195
+  },
+  {
+    "name": "Ollie Robinson",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "England",
+    "stats": {
+      "matches": 100,
+      "runs": 51,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 66,
+      "economy": 8.84
+    },
+    "id": 196
+  },
+  {
+    "name": "Josh Tongue",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "England",
+    "stats": {
+      "matches": 42,
+      "runs": 81,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 61,
+      "economy": 8.92
+    },
+    "id": 197
+  },
+  {
+    "name": "Matthew Potts",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "England",
+    "stats": {
+      "matches": 35,
+      "runs": 67,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 52,
+      "economy": 8.06
+    },
+    "id": 198
+  },
+  {
+    "name": "Tymal Mills",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "England",
+    "stats": {
+      "matches": 99,
+      "runs": 175,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 39,
+      "economy": 9.76
+    },
+    "id": 199
+  },
+  {
+    "name": "David Willey",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "LSG",
+    "base_price": 1.0,
+    "nationality": "England",
+    "stats": {
+      "matches": 41,
+      "runs": 159,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 70,
+      "economy": 9.8
+    },
+    "id": 200
+  },
+  {
+    "name": "Richard Gleeson",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "CSK",
+    "base_price": 1.0,
+    "nationality": "England",
+    "stats": {
+      "matches": 73,
+      "runs": 146,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 22,
+      "economy": 8.22
+    },
+    "id": 201
+  },
+  {
+    "name": "Olly Stone",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "England",
+    "stats": {
+      "matches": 85,
+      "runs": 151,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 38,
+      "economy": 9.34
+    },
+    "id": 202
+  },
+  {
+    "name": "Saqib Mahmood",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "England",
+    "stats": {
+      "matches": 61,
+      "runs": 71,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 67,
+      "economy": 9.24
+    },
+    "id": 203
+  },
+  {
+    "name": "Qais Ahmad",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "Afghanistan",
+    "stats": {
+      "matches": 87,
+      "runs": 158,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 57,
+      "economy": 8.43
+    },
+    "id": 204
+  },
+  {
+    "name": "Mujeeb Ur Rahman",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "KKR",
+    "base_price": 1.0,
+    "nationality": "Afghanistan",
+    "stats": {
+      "matches": 93,
+      "runs": 138,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 63,
+      "economy": 8.47
+    },
+    "id": 205
+  },
+  {
+    "name": "Zahir Khan",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "Afghanistan",
+    "stats": {
+      "matches": 60,
+      "runs": 126,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 57,
+      "economy": 8.86
+    },
+    "id": 206
+  },
+  {
+    "name": "Izharulhaq Naveed",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "Afghanistan",
+    "stats": {
+      "matches": 67,
+      "runs": 27,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 54,
+      "economy": 9.21
+    },
+    "id": 207
+  },
+  {
+    "name": "Tom Hartley",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "England",
+    "stats": {
+      "matches": 39,
+      "runs": 62,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 33,
+      "economy": 8.35
+    },
+    "id": 208
+  },
+  {
+    "name": "Rehan Ahmed",
+    "role": "Bowler",
+    "tier": "Medium",
+    "ipl_team": "FREE AGENT",
+    "base_price": 1.0,
+    "nationality": "England",
+    "stats": {
+      "matches": 96,
+      "runs": 158,
+      "avg": 0,
+      "sr": 0,
+      "wickets": 55,
+      "economy": 9.3
+    },
+    "id": 209
+  },
+  {
+    "name": "Ravindra Jadeja",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "CSK",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 8,
+      "runs": 471,
+      "avg": 18.73,
+      "sr": 125.78,
+      "wickets": 13,
+      "economy": 10.77
+    },
+    "id": 210
+  },
+  {
+    "name": "Glenn Maxwell",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "RCB",
+    "base_price": 1.5,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 35,
+      "runs": 669,
+      "avg": 21.88,
+      "sr": 127.59,
+      "wickets": 24,
+      "economy": 9.75
+    },
+    "id": 211
+  },
+  {
+    "name": "Andre Russell",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "KKR",
+    "base_price": 1.5,
+    "nationality": "West Indies",
+    "stats": {
+      "matches": 19,
+      "runs": 758,
+      "avg": 22.86,
+      "sr": 128.79,
+      "wickets": 11,
+      "economy": 11.04
+    },
+    "id": 212
+  },
+  {
+    "name": "Sunil Narine",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "KKR",
+    "base_price": 1.5,
+    "nationality": "West Indies",
+    "stats": {
+      "matches": 15,
+      "runs": 759,
+      "avg": 23.13,
+      "sr": 127.28,
+      "wickets": 8,
+      "economy": 10.62
+    },
+    "id": 213
+  },
+  {
+    "name": "Cameron Green",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "RCB",
+    "base_price": 1.5,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 34,
+      "runs": 782,
+      "avg": 27.1,
+      "sr": 118.86,
+      "wickets": 6,
+      "economy": 10.54
+    },
+    "id": 214
+  },
+  {
+    "name": "Marcus Stoinis",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "LSG",
+    "base_price": 1.5,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 29,
+      "runs": 651,
+      "avg": 18.28,
+      "sr": 131.54,
+      "wickets": 23,
+      "economy": 9.89
+    },
+    "id": 215
+  },
+  {
+    "name": "Sam Curran",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "PBKS",
+    "base_price": 1.5,
+    "nationality": "England",
+    "stats": {
+      "matches": 39,
+      "runs": 575,
+      "avg": 23.01,
+      "sr": 119.57,
+      "wickets": 20,
+      "economy": 11.29
+    },
+    "id": 216
+  },
+  {
+    "name": "Mitchell Marsh",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "DC",
+    "base_price": 1.5,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 27,
+      "runs": 301,
+      "avg": 22.36,
+      "sr": 134.47,
+      "wickets": 12,
+      "economy": 9.48
+    },
+    "id": 217
+  },
+  {
+    "name": "Axar Patel",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "DC",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 11,
+      "runs": 604,
+      "avg": 18.17,
+      "sr": 132.2,
+      "wickets": 8,
+      "economy": 10.15
+    },
+    "id": 218
+  },
+  {
+    "name": "Krunal Pandya",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "LSG",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 14,
+      "runs": 347,
+      "avg": 22.13,
+      "sr": 134.73,
+      "wickets": 24,
+      "economy": 10.0
+    },
+    "id": 219
+  },
+  {
+    "name": "Washington Sundar",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "SRH",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 17,
+      "runs": 430,
+      "avg": 19.74,
+      "sr": 132.74,
+      "wickets": 6,
+      "economy": 11.14
+    },
+    "id": 220
+  },
+  {
+    "name": "Shahbaz Ahmed",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "SRH",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 32,
+      "runs": 602,
+      "avg": 27.54,
+      "sr": 128.55,
+      "wickets": 13,
+      "economy": 9.01
+    },
+    "id": 221
+  },
+  {
+    "name": "Shivam Dube",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "CSK",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 25,
+      "runs": 155,
+      "avg": 27.67,
+      "sr": 124.84,
+      "wickets": 18,
+      "economy": 10.46
+    },
+    "id": 222
+  },
+  {
+    "name": "Rahul Tewatia",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "GT",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 22,
+      "runs": 181,
+      "avg": 25.38,
+      "sr": 126.02,
+      "wickets": 28,
+      "economy": 9.43
+    },
+    "id": 223
+  },
+  {
+    "name": "Ravichandran Ashwin",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "RR",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 7,
+      "runs": 303,
+      "avg": 23.3,
+      "sr": 130.02,
+      "wickets": 8,
+      "economy": 9.59
+    },
+    "id": 224
+  },
+  {
+    "name": "Jason Holder",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "RR",
+    "base_price": 1.5,
+    "nationality": "West Indies",
+    "stats": {
+      "matches": 5,
+      "runs": 177,
+      "avg": 24.28,
+      "sr": 115.8,
+      "wickets": 12,
+      "economy": 10.4
+    },
+    "id": 225
+  },
+  {
+    "name": "Wanindu Hasaranga",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "SRH",
+    "base_price": 1.5,
+    "nationality": "Sri Lanka",
+    "stats": {
+      "matches": 34,
+      "runs": 643,
+      "avg": 26.03,
+      "sr": 121.63,
+      "wickets": 5,
+      "economy": 10.46
+    },
+    "id": 226
+  },
+  {
+    "name": "Shakib Al Hasan",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "KKR",
+    "base_price": 1.5,
+    "nationality": "Bangladesh",
+    "stats": {
+      "matches": 21,
+      "runs": 683,
+      "avg": 23.41,
+      "sr": 127.68,
+      "wickets": 13,
+      "economy": 10.55
+    },
+    "id": 227
+  },
+  {
+    "name": "Moeen Ali",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "CSK",
+    "base_price": 1.5,
+    "nationality": "England",
+    "stats": {
+      "matches": 15,
+      "runs": 592,
+      "avg": 18.75,
+      "sr": 130.86,
+      "wickets": 16,
+      "economy": 9.92
+    },
+    "id": 228
+  },
+  {
+    "name": "Deepak Hooda",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "LSG",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 38,
+      "runs": 128,
+      "avg": 19.95,
+      "sr": 116.91,
+      "wickets": 19,
+      "economy": 11.35
+    },
+    "id": 229
+  },
+  {
+    "name": "Riyan Parag",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "RR",
+    "base_price": 1.5,
+    "nationality": "India",
+    "stats": {
+      "matches": 32,
+      "runs": 377,
+      "avg": 26.4,
+      "sr": 126.19,
+      "wickets": 25,
+      "economy": 9.27
+    },
+    "id": 230
+  },
+  {
+    "name": "Sikandar Raza",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "PBKS",
+    "base_price": 1.5,
+    "nationality": "Zimbabwe",
+    "stats": {
+      "matches": 28,
+      "runs": 147,
+      "avg": 21.14,
+      "sr": 126.22,
+      "wickets": 26,
+      "economy": 9.84
+    },
+    "id": 231
+  },
+  {
+    "name": "Will Jacks",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "RCB",
+    "base_price": 1.5,
+    "nationality": "England",
+    "stats": {
+      "matches": 19,
+      "runs": 225,
+      "avg": 25.44,
+      "sr": 119.7,
+      "wickets": 11,
+      "economy": 9.59
+    },
+    "id": 232
+  },
+  {
+    "name": "Romario Shepherd",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "MI",
+    "base_price": 1.5,
+    "nationality": "West Indies",
+    "stats": {
+      "matches": 14,
+      "runs": 189,
+      "avg": 22.99,
+      "sr": 125.85,
+      "wickets": 29,
+      "economy": 10.86
+    },
+    "id": 233
+  },
+  {
+    "name": "Tom Curran",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "RCB",
+    "base_price": 1.5,
+    "nationality": "England",
+    "stats": {
+      "matches": 8,
+      "runs": 594,
+      "avg": 25.19,
+      "sr": 129.51,
+      "wickets": 12,
+      "economy": 9.61
+    },
+    "id": 234
+  },
+  {
+    "name": "Ben Stokes",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "CSK",
+    "base_price": 1.5,
+    "nationality": "England",
+    "stats": {
+      "matches": 22,
+      "runs": 684,
+      "avg": 22.0,
+      "sr": 126.76,
+      "wickets": 25,
+      "economy": 10.83
+    },
+    "id": 235
+  },
+  {
+    "name": "Chris Green",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "KKR",
+    "base_price": 1.5,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 20,
+      "runs": 531,
+      "avg": 27.2,
+      "sr": 130.9,
+      "wickets": 7,
+      "economy": 9.68
+    },
+    "id": 236
+  },
+  {
+    "name": "Daniel Sams",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "MI",
+    "base_price": 1.5,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 17,
+      "runs": 457,
+      "avg": 24.06,
+      "sr": 115.42,
+      "wickets": 29,
+      "economy": 10.7
+    },
+    "id": 237
+  },
+  {
+    "name": "Ben Cutting",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "SRH",
+    "base_price": 1.5,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 12,
+      "runs": 462,
+      "avg": 23.58,
+      "sr": 116.27,
+      "wickets": 16,
+      "economy": 10.7
+    },
+    "id": 238
+  },
+  {
+    "name": "Kieron Pollard",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "MI",
+    "base_price": 1.5,
+    "nationality": "West Indies",
+    "stats": {
+      "matches": 11,
+      "runs": 133,
+      "avg": 23.47,
+      "sr": 125.05,
+      "wickets": 17,
+      "economy": 10.84
+    },
+    "id": 239
+  },
+  {
+    "name": "Nitish Kumar Reddy",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "SRH",
+    "base_price": 0.75,
+    "nationality": "India",
+    "stats": {
+      "matches": 7,
+      "runs": 698,
+      "avg": 21.77,
+      "sr": 119.33,
+      "wickets": 25,
+      "economy": 9.4
+    },
+    "id": 240
+  },
+  {
+    "name": "Ramandeep Singh",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "KKR",
+    "base_price": 0.75,
+    "nationality": "India",
+    "stats": {
+      "matches": 27,
+      "runs": 340,
+      "avg": 18.75,
+      "sr": 127.96,
+      "wickets": 26,
+      "economy": 10.36
+    },
+    "id": 241
+  },
+  {
+    "name": "Angkrish Raghuvanshi",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "KKR",
+    "base_price": 0.75,
+    "nationality": "India",
+    "stats": {
+      "matches": 11,
+      "runs": 277,
+      "avg": 21.5,
+      "sr": 115.26,
+      "wickets": 24,
+      "economy": 9.5
+    },
+    "id": 242
+  },
+  {
+    "name": "Abhishek Sharma",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "SRH",
+    "base_price": 0.75,
+    "nationality": "India",
+    "stats": {
+      "matches": 24,
+      "runs": 641,
+      "avg": 20.04,
+      "sr": 122.49,
+      "wickets": 25,
+      "economy": 10.55
+    },
+    "id": 243
+  },
+  {
+    "name": "Naman Dhir",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "MI",
+    "base_price": 0.75,
+    "nationality": "India",
+    "stats": {
+      "matches": 28,
+      "runs": 746,
+      "avg": 19.01,
+      "sr": 118.2,
+      "wickets": 11,
+      "economy": 10.61
+    },
+    "id": 244
+  },
+  {
+    "name": "Arshin Kulkarni",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "LSG",
+    "base_price": 0.75,
+    "nationality": "India",
+    "stats": {
+      "matches": 13,
+      "runs": 483,
+      "avg": 21.18,
+      "sr": 133.53,
+      "wickets": 15,
+      "economy": 9.21
+    },
+    "id": 245
+  },
+  {
+    "name": "Sumit Kumar",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "DC",
+    "base_price": 0.75,
+    "nationality": "India",
+    "stats": {
+      "matches": 33,
+      "runs": 604,
+      "avg": 24.78,
+      "sr": 120.67,
+      "wickets": 20,
+      "economy": 10.17
+    },
+    "id": 246
+  },
+  {
+    "name": "Tanush Kotian",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "RR",
+    "base_price": 0.75,
+    "nationality": "India",
+    "stats": {
+      "matches": 35,
+      "runs": 754,
+      "avg": 19.67,
+      "sr": 133.74,
+      "wickets": 10,
+      "economy": 10.22
+    },
+    "id": 247
+  },
+  {
+    "name": "Shivalik Sharma",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "MI",
+    "base_price": 0.75,
+    "nationality": "India",
+    "stats": {
+      "matches": 17,
+      "runs": 628,
+      "avg": 18.69,
+      "sr": 119.72,
+      "wickets": 9,
+      "economy": 11.12
+    },
+    "id": 248
+  },
+  {
+    "name": "Saurav Chauhan",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "RCB",
+    "base_price": 0.75,
+    "nationality": "India",
+    "stats": {
+      "matches": 14,
+      "runs": 424,
+      "avg": 21.63,
+      "sr": 124.33,
+      "wickets": 29,
+      "economy": 9.24
+    },
+    "id": 249
+  },
+  {
+    "name": "Venkatesh Iyer",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "KKR",
+    "base_price": 0.75,
+    "nationality": "India",
+    "stats": {
+      "matches": 34,
+      "runs": 179,
+      "avg": 23.56,
+      "sr": 120.95,
+      "wickets": 26,
+      "economy": 9.1
+    },
+    "id": 250
+  },
+  {
+    "name": "Harpreet Brar",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "PBKS",
+    "base_price": 0.75,
+    "nationality": "India",
+    "stats": {
+      "matches": 7,
+      "runs": 318,
+      "avg": 24.57,
+      "sr": 131.98,
+      "wickets": 17,
+      "economy": 10.92
+    },
+    "id": 251
+  },
+  {
+    "name": "Rahul Chahar",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "PBKS",
+    "base_price": 0.75,
+    "nationality": "India",
+    "stats": {
+      "matches": 25,
+      "runs": 610,
+      "avg": 25.52,
+      "sr": 117.42,
+      "wickets": 14,
+      "economy": 9.58
+    },
+    "id": 252
+  },
+  {
+    "name": "Vijay Shankar",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "GT",
+    "base_price": 0.75,
+    "nationality": "India",
+    "stats": {
+      "matches": 28,
+      "runs": 129,
+      "avg": 23.55,
+      "sr": 128.03,
+      "wickets": 25,
+      "economy": 10.47
+    },
+    "id": 253
+  },
+  {
+    "name": "Lalit Yadav",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "DC",
+    "base_price": 0.75,
+    "nationality": "India",
+    "stats": {
+      "matches": 23,
+      "runs": 435,
+      "avg": 19.74,
+      "sr": 130.44,
+      "wickets": 26,
+      "economy": 11.06
+    },
+    "id": 254
+  },
+  {
+    "name": "Aman Khan",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "DC",
+    "base_price": 0.75,
+    "nationality": "India",
+    "stats": {
+      "matches": 20,
+      "runs": 785,
+      "avg": 24.0,
+      "sr": 126.63,
+      "wickets": 15,
+      "economy": 9.3
+    },
+    "id": 255
+  },
+  {
+    "name": "Ripul Patel",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "DC",
+    "base_price": 0.75,
+    "nationality": "India",
+    "stats": {
+      "matches": 22,
+      "runs": 612,
+      "avg": 27.98,
+      "sr": 122.87,
+      "wickets": 29,
+      "economy": 10.75
+    },
+    "id": 256
+  },
+  {
+    "name": "Manoj Tiwary",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "KKR",
+    "base_price": 0.75,
+    "nationality": "India",
+    "stats": {
+      "matches": 22,
+      "runs": 533,
+      "avg": 18.28,
+      "sr": 116.4,
+      "wickets": 26,
+      "economy": 10.83
+    },
+    "id": 257
+  },
+  {
+    "name": "Jimmy Neesham",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "RR",
+    "base_price": 0.75,
+    "nationality": "NZ",
+    "stats": {
+      "matches": 40,
+      "runs": 497,
+      "avg": 18.27,
+      "sr": 125.8,
+      "wickets": 20,
+      "economy": 10.2
+    },
+    "id": 258
+  },
+  {
+    "name": "Michael Bracewell",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "RCB",
+    "base_price": 0.75,
+    "nationality": "NZ",
+    "stats": {
+      "matches": 9,
+      "runs": 462,
+      "avg": 24.64,
+      "sr": 116.33,
+      "wickets": 17,
+      "economy": 11.26
+    },
+    "id": 259
+  },
+  {
+    "name": "Colin de Grandhomme",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "KKR",
+    "base_price": 0.75,
+    "nationality": "NZ",
+    "stats": {
+      "matches": 7,
+      "runs": 256,
+      "avg": 25.69,
+      "sr": 134.47,
+      "wickets": 19,
+      "economy": 10.35
+    },
+    "id": 260
+  },
+  {
+    "name": "Kyle Mayers",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "LSG",
+    "base_price": 0.75,
+    "nationality": "West Indies",
+    "stats": {
+      "matches": 19,
+      "runs": 777,
+      "avg": 18.4,
+      "sr": 125.39,
+      "wickets": 16,
+      "economy": 10.73
+    },
+    "id": 261
+  },
+  {
+    "name": "Sherfane Rutherford",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "KKR",
+    "base_price": 0.75,
+    "nationality": "West Indies",
+    "stats": {
+      "matches": 22,
+      "runs": 366,
+      "avg": 19.19,
+      "sr": 133.93,
+      "wickets": 13,
+      "economy": 9.12
+    },
+    "id": 262
+  },
+  {
+    "name": "Odean Smith",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "GT",
+    "base_price": 0.75,
+    "nationality": "West Indies",
+    "stats": {
+      "matches": 36,
+      "runs": 117,
+      "avg": 19.15,
+      "sr": 132.02,
+      "wickets": 12,
+      "economy": 10.4
+    },
+    "id": 263
+  },
+  {
+    "name": "Chris Jordan",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "MI",
+    "base_price": 0.75,
+    "nationality": "England",
+    "stats": {
+      "matches": 37,
+      "runs": 745,
+      "avg": 26.15,
+      "sr": 119.13,
+      "wickets": 23,
+      "economy": 11.29
+    },
+    "id": 264
+  },
+  {
+    "name": "Jamie Overton",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "RR",
+    "base_price": 0.75,
+    "nationality": "England",
+    "stats": {
+      "matches": 14,
+      "runs": 178,
+      "avg": 23.68,
+      "sr": 134.65,
+      "wickets": 18,
+      "economy": 10.7
+    },
+    "id": 265
+  },
+  {
+    "name": "Bas de Leede",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Netherlands",
+    "stats": {
+      "matches": 24,
+      "runs": 640,
+      "avg": 22.47,
+      "sr": 118.33,
+      "wickets": 12,
+      "economy": 10.76
+    },
+    "id": 266
+  },
+  {
+    "name": "Logan van Beek",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Netherlands",
+    "stats": {
+      "matches": 21,
+      "runs": 467,
+      "avg": 22.51,
+      "sr": 123.55,
+      "wickets": 8,
+      "economy": 11.11
+    },
+    "id": 267
+  },
+  {
+    "name": "Ryan Burl",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Zimbabwe",
+    "stats": {
+      "matches": 37,
+      "runs": 381,
+      "avg": 21.09,
+      "sr": 117.6,
+      "wickets": 26,
+      "economy": 9.71
+    },
+    "id": 268
+  },
+  {
+    "name": "Wessly Madhevere",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Zimbabwe",
+    "stats": {
+      "matches": 37,
+      "runs": 696,
+      "avg": 23.13,
+      "sr": 118.25,
+      "wickets": 9,
+      "economy": 9.89
+    },
+    "id": 269
+  },
+  {
+    "name": "Sean Williams",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Zimbabwe",
+    "stats": {
+      "matches": 16,
+      "runs": 694,
+      "avg": 19.16,
+      "sr": 133.14,
+      "wickets": 7,
+      "economy": 10.94
+    },
+    "id": 270
+  },
+  {
+    "name": "Gulbadin Naib",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "DC",
+    "base_price": 0.75,
+    "nationality": "Afghanistan",
+    "stats": {
+      "matches": 5,
+      "runs": 194,
+      "avg": 21.98,
+      "sr": 116.44,
+      "wickets": 16,
+      "economy": 9.58
+    },
+    "id": 271
+  },
+  {
+    "name": "Azmatullah Omarzai",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "GT",
+    "base_price": 0.75,
+    "nationality": "Afghanistan",
+    "stats": {
+      "matches": 21,
+      "runs": 698,
+      "avg": 21.79,
+      "sr": 134.02,
+      "wickets": 7,
+      "economy": 10.27
+    },
+    "id": 272
+  },
+  {
+    "name": "Mohammad Nabi",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "MI",
+    "base_price": 0.75,
+    "nationality": "Afghanistan",
+    "stats": {
+      "matches": 19,
+      "runs": 599,
+      "avg": 19.93,
+      "sr": 118.94,
+      "wickets": 25,
+      "economy": 10.38
+    },
+    "id": 273
+  },
+  {
+    "name": "Sharafuddin Ashraf",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Afghanistan",
+    "stats": {
+      "matches": 15,
+      "runs": 125,
+      "avg": 22.01,
+      "sr": 126.79,
+      "wickets": 9,
+      "economy": 11.32
+    },
+    "id": 274
+  },
+  {
+    "name": "Dasun Shanaka",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "GT",
+    "base_price": 0.75,
+    "nationality": "Sri Lanka",
+    "stats": {
+      "matches": 30,
+      "runs": 549,
+      "avg": 22.59,
+      "sr": 123.71,
+      "wickets": 19,
+      "economy": 10.27
+    },
+    "id": 275
+  },
+  {
+    "name": "Chamika Karunaratne",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Sri Lanka",
+    "stats": {
+      "matches": 22,
+      "runs": 382,
+      "avg": 25.05,
+      "sr": 123.05,
+      "wickets": 19,
+      "economy": 10.81
+    },
+    "id": 276
+  },
+  {
+    "name": "Dhananjaya de Silva",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Sri Lanka",
+    "stats": {
+      "matches": 21,
+      "runs": 115,
+      "avg": 27.34,
+      "sr": 126.39,
+      "wickets": 28,
+      "economy": 10.17
+    },
+    "id": 277
+  },
+  {
+    "name": "Kamindu Mendis",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Sri Lanka",
+    "stats": {
+      "matches": 33,
+      "runs": 169,
+      "avg": 22.49,
+      "sr": 123.31,
+      "wickets": 18,
+      "economy": 9.33
+    },
+    "id": 278
+  },
+  {
+    "name": "Wiaan Mulder",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 7,
+      "runs": 375,
+      "avg": 21.48,
+      "sr": 120.88,
+      "wickets": 6,
+      "economy": 9.55
+    },
+    "id": 279
+  },
+  {
+    "name": "Andile Phehlukwayo",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "South Africa",
+    "stats": {
+      "matches": 30,
+      "runs": 186,
+      "avg": 18.67,
+      "sr": 122.33,
+      "wickets": 11,
+      "economy": 11.33
+    },
+    "id": 280
+  },
+  {
+    "name": "Moises Henriques",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 19,
+      "runs": 343,
+      "avg": 20.82,
+      "sr": 116.41,
+      "wickets": 30,
+      "economy": 9.13
+    },
+    "id": 281
+  },
+  {
+    "name": "Sean Abbott",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "SRH",
+    "base_price": 0.75,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 17,
+      "runs": 573,
+      "avg": 19.77,
+      "sr": 129.61,
+      "wickets": 18,
+      "economy": 10.96
+    },
+    "id": 282
+  },
+  {
+    "name": "Ashton Agar",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 22,
+      "runs": 477,
+      "avg": 19.87,
+      "sr": 128.18,
+      "wickets": 7,
+      "economy": 10.03
+    },
+    "id": 283
+  },
+  {
+    "name": "Nathan McSweeney",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 10,
+      "runs": 303,
+      "avg": 19.06,
+      "sr": 131.04,
+      "wickets": 9,
+      "economy": 11.5
+    },
+    "id": 284
+  },
+  {
+    "name": "Beau Webster",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 23,
+      "runs": 309,
+      "avg": 19.28,
+      "sr": 134.42,
+      "wickets": 18,
+      "economy": 10.92
+    },
+    "id": 285
+  },
+  {
+    "name": "Aaron Hardie",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 26,
+      "runs": 319,
+      "avg": 23.55,
+      "sr": 130.46,
+      "wickets": 19,
+      "economy": 10.2
+    },
+    "id": 286
+  },
+  {
+    "name": "Cooper Connolly",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 17,
+      "runs": 296,
+      "avg": 23.73,
+      "sr": 130.33,
+      "wickets": 19,
+      "economy": 10.25
+    },
+    "id": 287
+  },
+  {
+    "name": "Hilton Cartwright",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 7,
+      "runs": 474,
+      "avg": 23.57,
+      "sr": 125.04,
+      "wickets": 15,
+      "economy": 10.2
+    },
+    "id": 288
+  },
+  {
+    "name": "Jack Edwards",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 24,
+      "runs": 447,
+      "avg": 20.39,
+      "sr": 118.76,
+      "wickets": 26,
+      "economy": 10.62
+    },
+    "id": 289
+  },
+  {
+    "name": "Chris Green",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 40,
+      "runs": 350,
+      "avg": 18.53,
+      "sr": 134.31,
+      "wickets": 29,
+      "economy": 10.07
+    },
+    "id": 290
+  },
+  {
+    "name": "Jason Sangha",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 34,
+      "runs": 316,
+      "avg": 27.47,
+      "sr": 128.37,
+      "wickets": 7,
+      "economy": 9.71
+    },
+    "id": 291
+  },
+  {
+    "name": "Oliver Davies",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 37,
+      "runs": 307,
+      "avg": 26.44,
+      "sr": 115.29,
+      "wickets": 7,
+      "economy": 10.1
+    },
+    "id": 292
+  },
+  {
+    "name": "Tanveer Sangha",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 27,
+      "runs": 798,
+      "avg": 26.18,
+      "sr": 128.99,
+      "wickets": 10,
+      "economy": 10.85
+    },
+    "id": 293
+  },
+  {
+    "name": "Benjamin Dwarshuis",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 29,
+      "runs": 115,
+      "avg": 23.46,
+      "sr": 116.46,
+      "wickets": 17,
+      "economy": 10.12
+    },
+    "id": 294
+  },
+  {
+    "name": "Daniel Hughes",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 7,
+      "runs": 121,
+      "avg": 27.07,
+      "sr": 132.07,
+      "wickets": 10,
+      "economy": 9.94
+    },
+    "id": 295
+  },
+  {
+    "name": "Jordan Silk",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 29,
+      "runs": 202,
+      "avg": 21.61,
+      "sr": 130.1,
+      "wickets": 10,
+      "economy": 9.62
+    },
+    "id": 296
+  },
+  {
+    "name": "Joel Paris",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 34,
+      "runs": 665,
+      "avg": 27.37,
+      "sr": 127.75,
+      "wickets": 25,
+      "economy": 10.87
+    },
+    "id": 297
+  },
+  {
+    "name": "Matthew Wade",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "GT",
+    "base_price": 0.75,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 38,
+      "runs": 287,
+      "avg": 20.99,
+      "sr": 118.19,
+      "wickets": 29,
+      "economy": 9.66
+    },
+    "id": 298
+  },
+  {
+    "name": "Josh Philippe",
+    "role": "All-rounder",
+    "tier": "Mixed",
+    "ipl_team": "FREE AGENT",
+    "base_price": 0.75,
+    "nationality": "Australia",
+    "stats": {
+      "matches": 20,
+      "runs": 648,
+      "avg": 18.24,
+      "sr": 133.38,
+      "wickets": 14,
+      "economy": 10.27
+    },
+    "id": 299
+  }
+]
