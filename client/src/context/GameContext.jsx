@@ -31,6 +31,9 @@ export function GameProvider({ children }) {
   useEffect(() => {
     socket.on('roomUpdate', (info) => {
       setRoomInfo(info);
+      if (myTeamId && info.adminTeamId === myTeamId) {
+        setIsAdmin(true);
+      }
     });
 
     socket.on('newPlayer', ({ player, timeLeft, playerIndex, totalPlayers }) => {
@@ -75,7 +78,14 @@ export function GameProvider({ children }) {
       socket.off('playerResult');
       socket.off('auctionFinished');
     };
-  }, []);
+  }, [myTeamId]); // Add myTeamId as dependency for admin check
+
+  // Sync admin state on roomInfo change (redundant but safe)
+  useEffect(() => {
+    if (roomInfo && myTeamId) {
+      setIsAdmin(roomInfo.adminTeamId === myTeamId);
+    }
+  }, [roomInfo, myTeamId]);
 
   const createRoom = useCallback((teamId) => {
     return new Promise((resolve, reject) => {

@@ -26,6 +26,7 @@ function createRoom(roomId, adminSocketId, adminTeamId) {
   ROOMS.set(roomId, {
     roomId,
     adminSocketId,
+    adminTeamId, // Track which team is the admin
     teams,
     playerQueue: [],
     currentIndex: 0,
@@ -250,6 +251,7 @@ function getRoomInfo(roomId) {
     teamIds: Object.keys(room.teams),
     playerIndex: room.currentIndex,
     totalPlayers: room.playerQueue.length,
+    adminTeamId: room.adminTeamId, // Return admin info
     teams: sanitizeTeams(room.teams),
   };
 }
