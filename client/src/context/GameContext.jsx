@@ -145,6 +145,15 @@ export function GameProvider({ children }) {
     });
   }, []);
 
+  const stopAuction = useCallback(() => {
+    return new Promise((resolve, reject) => {
+      socket.emit('stopAuction', {}, (resp) => {
+        if (resp && resp.error) return reject(resp.error);
+        resolve();
+      });
+    });
+  }, []);
+
   const getTeamMeta = useCallback((teamId) => {
     return teams.find(t => t.id === teamId) || null;
   }, [teams]);
@@ -159,7 +168,7 @@ export function GameProvider({ children }) {
       roomId, myTeamId, isAdmin, roomInfo, currentPlayer, timeLeft,
       currentBid, playerResult, playerIndex, totalPlayers,
       squads, teams, players, error, setError, auctionFinished,
-      createRoom, joinRoom, startAuction, placeBid, useRTM, fetchSquad, getRoom,
+      createRoom, joinRoom, startAuction, placeBid, useRTM, fetchSquad, getRoom, stopAuction,
       getTeamMeta, getMyTeamState,
     }}>
       {children}

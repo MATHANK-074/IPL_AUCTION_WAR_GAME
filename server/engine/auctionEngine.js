@@ -216,9 +216,24 @@ function sanitizeTeams(teams) {
 function buildSummary(room) {
   const out = {};
   for (const [id, t] of Object.entries(room.teams)) {
-    out[id] = { teamId: t.teamId, purse: t.purse, squad: t.squad, roleCounts: t.roleCounts };
+    out[id] = { 
+      teamId: t.teamId, 
+      purse: t.purse, 
+      squad: t.squad, 
+      roleCounts: t.roleCounts,
+      isEarlyStop: room.status === 'finished' && room.currentIndex < room.playerQueue.length
+    };
   }
-  return { teams: out, soldPlayers: room.soldPlayers, unsoldPlayers: room.unsoldPlayers };
+  return { teams: out, soldPlayers: room.soldPlayers, unsoldPlayers: room.unsoldPlayers, isEarlyStop: true };
+}
+
+function stopAuction(roomId, io) {
+  const room = ROOMS.get(roomId);
+  if (!room) return;
+  
+  clearTimer(room);
+  room.status = 'finished';
+  io.to(roomId).emit('auctionFinished', buildSummary(room));
 }
 
 function getSquad(roomId, teamId) {
@@ -246,6 +261,8 @@ module.exports = {
   placeBid,
   useRTM,
   getSquad,
+  getSquad,
   getRoomInfo,
+  stopAuction,
   ROOMS,
 };

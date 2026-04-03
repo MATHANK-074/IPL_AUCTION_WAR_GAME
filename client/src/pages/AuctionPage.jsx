@@ -9,7 +9,7 @@ import TeamProfile from '../components/TeamProfile';
 export default function AuctionPage() {
   const {
     currentPlayer, currentBid, playerResult, playerIndex, totalPlayers,
-    teams, roomInfo, myTeamId, isAdmin, auctionFinished,
+    teams, roomInfo, myTeamId, isAdmin, auctionFinished, stopAuction,
   } = useGame();
 
   const [showResult, setShowResult] = useState(null);
@@ -67,6 +67,14 @@ export default function AuctionPage() {
                   {isAdmin && <span className="text-[10px] bg-yellow-400 text-black px-1.5 py-0.5 rounded-md font-black">ADMIN</span>}
                </div>
             </div>
+            {isAdmin && (
+               <button 
+                 onClick={() => { if(window.confirm('Stop auction and declare winners based on current squads?')) stopAuction(); }}
+                 className="px-4 py-2 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 text-[10px] font-black uppercase tracking-widest hover:bg-red-500 hover:text-white transition-all shadow-lg shadow-red-500/10 whitespace-nowrap"
+               >
+                 Terminate & Rank
+               </button>
+             )}
           </div>
         )}
       </header>
@@ -101,17 +109,32 @@ function AuctionSummary({ summary, teams, getTeamMeta }) {
 
   const calculateTPI = (squad, purse) => {
     if (!squad || squad.length === 0) return 0;
-    const baseValueSum = squad.reduce((acc, p) => acc + (p.base_price || 0.5), 0);
-    const actualSpend = squad.reduce((acc, p) => acc + (p.soldPrice || 0.5), 0);
-    const efficiency = (baseValueSum / actualSpend) * 40;
+    
+    // Normalize to Best 5 Players to prevent "early buying spam" winning
+    const top5 = [...squad].sort((a, b) => (b.soldPrice || 0) - (a.soldPrice || 0)).slice(0, 5);
+    const n = top5.length;
+    
+    const baseValueSum = top5.reduce((acc, p) => acc + (p.base_price || 0.5), 0);
+    const actualSpend = top5.reduce((acc, p) => acc + (p.soldPrice || 0.5), 0);
+    
+    // Efficiency on top assets (40%)
+    const efficiency = actualSpend > 0 ? (baseValueSum / actualSpend) * 40 : 0;
+    
+    // Capital Management (20%)
     const purseBonus = (purse / 100) * 20;
-    const squadSizeBonus = (squad.length / 15) * 20;
+    
+    // Squad Depth (Normalized to 11 for mid-auction, 15 for full)
+    const targetSize = summary.isEarlyStop ? 5 : 11;
+    const squadSizeBonus = Math.min(squad.length / targetSize, 1) * 20;
+    
+    // Star Power based on any assets (15%)
     const marqueeCount = squad.filter(p => p.tier === 'Marquee').length;
-    const internationalCount = squad.filter(p => p.tier?.includes('International')).length;
-    const starPower = (marqueeCount * 5) + (internationalCount * 2);
-    const roles = { Batsman: 0, Bowler: 0, 'All-rounder': 0 };
-    squad.forEach(p => { if(roles[p.role] !== undefined) roles[p.role]++; });
-    const balanceBonus = (roles.Batsman >= 7 && roles.Bowler >= 5 && roles['All-rounder'] >= 3) ? 10 : 0;
+    const starPower = Math.min((marqueeCount * 5), 15);
+    
+    // Role Balance (5%) - Bonus if they have at least 1 of each in top 5
+    const rolesInTop = new Set(top5.map(p => p.role));
+    const balanceBonus = rolesInTop.size >= 3 ? 5 : 0;
+    
     return parseFloat((efficiency + purseBonus + squadSizeBonus + starPower + balanceBonus).toFixed(2));
   };
 

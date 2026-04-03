@@ -102,11 +102,14 @@ io.on('connection', (socket) => {
     callback(squad || { error: 'Team not found' });
   });
 
-  // ── GET ROOM INFO ───────────────────────────────────────────────
-  socket.on('getRoom', ({ roomId }, callback) => {
-    const info = engine.getRoomInfo(roomId);
-    if (!info) return callback({ error: 'Room not found' });
-    callback(info);
+  // ── STOP AUCTION ────────────────────────────────────────────────
+  socket.on('stopAuction', (_, callback) => {
+    const meta = socketMeta.get(socket.id);
+    if (!meta) return callback && callback({ error: 'Not in a room' });
+
+    console.log(`⏹️ Auction manually stopped in room ${meta.roomId}`);
+    engine.stopAuction(meta.roomId, io);
+    if (callback) callback({ success: true });
   });
 
   // ── DISCONNECT ───────────────────────────────────────────────────
