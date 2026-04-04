@@ -43,8 +43,11 @@ function createRoom(roomId, adminSocketId, adminTeamId) {
 function joinRoom(roomId, teamId) {
   const room = ROOMS.get(roomId);
   if (!room) return { error: 'Room not found' };
+  
+  // If team already exists, allow re-joining (for persistence/refresh)
+  if (room.teams[teamId]) return { success: true };
+
   if (Object.keys(room.teams).length >= 10) return { error: 'Room is full (max 10 teams)' };
-  if (room.teams[teamId]) return { error: 'Team already taken' };
   room.teams[teamId] = createTeamState(teamId);
   return { success: true };
 }

@@ -67,8 +67,10 @@ io.on('connection', (socket) => {
     const info = engine.getRoomInfo(roomId);
     if (!info) return callback && callback({ error: 'Room not found' });
 
-    if (Object.keys(info.teamIds).length < 4 && info.teamIds.length < 4)
-      return callback && callback({ error: 'Need at least 4 teams to start' });
+    if (info.teamIds.length < 4) {
+      console.log(`⚠️ Start blocked: Room ${roomId} has only ${info.teamIds.length} teams.`);
+      return callback && callback({ error: `Need at least 4 teams to start (Current: ${info.teamIds.length})` });
+    }
 
     console.log(`🏏 Auction started in room ${roomId}`);
     engine.startAuction(roomId, players, io);

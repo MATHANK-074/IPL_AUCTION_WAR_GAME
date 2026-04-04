@@ -4,8 +4,8 @@ import socket from '../socket';
 const GameContext = createContext(null);
 
 export function GameProvider({ children }) {
-  const [roomId, setRoomId] = useState(null);
-  const [myTeamId, setMyTeamId] = useState(null);
+  const [roomId, setRoomId] = useState(() => localStorage.getItem('ipl_room_id'));
+  const [myTeamId, setMyTeamId] = useState(() => localStorage.getItem('ipl_team_id'));
   const [isAdmin, setIsAdmin] = useState(false);
   const [roomInfo, setRoomInfo] = useState(null);   // { status, teamIds, teams }
   const [currentPlayer, setCurrentPlayer] = useState(null);
@@ -20,11 +20,26 @@ export function GameProvider({ children }) {
   const [error, setError] = useState(null);
   const [auctionFinished, setAuctionFinished] = useState(null);
 
-  // Fetch static data
+  // Fetch static data and re-sync room
   useEffect(() => {
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+    const API_URL = import.meta.env.VITE_API_URL || 'https://iplauctionwargame-production.up.railway.app';
     fetch(`${API_URL}/teams`).then(r => r.json()).then(setTeams);
     fetch(`${API_URL}/players`).then(r => r.json()).then(setPlayers);
+
+    // Re-sync with room if we have data in localStorage
+    const savedRoomId = localStorage.getItem('ipl_room_id');
+    const savedTeamId = localStorage.getItem('ipl_team_id');
+    if (savedRoomId && savedTeamId) {
+      socket.emit('joinRoom', { roomId: savedRoomId, teamId: savedTeamId }, (resp) => {
+        if (resp.error) {
+          console.warn('Persistence sync failed:', resp.error);
+          localStorage.removeItem('ipl_room_id');
+          localStorage.removeItem('ipl_team_id');
+          setRoomId(null);
+          setMyTeamId(null);
+        }
+      });
+    }
   }, []);
 
   // Socket events
@@ -91,6 +106,8 @@ export function GameProvider({ children }) {
     return new Promise((resolve, reject) => {
       socket.emit('createRoom', { teamId }, (resp) => {
         if (resp.error) return reject(resp.error);
+        localStorage.setItem('ipl_room_id', resp.roomId);
+        localStorage.setItem('ipl_team_id', teamId);
         setRoomId(resp.roomId);
         setMyTeamId(teamId);
         setIsAdmin(true);
@@ -103,6 +120,8 @@ export function GameProvider({ children }) {
     return new Promise((resolve, reject) => {
       socket.emit('joinRoom', { roomId: code, teamId }, (resp) => {
         if (resp.error) return reject(resp.error);
+        localStorage.setItem('ipl_room_id', code);
+        localStorage.setItem('ipl_team_id', teamId);
         setRoomId(code);
         setMyTeamId(teamId);
         setIsAdmin(false);
