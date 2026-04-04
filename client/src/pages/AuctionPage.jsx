@@ -14,6 +14,7 @@ export default function AuctionPage() {
 
   const [showResult, setShowResult] = useState(null);
   const [viewSquadFor, setViewSquadFor] = useState(null);
+  const [showSets, setShowSets] = useState(false);
 
   useEffect(() => {
     if (playerResult) {
@@ -75,6 +76,12 @@ export default function AuctionPage() {
                  Terminate & Rank
                </button>
              )}
+             <button 
+                onClick={() => setShowSets(true)}
+                className="px-4 py-2 rounded-xl bg-yellow-400 text-black text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all shadow-lg shadow-yellow-400/20 whitespace-nowrap"
+             >
+                📝 View Sets
+             </button>
           </div>
         )}
       </header>
@@ -100,6 +107,7 @@ export default function AuctionPage() {
 
       {showResult && <SoldOverlay result={showResult} onDismiss={() => setShowResult(null)} />}
       {viewSquadFor && <TeamProfile teamId={viewSquadFor} onClose={() => setViewSquadFor(null)} />}
+      {showSets && <SetListModal onClose={() => setShowSets(false)} />}
     </div>
   );
 }

@@ -194,14 +194,14 @@ export function GameProvider({ children }) {
     });
   }, []);
 
-  const getTeamMeta = useCallback((teamId) => {
-    return teams.find(t => t.id === teamId) || null;
-  }, [teams]);
-
-  const getMyTeamState = useCallback(() => {
-    if (!roomInfo || !myTeamId) return null;
-    return roomInfo.teams?.[myTeamId] || null;
-  }, [roomInfo, myTeamId]);
+  const getSetList = useCallback(() => {
+    return new Promise((resolve, reject) => {
+      socket.emit('getSetList', {}, (resp) => {
+        if (resp.error) return reject(resp.error);
+        resolve(resp);
+      });
+    });
+  }, []);
 
   return (
     <GameContext.Provider value={{
@@ -209,7 +209,7 @@ export function GameProvider({ children }) {
       currentBid, playerResult, playerIndex, totalPlayers,
       squads, teams, players, error, setError, auctionFinished,
       createRoom, joinRoom, startAuction, placeBid, useRTM, fetchSquad, getRoom, stopAuction,
-      getTeamMeta, getMyTeamState,
+      getTeamMeta, getMyTeamState, getSetList,
     }}>
       {children}
     </GameContext.Provider>

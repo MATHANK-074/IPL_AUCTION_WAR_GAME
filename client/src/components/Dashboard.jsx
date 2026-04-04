@@ -73,13 +73,14 @@ export default function Dashboard({ onViewSquad }) {
                   </div>
 
                   <div className="flex justify-between items-center">
-                    <div className="flex gap-3">
+                    <div className="grid grid-cols-4 gap-2">
                        <Metric val={state.roleCounts?.Batsman || 0} color="#00D2FF" label="B" />
                        <Metric val={state.roleCounts?.Bowler || 0} color="#FF3B5C" label="W" />
                        <Metric val={state.roleCounts?.['All-rounder'] || 0} color="#F9CD1C" label="A" />
+                       <Metric val={state.roleCounts?.['Wicket Keeper'] || 0} color="#10B981" label="WK" />
                     </div>
                     <span className="text-[8px] font-black text-slate-500 uppercase tracking-widest">
-                      {state.squad?.length || 0}/15 SQUAD
+                      {state.squad?.length || 0}/25 SQUAD
                     </span>
                   </div>
                 </div>

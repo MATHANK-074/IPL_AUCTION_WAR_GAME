@@ -17,7 +17,7 @@ export default function BidPanel() {
 
   // Bid button disabled conditions
   const noMoney = (myState?.purse || 0) < nextBid;
-  const squadFull = (myState?.squad?.length || 0) >= 15;
+  const squadFull = (myState?.squad?.length || 0) >= 25;
   const isMineHighest = currentBid?.teamId === myTeamId;
   const bidDisabled = noMoney || squadFull || isMineHighest || !currentPlayer;
 
@@ -89,7 +89,7 @@ export default function BidPanel() {
               </div>
               <div className="text-right">
                 <p className="text-[9px] text-slate-500 font-black uppercase tracking-widest mb-1">Squad Space</p>
-                <p className="text-xl font-black text-white">{myState.squad?.length || 0}<span className="text-xs text-slate-500">/15</span></p>
+                <p className="text-xl font-black text-white">{myState.squad?.length || 0}<span className="text-xs text-slate-500">/25</span></p>
               </div>
             </div>
           </div>
@@ -121,7 +121,7 @@ export default function BidPanel() {
         >
           {isMineHighest ? (
             <span className="flex items-center justify-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" /> FRANCHISE LEADING
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" /> {teams?.find(t => t.id === myTeamId)?.name || 'FRANCHISE LEADING'}
             </span>
           ) : noMoney ? (
             'CAPITAL DEPLETED'
@@ -149,11 +149,12 @@ export default function BidPanel() {
 
         {/* Role Metrics */}
         {myState && (
-          <div className="grid grid-cols-3 gap-2 pt-6">
+          <div className="grid grid-cols-4 gap-2 pt-6">
             {[
-              { label: 'BAT', val: `${myState.roleCounts?.Batsman || 0}/7`, color: '#00D2FF' },
-              { label: 'BOWL', val: `${myState.roleCounts?.Bowler || 0}/5`, color: '#FF3B5C' },
-              { label: 'AR', val: `${myState.roleCounts?.['All-rounder'] || 0}/3`, color: '#F9CD1C' },
+              { label: 'BAT', val: `${myState.roleCounts?.Batsman || 0}/9`, color: '#00D2FF' },
+              { label: 'BOWL', val: `${myState.roleCounts?.Bowler || 0}/9`, color: '#FF3B5C' },
+              { label: 'AR', val: `${myState.roleCounts?.['All-rounder'] || 0}/5`, color: '#F9CD1C' },
+              { label: 'WK', val: `${myState.roleCounts?.['Wicket Keeper'] || 0}/2`, color: '#10B981' },
             ].map((r, i) => (
               <div key={i} className="bg-white/5 border border-white/5 rounded-2xl py-3 px-1 text-center">
                 <p className="text-[7px] font-black text-slate-500 uppercase tracking-widest mb-1">{r.label}</p>

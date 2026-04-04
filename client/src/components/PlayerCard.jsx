@@ -20,13 +20,19 @@ export default function PlayerCard({ player, currentBid, teams }) {
           style={{ background: 'radial-gradient(circle, #fff 0%, transparent 50%)' }} />
 
         {/* Role Badge */}
-        <div className="absolute top-6 right-6 z-20">
+        <div className="absolute top-6 right-6 z-20 flex flex-col items-end gap-2 text-right">
           <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg border ${
             player.role === 'Batsman' ? 'role-Batsman' : 
-            player.role === 'Bowler' ? 'role-Bowler' : 'role-All-rounder'
+            player.role === 'Bowler' ? 'role-Bowler' : 
+            player.role === 'Wicket Keeper' ? 'role-WK' : 'role-All-rounder'
           }`}>
             {player.role}
           </span>
+          {player.setName && (
+            <span className="text-[8px] font-black text-yellow-500/80 uppercase tracking-widest bg-yellow-400/10 px-3 py-1 rounded-lg border border-yellow-400/20">
+               SET {player.setNum}: {player.setName}
+            </span>
+          )}
         </div>
 
         {/* Player Identity - Focal Point */}
@@ -72,8 +78,8 @@ export default function PlayerCard({ player, currentBid, teams }) {
               <div className="flex justify-between items-center bg-white/[0.04] p-4 rounded-2xl border border-white/5 overflow-hidden relative">
                 <div className="absolute inset-0 opacity-10" style={{ background: bidTeam?.color }} />
                 <div className="flex items-center gap-3 relative z-10">
-                  <img src={bidTeam?.logo} alt={currentBid.teamId} className="w-8 h-8 object-contain drop-shadow-md" />
-                  <span className="text-sm font-black text-white tracking-widest uppercase">{currentBid.teamId}</span>
+                  <img src={bidTeam?.logo} alt={currentBid.teamId} className="w-8 h-8 object-contain filter drop-shadow-md" />
+                  <span className="text-sm font-black text-white tracking-widest uppercase">{bidTeam?.name || currentBid.teamId}</span>
                 </div>
                 <div className="text-right relative z-10">
                   <p className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Current Valuation</p>

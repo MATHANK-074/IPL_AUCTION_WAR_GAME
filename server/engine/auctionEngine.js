@@ -1,10 +1,12 @@
 const ROOMS = new Map();
-const ROLE_QUOTAS = { Batsman: 7, Bowler: 5, 'All-rounder': 3 };
-const MAX_SQUAD = 15;
+const MAX_SQUAD = 25;
 const MIN_SQUAD = 11;
 const BUDGET = 100;
 const BID_INCREMENT = 0.25;
 const TIMER_SECONDS = 10;
+
+// Roles are now just for display and tracking, no strict quota enforced except max squad
+const ROLE_QUOTAS = { Batsman: 25, Bowler: 25, 'All-rounder': 25, 'Wicket Keeper': 25 };
 
 function createTeamState(teamId) {
   return {
@@ -12,7 +14,7 @@ function createTeamState(teamId) {
     purse: BUDGET,
     squad: [],
     rtmUsed: false,
-    roleCounts: { Batsman: 0, Bowler: 0, 'All-rounder': 0 },
+    roleCounts: { Batsman: 0, Bowler: 0, 'All-rounder': 0, 'Wicket Keeper': 0 },
   };
 }
 
@@ -55,8 +57,49 @@ function joinRoom(roomId, teamId) {
 function startAuction(roomId, players, io) {
   const room = ROOMS.get(roomId);
   if (!room) return;
-  // Shuffle players
-  room.playerQueue = [...players].sort(() => Math.random() - 0.5);
+
+  const wks = new Set([
+     "Virat Kohli", "MS Dhoni", "KL Rahul", "Rishabh Pant", "Sanju Samson", "Ishan Kishan", 
+     "Jos Buttler", "Quinton de Kock", "Nicholas Pooran", "Heinrich Klaasen", "Phil Salt", 
+     "Jitesh Sharma", "Dhruv Jurel", "Dinesh Karthik", "Wriddhiman Saha", "Abhishek Porel",
+     "Kumar Kushagra", "Shai Hope", "Tristan Stubbs", "Rahmanullah Gurbaz"
+  ]);
+
+  const isIndian = (p) => p.nationality === 'India';
+
+  // Sort and Categorize into 350 Players
+  let all = [...players].map(p => {
+     if (wks.has(p.name)) p.role = 'Wicket Keeper';
+     return p;
+  });
+
+  const starInd = all.filter(p => isIndian(p) && p.tier === 'Marquee').slice(0, 20).map(p => ({ ...p, setNum: 1, setName: 'STAR PLAYERS INDIA' }));
+  const starIndIds = new Set(starInd.map(p => p.id));
+
+  const starInt = all.filter(p => !isIndian(p) && p.tier === 'Marquee' && !starIndIds.has(p.id)).slice(0, 20).map(p => ({ ...p, setNum: 2, setName: 'STAR PLAYERS INTERNATIONAL' }));
+  const starIntIds = new Set(starInt.map(p => p.id));
+
+  const cappedInd = all.filter(p => isIndian(p) && !starIndIds.has(p.id)).slice(0, 130).map(p => ({ ...p, setNum: 3, setName: 'CAPPED INDIAN PLAYERS' }));
+  const cappedIndIds = new Set(cappedInd.map(p => p.id));
+  
+  const cappedInt = all.filter(p => !isIndian(p) && !starIntIds.has(p.id)).slice(0, 100).map(p => ({ ...p, setNum: 4, setName: 'CAPPED INTERNATIONAL PLAYERS' }));
+  const cappedIntIds = new Set(cappedInt.map(p => p.id));
+
+  const uncappedInd = all.filter(p => isIndian(p) && !starIndIds.has(p.id) && !cappedIndIds.has(p.id)).slice(0, 40).map(p => ({ ...p, setNum: 5, setName: 'UNCAPPED INDIAN PLAYERS' }));
+  const uncappedIndIds = new Set(uncappedInd.map(p => p.id));
+
+  const uncappedInt = all.filter(p => !isIndian(p) && !starIntIds.has(p.id) && !cappedIntIds.has(p.id)).slice(0, 40).map(p => ({ ...p, setNum: 6, setName: 'UNCAPPED INTERNATIONAL PLAYERS' }));
+
+  // Final List: 350 Players
+  room.playerQueue = [
+    ...starInd.sort(() => Math.random() - 0.5),
+    ...starInt.sort(() => Math.random() - 0.5),
+    ...cappedInd.sort(() => Math.random() - 0.5),
+    ...cappedInt.sort(() => Math.random() - 0.5),
+    ...uncappedInd.sort(() => Math.random() - 0.5),
+    ...uncappedInt.sort(() => Math.random() - 0.5)
+  ];
+
   room.currentIndex = 0;
   room.status = 'auction';
   advanceToNext(roomId, io);

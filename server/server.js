@@ -111,6 +111,30 @@ io.on('connection', (socket) => {
     callback(info);
   });
 
+  // ── GET SET LIST ─────────────────────────────────────────────────
+  socket.on('getSetList', (_, callback) => {
+    const meta = socketMeta.get(socket.id);
+    if (!meta) return callback && callback({ error: 'Not in a room' });
+    
+    const room = engine.ROOMS.get(meta.roomId);
+    if (!room || !room.playerQueue) return callback && callback({ error: 'Sets not initialized' });
+
+    // Return players grouped by set
+    const sets = {};
+    room.playerQueue.forEach(p => {
+        if (!sets[p.setNum]) sets[p.setNum] = { name: p.setName, list: [] };
+        sets[p.setNum].list.push({ 
+            id: p.id, 
+            name: p.name, 
+            role: p.role, 
+            status: room.soldPlayers.some(s => s.player.id === p.id) ? 'SOLD' : 
+                    room.unsoldPlayers.some(u => u.id === p.id) ? 'UNSOLD' : 
+                    room.currentPlayer?.id === p.id ? 'ACTIVE' : 'UPCOMING'
+        });
+    });
+    callback(sets);
+  });
+
   // ── STOP AUCTION ────────────────────────────────────────────────
   socket.on('stopAuction', (_, callback) => {
     const meta = socketMeta.get(socket.id);
