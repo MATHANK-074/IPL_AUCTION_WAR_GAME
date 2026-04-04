@@ -121,7 +121,7 @@ export default function BidPanel() {
         >
           {isMineHighest ? (
             <span className="flex items-center justify-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" /> {teams?.find(t => t.id === myTeamId)?.name || 'FRANCHISE LEADING'}
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" /> {teams?.find(t => t.id === currentBid.teamId)?.name || currentBid.teamId}
             </span>
           ) : noMoney ? (
             'CAPITAL DEPLETED'

@@ -17,9 +17,8 @@ export default function TeamProfile({ teamId, onClose }) {
     Batsman: squad.filter(p => p.role === 'Batsman'),
     Bowler: squad.filter(p => p.role === 'Bowler'),
     'All-rounder': squad.filter(p => p.role === 'All-rounder'),
+    'Wicket Keeper': squad.filter(p => p.role === 'Wicket Keeper'),
   }), [squad]);
-
-  const caps = { Batsman: 7, Bowler: 5, 'All-rounder': 3 };
 
   if (!teamId) return null;
 
@@ -48,7 +47,7 @@ export default function TeamProfile({ teamId, onClose }) {
               </h2>
               <div className="flex items-center gap-2 mt-1">
                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                 <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Tactical Asset Log • {squad.length}/15 Secured</span>
+                 <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Tactical Asset Log • {squad.length}/25 Secured</span>
               </div>
             </div>
           </div>
@@ -76,7 +75,7 @@ export default function TeamProfile({ teamId, onClose }) {
                <p className="text-[9px] text-slate-500 font-extrabold uppercase tracking-widest mb-1">Squad Saturation</p>
                <div className="flex items-end gap-2">
                  <p className="text-3xl font-black text-white italic leading-none">{squad.length}</p>
-                 <span className="text-xs font-black text-slate-600 uppercase mb-1">/ 15 ASSETS</span>
+                 <span className="text-xs font-black text-slate-600 uppercase mb-1">/ 25 ASSETS</span>
                </div>
             </div>
           </div>
@@ -84,22 +83,23 @@ export default function TeamProfile({ teamId, onClose }) {
           {/* Asset Allocation Metrics */}
           <div className="space-y-4">
              <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em] px-2 mb-4">Strategic Quotas</h3>
-             <div className="grid grid-cols-3 gap-4">
+             <div className="grid grid-cols-4 gap-4">
                 {[
-                  { role: 'Batsman', label: 'BAT', icon: '🏏', color: '#00D2FF', max: 7 },
-                  { role: 'Bowler', label: 'BOWL', icon: '⚡', color: '#FF3B5C', max: 5 },
-                  { role: 'All-rounder', label: 'AR', icon: '⭐', color: '#F9CD1C', max: 3 },
+                  { role: 'Batsman', label: 'BAT', icon: '🏏', color: '#00D2FF', max: 25 },
+                  { role: 'Bowler', label: 'BOWL', icon: '⚡', color: '#FF3B5C', max: 25 },
+                  { role: 'All-rounder', label: 'AR', icon: '⭐', color: '#F9CD1C', max: 25 },
+                  { role: 'Wicket Keeper', label: 'WK', icon: '🧤', color: '#10B981', max: 25 },
                 ].map(r => {
-                  const count = grouped[r.role].length;
+                  const count = grouped[r.role]?.length || 0;
                   const progress = (count / r.max) * 100;
                   return (
                     <div key={r.role} className="glass p-4 rounded-3xl border-white/5 group hover:border-white/10 transition-colors">
                        <div className="flex justify-between items-center mb-3">
                          <span className="text-lg opacity-80">{r.icon}</span>
-                         <span className="text-xs font-black text-white italic" style={{ color: r.color }}>{count}/{r.max}</span>
+                         <span className="text-xs font-black text-white italic" style={{ color: r.color }}>{count}</span>
                        </div>
                        <div className="h-1 bg-white/5 rounded-full overflow-hidden">
-                         <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${progress}%`, background: r.color }} />
+                          <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${progress}%`, background: r.color }} />
                        </div>
                     </div>
                   );

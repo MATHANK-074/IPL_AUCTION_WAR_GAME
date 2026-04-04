@@ -9,17 +9,21 @@ export default function SetListModal({ onClose }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetch = async () => {
+    const loadSets = async () => {
       try {
         const data = await getSetList();
         setSets(data);
       } catch (e) {
-        console.error(e);
+        console.error("Set List Fetch Error:", e);
       } finally {
         setLoading(false);
       }
     };
-    fetch();
+    
+    // Safety fallback to stop loading UI after 5 seconds if socket hangs
+    const timeout = setTimeout(() => setLoading(false), 5000);
+    
+    loadSets().finally(() => clearTimeout(timeout));
   }, [getSetList]);
 
   if (loading) return (
