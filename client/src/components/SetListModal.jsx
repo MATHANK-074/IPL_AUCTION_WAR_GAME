@@ -33,10 +33,10 @@ export default function SetListModal({ onClose }) {
   const currentSet = sets[activeTab];
   const allSets = Object.keys(sets).sort((a, b) => parseInt(a) - parseInt(b));
 
-  // Filter list by search
-  const filteredList = currentSet?.list.filter(p => 
-    p.name.toLowerCase().includes(search.toLowerCase()) || 
-    p.role.toLowerCase().includes(search.toLowerCase())
+  // Filter list by search - Added safety guards to prevent crash
+  const filteredList = currentSet?.list?.filter(p => 
+    (p?.name?.toLowerCase() || "").includes(search.toLowerCase()) || 
+    (p?.role?.toLowerCase() || "").includes(search.toLowerCase())
   ) || [];
 
   return (

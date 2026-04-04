@@ -122,6 +122,7 @@ io.on('connection', (socket) => {
     // Return players grouped by set
     const sets = {};
     room.playerQueue.forEach(p => {
+        if (!p.setNum) return; // Skip players not in a defined set
         if (!sets[p.setNum]) sets[p.setNum] = { name: p.setName, list: [] };
         sets[p.setNum].list.push({ 
             id: p.id, 
