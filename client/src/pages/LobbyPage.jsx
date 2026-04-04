@@ -1,12 +1,15 @@
 import { useGame } from '../context/GameContext';
 
 export default function LobbyPage({ onStartAuction }) {
-  const { roomId, myTeamId, isAdmin, roomInfo, teams, startAuction, setError } = useGame();
+  const { roomId, myTeamId, roomInfo, teams, startAuction, setError } = useGame();
 
   const teamIds = roomInfo?.teamIds || [];
   const getTeamMeta = (id) => teams.find(t => t.id === id);
   const teamCount = teamIds.length;
   const minTeams = 4;
+
+  // Compute admin directly from server data — most reliable approach
+  const isAdmin = !!(roomInfo && myTeamId && roomInfo.adminTeamId === myTeamId);
   const canStart = isAdmin && teamCount >= minTeams;
 
   const handleStart = async () => {
