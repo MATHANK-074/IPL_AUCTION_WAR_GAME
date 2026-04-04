@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { useGame } from '../context/GameContext';
+import SetListModal from '../components/SetListModal';
 
 export default function LobbyPage({ onStartAuction }) {
   const { roomId, myTeamId, roomInfo, teams, startAuction, setError } = useGame();
+  const [showSets, setShowSets] = useState(false);
 
   const teamIds = roomInfo?.teamIds || [];
   const getTeamMeta = (id) => teams.find(t => t.id === id);
@@ -40,15 +43,23 @@ export default function LobbyPage({ onStartAuction }) {
             </div>
           </div>
 
-          <div className="glass-dark px-10 py-6 rounded-3xl border-white/5 shadow-2xl relative group overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1 bg-yellow-400/50" />
-            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-1 text-center">Invasion Code</p>
-            <div className="flex items-center gap-4">
-              <span className="text-4xl font-black text-white tracking-[0.2em]">{roomId}</span>
-              <button onClick={copyCode} className="p-2 hover:bg-white/10 rounded-xl transition-colors text-xl">
-                📋
-              </button>
-            </div>
+          <div className="flex items-center gap-4">
+             <button 
+                onClick={() => setShowSets(true)}
+                className="glass px-6 py-6 rounded-3xl border-white/5 text-[10px] font-black text-yellow-500 uppercase tracking-widest hover:bg-yellow-400 hover:text-black transition-all"
+             >
+                Tactical Preview
+             </button>
+             <div className="glass-dark px-10 py-6 rounded-3xl border-white/5 shadow-2xl relative group overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-1 bg-yellow-400/50" />
+                <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-1 text-center">Invasion Code</p>
+                <div className="flex items-center gap-4">
+                  <span className="text-4xl font-black text-white tracking-[0.2em]">{roomId}</span>
+                  <button onClick={copyCode} className="p-2 hover:bg-white/10 rounded-xl transition-colors text-xl">
+                    📋
+                  </button>
+                </div>
+             </div>
           </div>
         </div>
 
@@ -140,6 +151,8 @@ export default function LobbyPage({ onStartAuction }) {
           </div>
         </div>
       </div>
+      
+      {showSets && <SetListModal onClose={() => setShowSets(false)} />}
     </div>
   );
 }

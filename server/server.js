@@ -117,20 +117,29 @@ io.on('connection', (socket) => {
     if (!meta) return callback && callback({ error: 'Not in a room' });
     
     const room = engine.ROOMS.get(meta.roomId);
-    if (!room || !room.playerQueue) return callback && callback({ error: 'Sets not initialized' });
+    if (!room) return callback && callback({ error: 'Room not found' });
 
+    // Use room.playerQueue if auction started, otherwise use master player list
+    const sourceList = (room.playerQueue && room.playerQueue.length > 0) ? room.playerQueue : players;
+    
     // Return players grouped by set
     const sets = {};
-    room.playerQueue.forEach(p => {
+    sourceList.forEach(p => {
         if (!p.setNum) return; // Skip players not in a defined set
         if (!sets[p.setNum]) sets[p.setNum] = { name: p.setName, list: [] };
+        
+        let status = 'UPCOMING';
+        if (room.playerQueue && room.playerQueue.length > 0) {
+            status = room.soldPlayers.some(s => s.player.id === p.id) ? 'SOLD' : 
+                     room.unsoldPlayers.some(u => u.id === p.id) ? 'UNSOLD' : 
+                     room.currentPlayer?.id === p.id ? 'ACTIVE' : 'UPCOMING';
+        }
+
         sets[p.setNum].list.push({ 
             id: p.id, 
             name: p.name, 
             role: p.role, 
-            status: room.soldPlayers.some(s => s.player.id === p.id) ? 'SOLD' : 
-                    room.unsoldPlayers.some(u => u.id === p.id) ? 'UNSOLD' : 
-                    room.currentPlayer?.id === p.id ? 'ACTIVE' : 'UPCOMING'
+            status 
         });
     });
     callback(sets);
