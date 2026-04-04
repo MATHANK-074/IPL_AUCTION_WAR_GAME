@@ -79,7 +79,7 @@ export default function LobbyPage({ onStartAuction }) {
             <div className="bg-yellow-400/5 border border-yellow-400/10 p-5 rounded-2xl">
               <p className="text-[10px] text-slate-400 leading-relaxed italic font-medium">
                 * Note: Minimum {minTeams} franchises required to initialize the auction engine. 
-                Full squad requires 7 Batsmen, 5 Bowlers, and 3 All-rounders.
+                Full squad capacity is 25 players with flexible roles (No strict limits).
               </p>
             </div>
           </div>

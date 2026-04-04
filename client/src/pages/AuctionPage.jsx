@@ -5,6 +5,7 @@ import BidPanel from '../components/BidPanel';
 import Dashboard from '../components/Dashboard';
 import SoldOverlay from '../components/SoldOverlay';
 import TeamProfile from '../components/TeamProfile';
+import SetListModal from '../components/SetListModal';
 
 export default function AuctionPage() {
   const {
