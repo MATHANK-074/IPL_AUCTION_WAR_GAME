@@ -255,7 +255,7 @@ function resolvePlayer(roomId, io) {
 function sanitizeTeams(teams) {
   const out = {};
   for (const [id, t] of Object.entries(teams)) {
-    out[id] = { teamId: t.teamId, purse: t.purse, squadCount: t.squad.length, roleCounts: t.roleCounts, rtmUsed: t.rtmUsed };
+    out[id] = { teamId: t.teamId, purse: t.purse, squad: t.squad, roleCounts: t.roleCounts, rtmUsed: t.rtmUsed };
   }
   return out;
 }
@@ -296,7 +296,7 @@ function getRoomInfo(roomId) {
     status: room.status,
     teamIds: Object.keys(room.teams),
     playerIndex: room.currentIndex,
-    totalPlayers: room.playerQueue.length,
+    totalPlayers: room.playerQueue ? room.playerQueue.length : 0,
     adminTeamId: room.adminTeamId, // Return admin info
     teams: sanitizeTeams(room.teams),
   };
