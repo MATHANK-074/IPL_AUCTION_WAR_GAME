@@ -203,6 +203,9 @@ export function GameProvider({ children }) {
     });
   }, []);
 
+  const getTeamMeta = useCallback((id) => teams.find(t => t.id === id), [teams]);
+  const getMyTeamState = useCallback(() => roomInfo?.teams?.[myTeamId], [roomInfo, myTeamId]);
+
   return (
     <GameContext.Provider value={{
       roomId, myTeamId, isAdmin, roomInfo, currentPlayer, timeLeft,
