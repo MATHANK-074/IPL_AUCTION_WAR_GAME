@@ -6,7 +6,7 @@ const GameContext = createContext(null);
 export function GameProvider({ children }) {
   const [roomId, setRoomId] = useState(() => localStorage.getItem('ipl_room_id'));
   const [myTeamId, setMyTeamId] = useState(() => localStorage.getItem('ipl_team_id'));
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(() => localStorage.getItem('ipl_is_admin') === 'true');
   const [roomInfo, setRoomInfo] = useState(null);   // { status, teamIds, teams }
   const [currentPlayer, setCurrentPlayer] = useState(null);
   const [timeLeft, setTimeLeft] = useState(10);
@@ -20,34 +20,24 @@ export function GameProvider({ children }) {
   const [error, setError] = useState(null);
   const [auctionFinished, setAuctionFinished] = useState(null);
 
-  // Fetch static data and re-sync room
+  // Fetch static data
   useEffect(() => {
     const API_URL = import.meta.env.VITE_API_URL || 'https://iplauctionwargame-production.up.railway.app';
     fetch(`${API_URL}/teams`).then(r => r.json()).then(setTeams);
     fetch(`${API_URL}/players`).then(r => r.json()).then(setPlayers);
-
-    // Re-sync with room if we have data in localStorage
-    const savedRoomId = localStorage.getItem('ipl_room_id');
-    const savedTeamId = localStorage.getItem('ipl_team_id');
-    if (savedRoomId && savedTeamId) {
-      socket.emit('joinRoom', { roomId: savedRoomId, teamId: savedTeamId }, (resp) => {
-        if (resp.error) {
-          console.warn('Persistence sync failed:', resp.error);
-          localStorage.removeItem('ipl_room_id');
-          localStorage.removeItem('ipl_team_id');
-          setRoomId(null);
-          setMyTeamId(null);
-        }
-      });
-    }
   }, []);
 
-  // Socket events
+  // Socket event listeners — MUST run before re-sync so roomUpdate is captured
   useEffect(() => {
+    const savedTeamId = localStorage.getItem('ipl_team_id');
+
     socket.on('roomUpdate', (info) => {
       setRoomInfo(info);
-      if (myTeamId && info.adminTeamId === myTeamId) {
+      // Re-derive admin from server truth on every update
+      const teamId = savedTeamId || localStorage.getItem('ipl_team_id');
+      if (teamId && info.adminTeamId === teamId) {
         setIsAdmin(true);
+        localStorage.setItem('ipl_is_admin', 'true');
       }
     });
 
@@ -84,6 +74,22 @@ export function GameProvider({ children }) {
       setAuctionFinished(summary);
     });
 
+    // Re-sync with room AFTER listeners are set up
+    const savedRoomId = localStorage.getItem('ipl_room_id');
+    if (savedRoomId && savedTeamId) {
+      socket.emit('joinRoom', { roomId: savedRoomId, teamId: savedTeamId }, (resp) => {
+        if (resp.error) {
+          console.warn('Persistence sync failed:', resp.error);
+          localStorage.removeItem('ipl_room_id');
+          localStorage.removeItem('ipl_team_id');
+          localStorage.removeItem('ipl_is_admin');
+          setRoomId(null);
+          setMyTeamId(null);
+          setIsAdmin(false);
+        }
+      });
+    }
+
     return () => {
       socket.off('roomUpdate');
       socket.off('newPlayer');
@@ -93,12 +99,14 @@ export function GameProvider({ children }) {
       socket.off('playerResult');
       socket.off('auctionFinished');
     };
-  }, [myTeamId]); // Add myTeamId as dependency for admin check
+  }, []); // Empty deps — runs ONCE on mount, captures localStorage values
 
-  // Sync admin state on roomInfo change (redundant but safe)
+  // Sync admin state on roomInfo change — belt-and-suspenders
   useEffect(() => {
     if (roomInfo && myTeamId) {
-      setIsAdmin(roomInfo.adminTeamId === myTeamId);
+      const admin = roomInfo.adminTeamId === myTeamId;
+      setIsAdmin(admin);
+      if (admin) localStorage.setItem('ipl_is_admin', 'true');
     }
   }, [roomInfo, myTeamId]);
 
@@ -108,6 +116,7 @@ export function GameProvider({ children }) {
         if (resp.error) return reject(resp.error);
         localStorage.setItem('ipl_room_id', resp.roomId);
         localStorage.setItem('ipl_team_id', teamId);
+        localStorage.setItem('ipl_is_admin', 'true');
         setRoomId(resp.roomId);
         setMyTeamId(teamId);
         setIsAdmin(true);
@@ -122,6 +131,7 @@ export function GameProvider({ children }) {
         if (resp.error) return reject(resp.error);
         localStorage.setItem('ipl_room_id', code);
         localStorage.setItem('ipl_team_id', teamId);
+        localStorage.removeItem('ipl_is_admin'); // joiners are not admins
         setRoomId(code);
         setMyTeamId(teamId);
         setIsAdmin(false);
@@ -129,6 +139,7 @@ export function GameProvider({ children }) {
       });
     });
   }, []);
+
 
   const startAuction = useCallback(() => {
     return new Promise((resolve, reject) => {

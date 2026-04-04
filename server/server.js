@@ -104,6 +104,13 @@ io.on('connection', (socket) => {
     callback(squad || { error: 'Team not found' });
   });
 
+  // ── GET ROOM ─────────────────────────────────────────────────────
+  socket.on('getRoom', ({ roomId }, callback) => {
+    const info = engine.getRoomInfo(roomId);
+    if (!info) return callback({ error: 'Room not found' });
+    callback(info);
+  });
+
   // ── STOP AUCTION ────────────────────────────────────────────────
   socket.on('stopAuction', (_, callback) => {
     const meta = socketMeta.get(socket.id);
