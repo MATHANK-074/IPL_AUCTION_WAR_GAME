@@ -8,9 +8,8 @@ export default function LobbyPage({ onStartAuction }) {
   const teamCount = teamIds.length;
   const minTeams = 4;
 
-  // Compute admin directly from server data — most reliable approach
-  const isAdmin = !!(roomInfo && myTeamId && roomInfo.adminTeamId === myTeamId);
-  const canStart = isAdmin && teamCount >= minTeams;
+  // Anyone can start when min teams are met — server has no admin restriction
+  const canStart = teamCount >= minTeams;
 
   const handleStart = async () => {
     try {
@@ -139,11 +138,20 @@ export default function LobbyPage({ onStartAuction }) {
                   )}
                 </button>
               ) : (
-                <div className="glass-dark p-6 rounded-3xl text-center border-white/5 shadow-xl">
-                  <p className="text-xs font-black text-slate-400 uppercase tracking-[0.4em] animate-pulse">
-                    Waiting for Command Center to Deploy Signals...
-                  </p>
-                </div>
+                <button
+                  disabled={!canStart}
+                  onClick={handleStart}
+                  className={`btn-neon-gold w-full py-6 text-xl shadow-2xl relative overflow-hidden group transition-all duration-500 ${
+                    !canStart ? 'grayscale opacity-30 cursor-not-allowed scale-95' : 'hover:scale-[1.02] active:scale-[0.98]'
+                  }`}
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-3">
+                    🚀 {canStart ? 'INITIALIZE AUCTION SEQUENCE' : `PENDING ${minTeams - teamCount} MORE FRANCHISES`}
+                  </span>
+                  {canStart && (
+                    <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 skew-x-12" />
+                  )}
+                </button>
               )}
             </div>
           </div>
