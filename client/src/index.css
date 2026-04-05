@@ -261,3 +261,35 @@ body::before {
 .role-Bowler       { background: rgba(255, 59, 92, 0.15); color: #FF3B5C; border: 1px solid rgba(255,59,92,0.3); }
 .role-All-rounder  { background: rgba(249, 205, 28, 0.15); color: #F9CD1C; border: 1px solid rgba(249,205,28,0.3); }
 .role-WK           { background: rgba(16, 185, 129, 0.15); color: #10B981; border: 1px solid rgba(16,185,129,0.3); }
+
+/* ── PLAYER SET CARD (Reference-style) ── */
+.player-set-card {
+  background: rgba(30, 30, 30, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 1.25rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.player-set-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.badge-role {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.badge-role-batsman { color: #00BFFF; background: rgba(0, 191, 255, 0.05); border: 1px solid rgba(0, 191, 255, 0.2); }
+.badge-role-bowler  { color: #FF3B5C; background: rgba(255, 59, 92, 0.05); border: 1px solid rgba(255, 59, 92, 0.2); }
+.badge-role-allrounder { color: #A855F7; background: rgba(168, 85, 247, 0.05); border: 1px solid rgba(168, 85, 247, 0.2); }
+.badge-role-wk { color: #F9CD1C; background: rgba(249, 205, 28, 0.05); border: 1px solid rgba(249, 205, 28, 0.2); }

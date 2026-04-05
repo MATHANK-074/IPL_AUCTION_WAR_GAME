@@ -309,7 +309,6 @@ module.exports = {
   placeBid,
   useRTM,
   getSquad,
-  getSquad,
   getRoomInfo,
   stopAuction,
   ROOMS,

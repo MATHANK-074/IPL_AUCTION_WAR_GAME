@@ -22,7 +22,7 @@ export function GameProvider({ children }) {
 
   // Fetch static data
   useEffect(() => {
-    const API_URL = import.meta.env.VITE_API_URL || 'https://iplauctionwargame-production.up.railway.app';
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
     fetch(`${API_URL}/teams`).then(r => r.json()).then(setTeams);
     fetch(`${API_URL}/players`).then(r => r.json()).then(setPlayers);
   }, []);

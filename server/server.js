@@ -30,6 +30,15 @@ app.get('/health', (req, res) => res.json({ status: 'ok' }));
 // Track socket -> { roomId, teamId }
 const socketMeta = new Map();
 
+// Static definitions for set/role categorization
+const WK_LIST = new Set([
+  "Virat Kohli", "MS Dhoni", "KL Rahul", "Rishabh Pant", "Sanju Samson", "Ishan Kishan", 
+  "Jos Buttler", "Quinton de Kock", "Nicholas Pooran", "Heinrich Klaasen", "Phil Salt", 
+  "Jitesh Sharma", "Dhruv Jurel", "Dinesh Karthik", "Wriddhiman Saha", "Abhishek Porel",
+  "Kumar Kushagra", "Shai Hope", "Tristan Stubbs", "Rahmanullah Gurbaz"
+]);
+const isIndian = (p) => p.nationality === 'India';
+
 io.on('connection', (socket) => {
   console.log(`🔌 Connected: ${socket.id}`);
 
@@ -113,36 +122,52 @@ io.on('connection', (socket) => {
 
   // ── GET SET LIST ─────────────────────────────────────────────────
   socket.on('getSetList', (_, callback) => {
-    const meta = socketMeta.get(socket.id);
-    if (!meta) return callback && callback({ error: 'Not in a room' });
-    
-    const room = engine.ROOMS.get(meta.roomId);
-    if (!room) return callback && callback({ error: 'Room not found' });
+    try {
+      const meta = socketMeta.get(socket.id);
+      if (!meta) return callback && callback({ error: 'Not in a room' });
+      
+      const room = engine.ROOMS.get(meta.roomId);
+      if (!room) return callback && callback({ error: 'Room not found' });
 
-    // Use room.playerQueue if auction started, otherwise use master player list
-    const sourceList = (room.playerQueue && room.playerQueue.length > 0) ? room.playerQueue : players;
-    
-    // Return players grouped by set
-    const sets = {};
-    sourceList.forEach(p => {
-        if (!p.setNum) return; // Skip players not in a defined set
-        if (!sets[p.setNum]) sets[p.setNum] = { name: p.setName, list: [] };
-        
-        let status = 'UPCOMING';
-        if (room.playerQueue && room.playerQueue.length > 0) {
-            status = room.soldPlayers.some(s => s.player.id === p.id) ? 'SOLD' : 
-                     room.unsoldPlayers.some(u => u.id === p.id) ? 'UNSOLD' : 
-                     room.currentPlayer?.id === p.id ? 'ACTIVE' : 'UPCOMING';
-        }
+      // Use room.playerQueue if auction started, otherwise use master player list
+      const sourceList = (room.playerQueue && room.playerQueue.length > 0) ? room.playerQueue : players;
+      
+      const sets = {};
+      sourceList.forEach(p => {
+          let setNum = p.setNum;
+          let setName = p.setName;
 
-        sets[p.setNum].list.push({ 
-            id: p.id, 
-            name: p.name, 
-            role: p.role, 
-            status 
-        });
-    });
-    callback(sets);
+          // Fallback categorization if properties missing (before auction start)
+          if (!setNum) {
+              if (isIndian(p) && p.tier === 'Marquee') { setNum = 1; setName = 'STAR PLAYERS INDIA'; }
+              else if (!isIndian(p) && p.tier === 'Marquee') { setNum = 2; setName = 'STAR PLAYERS INTERNATIONAL'; }
+              else if (isIndian(p)) { setNum = 3; setName = 'CAPPED INDIAN PLAYERS'; }
+              else if (!isIndian(p)) { setNum = 4; setName = 'CAPPED INTERNATIONAL PLAYERS'; }
+              else { setNum = 7; setName = 'OTHER ASSETS'; }
+          }
+
+          if (!sets[setNum]) sets[setNum] = { name: setName, list: [] };
+          
+          let status = 'UPCOMING';
+          if (room.playerQueue && room.playerQueue.length > 0) {
+              status = (room.soldPlayers || []).some(s => s.player?.id === p.id) ? 'SOLD' : 
+                       (room.unsoldPlayers || []).some(u => u.id === p.id) ? 'UNSOLD' : 
+                       room.currentPlayer?.id === p.id ? 'ACTIVE' : 'UPCOMING';
+          }
+
+          sets[setNum].list.push({ 
+              id: p.id, 
+              name: p.name, 
+              role: WK_LIST.has(p.name) ? 'Wicket Keeper' : p.role,
+              base_price: p.base_price,
+              status 
+          });
+      });
+      callback(sets);
+    } catch (error) {
+      console.error("Critical Server Error in getSetList:", error);
+      callback && callback({ error: 'Internal Server Error Categorizing Sets' });
+    }
   });
 
   // ── STOP AUCTION ────────────────────────────────────────────────
