@@ -228,6 +228,7 @@ export function GameProvider({ children }) {
     // Important: Use a sorted approach for building the sets to ensure predictability
     const sourceList = (roomInfo?.playerQueue && roomInfo.playerQueue.length > 0) ? roomInfo.playerQueue : players;
     const sortedSource = [...sourceList].sort((a, b) => (a.id || 0) - (b.id || 0));
+    const sets = {};
     
     sortedSource.forEach(p => {
       let setNum = p.setNum;
