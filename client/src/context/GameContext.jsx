@@ -41,77 +41,77 @@ export function GameProvider({ children }) {
 
   // Socket event listeners — MUST run before re-sync so roomUpdate is captured
   useEffect(() => {
-    const savedTeamId = localStorage.getItem('ipl_team_id');
+    const onConnect = () => {
+      console.log('📡 Connected to Command Center:', socket.id);
+      const savedRoomId = localStorage.getItem('ipl_room_id');
+      const savedTeamId = localStorage.getItem('ipl_team_id');
+      if (savedRoomId && savedTeamId) {
+        socket.emit('joinRoom', { roomId: savedRoomId, teamId: savedTeamId }, (resp) => {
+          if (resp.error) {
+            console.warn('Persistence sync failed:', resp.error);
+            localStorage.removeItem('ipl_room_id');
+            localStorage.removeItem('ipl_team_id');
+            localStorage.removeItem('ipl_is_admin');
+            setRoomId(null);
+            setMyTeamId(null);
+            setIsAdmin(false);
+          }
+        });
+      }
+    };
 
-    socket.on('roomUpdate', (info) => {
+    const onRoomUpdate = (info) => {
       setRoomInfo(info);
-      // Re-derive admin from server truth on every update
-      const teamId = savedTeamId || localStorage.getItem('ipl_team_id');
+      const teamId = localStorage.getItem('ipl_team_id');
       if (teamId && info.adminTeamId === teamId) {
         setIsAdmin(true);
         localStorage.setItem('ipl_is_admin', 'true');
       }
-    });
+    };
 
-    socket.on('newPlayer', ({ player, timeLeft, playerIndex, totalPlayers }) => {
+    const onNewPlayer = ({ player, timeLeft, playerIndex, totalPlayers }) => {
       setCurrentPlayer(player);
       setTimeLeft(timeLeft);
       setCurrentBid(null);
       setPlayerResult(null);
       setPlayerIndex(playerIndex);
       setTotalPlayers(totalPlayers);
-    });
+    };
 
-    socket.on('timerTick', ({ timeLeft }) => {
-      setTimeLeft(timeLeft);
-    });
-
-    socket.on('bidUpdate', ({ teamId, amount, timeLeft }) => {
+    const onTimerTick = ({ timeLeft }) => setTimeLeft(timeLeft);
+    const onBidUpdate = ({ teamId, amount, timeLeft }) => {
       setCurrentBid({ teamId, amount });
       setTimeLeft(timeLeft);
-    });
-
-    socket.on('rtmUsed', ({ teamId, amount }) => {
-      setCurrentBid({ teamId, amount });
-    });
-
-    socket.on('playerResult', ({ result, player, teamId, amount, teams: updatedTeams }) => {
+    };
+    const onRtmUsed = ({ teamId, amount }) => setCurrentBid({ teamId, amount });
+    const onPlayerResult = ({ result, player, teamId, amount, teams: updatedTeams }) => {
       setPlayerResult({ result, player, teamId, amount });
-      if (updatedTeams) {
-        setRoomInfo(prev => prev ? { ...prev, teams: updatedTeams } : prev);
-      }
-    });
+      if (updatedTeams) setRoomInfo(prev => prev ? { ...prev, teams: updatedTeams } : prev);
+    };
+    const onAuctionFinished = (summary) => setAuctionFinished(summary);
 
-    socket.on('auctionFinished', (summary) => {
-      setAuctionFinished(summary);
-    });
+    socket.on('connect', onConnect);
+    socket.on('roomUpdate', onRoomUpdate);
+    socket.on('newPlayer', onNewPlayer);
+    socket.on('timerTick', onTimerTick);
+    socket.on('bidUpdate', onBidUpdate);
+    socket.on('rtmUsed', onRtmUsed);
+    socket.on('playerResult', onPlayerResult);
+    socket.on('auctionFinished', onAuctionFinished);
 
-    // Re-sync with room AFTER listeners are set up
-    const savedRoomId = localStorage.getItem('ipl_room_id');
-    if (savedRoomId && savedTeamId) {
-      socket.emit('joinRoom', { roomId: savedRoomId, teamId: savedTeamId }, (resp) => {
-        if (resp.error) {
-          console.warn('Persistence sync failed:', resp.error);
-          localStorage.removeItem('ipl_room_id');
-          localStorage.removeItem('ipl_team_id');
-          localStorage.removeItem('ipl_is_admin');
-          setRoomId(null);
-          setMyTeamId(null);
-          setIsAdmin(false);
-        }
-      });
-    }
+    if (socket.connected) onConnect();
 
     return () => {
-      socket.off('roomUpdate');
-      socket.off('newPlayer');
-      socket.off('timerTick');
-      socket.off('bidUpdate');
-      socket.off('rtmUsed');
-      socket.off('playerResult');
-      socket.off('auctionFinished');
+      socket.off('connect', onConnect);
+      socket.off('roomUpdate', onRoomUpdate);
+      socket.off('newPlayer', onNewPlayer);
+      socket.off('timerTick', onTimerTick);
+      socket.off('bidUpdate', onBidUpdate);
+      socket.off('rtmUsed', onRtmUsed);
+      socket.off('playerResult', onPlayerResult);
+      socket.off('auctionFinished', onAuctionFinished);
     };
-  }, []); // Empty deps — runs ONCE on mount, captures localStorage values
+  }, []);
 
   // Sync admin state on roomInfo change — belt-and-suspenders
   useEffect(() => {
@@ -206,7 +206,24 @@ export function GameProvider({ children }) {
     });
   }, []);
 
-  const getSetList = useCallback(() => {
+  const getSetList = useCallback(async () => {
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+    const savedRoomId = localStorage.getItem('ipl_room_id');
+    
+    // Attempt REST first as it is more reliable for bulk data in Vercel/Railway environments
+    if (savedRoomId) {
+      try {
+        const resp = await fetch(`${API_URL}/sets/${savedRoomId}`);
+        if (resp.ok) {
+           const data = await resp.json();
+           if (!data.error) return data;
+        }
+      } catch (e) {
+        console.warn("REST Set List Fetch Failed, falling back to Socket:", e);
+      }
+    }
+
+    // Socket fallback
     return new Promise((resolve, reject) => {
       socket.emit('getSetList', {}, (resp) => {
         if (resp.error) return reject(resp.error);

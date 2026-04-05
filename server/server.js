@@ -27,6 +27,46 @@ app.get('/players', (req, res) => res.json(players));
 app.get('/teams', (req, res) => res.json(teams));
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
+// REST fallback for Set List
+app.get('/sets/:roomId', (req, res) => {
+    const { roomId } = req.params;
+    const room = engine.ROOMS.get(roomId);
+    
+    // Categorization logic same as socket
+    try {
+        const sourceList = (room && room.playerQueue && room.playerQueue.length > 0) ? room.playerQueue : players;
+        const sets = {};
+        sourceList.forEach(p => {
+            let setNum = p.setNum;
+            let setName = p.setName;
+            if (!setNum) {
+                if (isIndian(p) && p.tier === 'Marquee') { setNum = 1; setName = 'STAR PLAYERS INDIA'; }
+                else if (!isIndian(p) && p.tier === 'Marquee') { setNum = 2; setName = 'STAR PLAYERS INTERNATIONAL'; }
+                else if (isIndian(p)) { setNum = 3; setName = 'CAPPED INDIAN PLAYERS'; }
+                else if (!isIndian(p)) { setNum = 4; setName = 'CAPPED INTERNATIONAL PLAYERS'; }
+                else { setNum = 7; setName = 'OTHER ASSETS'; }
+            }
+            if (!sets[setNum]) sets[setNum] = { name: setName, list: [] };
+            
+            let status = 'UPCOMING';
+            if (room && room.playerQueue && room.playerQueue.length > 0) {
+                status = (room.soldPlayers || []).some(s => s.player?.id === p.id) ? 'SOLD' : 
+                         (room.unsoldPlayers || []).some(u => u.id === p.id) ? 'UNSOLD' : 
+                         room.currentPlayer?.id === p.id ? 'ACTIVE' : 'UPCOMING';
+            }
+
+            sets[setNum].list.push({ 
+                id: p.id, name: p.name, 
+                role: WK_LIST.has(p.name) ? 'Wicket Keeper' : p.role,
+                base_price: p.base_price, status 
+            });
+        });
+        res.json(sets);
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
 // Track socket -> { roomId, teamId }
 const socketMeta = new Map();
 
@@ -124,10 +164,18 @@ io.on('connection', (socket) => {
   socket.on('getSetList', (_, callback) => {
     try {
       const meta = socketMeta.get(socket.id);
-      if (!meta) return callback && callback({ error: 'Not in a room' });
+      if (!meta) {
+        console.warn(`⚠️ getSetList blocked: Socket ${socket.id} is not in any room meta.`);
+        return callback && callback({ error: 'Not in a room' });
+      }
       
       const room = engine.ROOMS.get(meta.roomId);
-      if (!room) return callback && callback({ error: 'Room not found' });
+      if (!room) {
+        console.warn(`⚠️ getSetList blocked: Room ${meta.roomId} not found in engine memory.`);
+        return callback && callback({ error: 'Room not found' });
+      }
+
+      console.log(`📡 Processing getSetList for Phase: ${room.status} in Room ${meta.roomId}`);
 
       // Use room.playerQueue if auction started, otherwise use master player list
       const sourceList = (room.playerQueue && room.playerQueue.length > 0) ? room.playerQueue : players;

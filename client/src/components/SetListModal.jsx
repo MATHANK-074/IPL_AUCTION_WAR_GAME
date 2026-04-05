@@ -32,10 +32,10 @@ export default function SetListModal({ onClose }) {
       if (!sets) {
         const msg = !socket.connected 
           ? "CRITICAL CODE 404: No active connection to the auction command center." 
-          : "TIMEOUT ERROR: Signal established, but the player vault remains locked.";
+          : "SIGNAL TIMEOUT: The player vault remains locked. Try refreshing or checking your connection.";
         setError(msg);
       }
-    }, 7000);
+    }, 15000);
 
     try {
       console.log("🛰️ Fetching Sets Intelligence...");
