@@ -225,10 +225,10 @@ export function GameProvider({ children }) {
     ]);
     const isIndian = (p) => p.nationality === 'India';
 
-    const sourceList = (roomInfo?.playerQueue && roomInfo.playerQueue.length > 0) ? roomInfo.playerQueue : players;
-    const sets = {};
-
-    sourceList.forEach(p => {
+    // Important: Use a sorted approach for building the sets to ensure predictability
+    const sortedSource = [...sourceList].sort((a, b) => (a.id || 0) - (b.id || 0));
+    
+    sortedSource.forEach(p => {
       let setNum = p.setNum;
       let setName = p.setName;
       if (!setNum) {
@@ -240,7 +240,7 @@ export function GameProvider({ children }) {
       }
 
       if (!sets[setNum]) sets[setNum] = { name: setName, list: [] };
-
+      
       let status = 'UPCOMING';
       if (roomInfo?.playerQueue && roomInfo.playerQueue.length > 0) {
         status = (roomInfo.soldPlayers || []).some(s => (s.player?.id || s.id) === p.id) ? 'SOLD' : 
