@@ -8,6 +8,15 @@ const fs = require('fs');
 
 const engine = require('./engine/auctionEngine');
 
+// Static definitions for set/role categorization
+const WK_LIST = new Set([
+  "Virat Kohli", "MS Dhoni", "KL Rahul", "Rishabh Pant", "Sanju Samson", "Ishan Kishan", 
+  "Jos Buttler", "Quinton de Kock", "Nicholas Pooran", "Heinrich Klaasen", "Phil Salt", 
+  "Jitesh Sharma", "Dhruv Jurel", "Dinesh Karthik", "Wriddhiman Saha", "Abhishek Porel",
+  "Kumar Kushagra", "Shai Hope", "Tristan Stubbs", "Rahmanullah Gurbaz"
+]);
+const isIndian = (p) => p.nationality === 'India';
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -69,15 +78,6 @@ app.get('/sets/:roomId', (req, res) => {
 
 // Track socket -> { roomId, teamId }
 const socketMeta = new Map();
-
-// Static definitions for set/role categorization
-const WK_LIST = new Set([
-  "Virat Kohli", "MS Dhoni", "KL Rahul", "Rishabh Pant", "Sanju Samson", "Ishan Kishan", 
-  "Jos Buttler", "Quinton de Kock", "Nicholas Pooran", "Heinrich Klaasen", "Phil Salt", 
-  "Jitesh Sharma", "Dhruv Jurel", "Dinesh Karthik", "Wriddhiman Saha", "Abhishek Porel",
-  "Kumar Kushagra", "Shai Hope", "Tristan Stubbs", "Rahmanullah Gurbaz"
-]);
-const isIndian = (p) => p.nationality === 'India';
 
 io.on('connection', (socket) => {
   console.log(`🔌 Connected: ${socket.id}`);

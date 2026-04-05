@@ -207,26 +207,41 @@ export function GameProvider({ children }) {
   }, []);
 
   const getSetList = useCallback(async () => {
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+    const socketUrl = import.meta.env.VITE_SOCKET_URL || 'http://localhost:3001';
+    const API_URL = import.meta.env.VITE_API_URL || socketUrl.replace(/\/$/, '');
     const savedRoomId = localStorage.getItem('ipl_room_id');
     
-    // Attempt REST first as it is more reliable for bulk data in Vercel/Railway environments
+    console.log(`🛰️ Attempting Strategic Fetch from: ${API_URL}/sets/${savedRoomId}`);
+
     if (savedRoomId) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
+
       try {
-        const resp = await fetch(`${API_URL}/sets/${savedRoomId}`);
+        const resp = await fetch(`${API_URL}/sets/${savedRoomId}`, { signal: controller.signal });
+        clearTimeout(timeoutId);
         if (resp.ok) {
            const data = await resp.json();
-           if (!data.error) return data;
+           if (!data.error) {
+             console.log("✅ Intel received via REST Channel");
+             return data;
+           }
         }
       } catch (e) {
-        console.warn("REST Set List Fetch Failed, falling back to Socket:", e);
+        clearTimeout(timeoutId);
+        console.warn("⚠️ REST Channel failed or timed out, falling back to Socket Signal:", e);
       }
     }
 
     // Socket fallback
     return new Promise((resolve, reject) => {
+      console.log("📡 Requesting Intel via Socket Uplink...");
       socket.emit('getSetList', {}, (resp) => {
-        if (resp.error) return reject(resp.error);
+        if (resp && resp.error) {
+          console.error("❌ Socket Intel Rejection:", resp.error);
+          return reject(resp.error);
+        }
+        console.log("✅ Intel received via Socket Uplink");
         resolve(resp);
       });
     });
