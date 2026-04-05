@@ -234,11 +234,11 @@ export function GameProvider({ children }) {
       let setNum = p.setNum;
       let setName = p.setName;
       if (!setNum) {
-        if (isIndian(p) && p.tier === 'Marquee') { setNum = 1; setName = 'STAR PLAYERS INDIA'; }
-        else if (!isIndian(p) && p.tier === 'Marquee') { setNum = 2; setName = 'STAR PLAYERS INTERNATIONAL'; }
+        const isElite = p.tier === 'Marquee' || p.tier === 'International Top';
+        if (isIndian(p) && isElite) { setNum = 1; setName = 'STAR PLAYERS INDIA'; }
+        else if (!isIndian(p) && isElite) { setNum = 2; setName = 'STAR PLAYERS INTERNATIONAL'; }
         else if (isIndian(p)) { setNum = 3; setName = 'CAPPED INDIAN PLAYERS'; }
-        else if (!isIndian(p)) { setNum = 4; setName = 'CAPPED INTERNATIONAL PLAYERS'; }
-        else { setNum = 7; setName = 'OTHER ASSETS'; }
+        else { setNum = 4; setName = 'CAPPED INTERNATIONAL PLAYERS'; }
       }
 
       if (!sets[setNum]) sets[setNum] = { name: setName, list: [] };
