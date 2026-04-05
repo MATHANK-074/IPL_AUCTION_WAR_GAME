@@ -73,22 +73,25 @@ function startAuction(roomId, players, io) {
      return p;
   });
 
-  const starInd = all.filter(p => isIndian(p) && p.tier === 'Marquee').slice(0, 20).map(p => ({ ...p, setNum: 1, setName: 'STAR PLAYERS INDIA' }));
+  // Improved Smart Categorization (Matches Client Logic)
+  const isStar = (p) => p.tier === 'Marquee' || p.tier === 'International Top' || (p.base_price >= 2.0);
+
+  const starInd = all.filter(p => isIndian(p) && isStar(p)).slice(0, 30).map(p => ({ ...p, setNum: 1, setName: 'STAR PLAYERS INDIA' }));
   const starIndIds = new Set(starInd.map(p => p.id));
 
-  const starInt = all.filter(p => !isIndian(p) && p.tier === 'Marquee' && !starIndIds.has(p.id)).slice(0, 20).map(p => ({ ...p, setNum: 2, setName: 'STAR PLAYERS INTERNATIONAL' }));
+  const starInt = all.filter(p => !isIndian(p) && isStar(p)).slice(0, 30).map(p => ({ ...p, setNum: 2, setName: 'STAR PLAYERS INTERNATIONAL' }));
   const starIntIds = new Set(starInt.map(p => p.id));
 
-  const cappedInd = all.filter(p => isIndian(p) && !starIndIds.has(p.id)).slice(0, 130).map(p => ({ ...p, setNum: 3, setName: 'CAPPED INDIAN PLAYERS' }));
+  const cappedInd = all.filter(p => isIndian(p) && !starIndIds.has(p.id)).slice(0, 150).map(p => ({ ...p, setNum: 3, setName: 'CAPPED INDIAN PLAYERS' }));
   const cappedIndIds = new Set(cappedInd.map(p => p.id));
   
-  const cappedInt = all.filter(p => !isIndian(p) && !starIntIds.has(p.id)).slice(0, 100).map(p => ({ ...p, setNum: 4, setName: 'CAPPED INTERNATIONAL PLAYERS' }));
+  const cappedInt = all.filter(p => !isIndian(p) && !starIntIds.has(p.id)).slice(0, 150).map(p => ({ ...p, setNum: 4, setName: 'CAPPED INTERNATIONAL PLAYERS' }));
   const cappedIntIds = new Set(cappedInt.map(p => p.id));
 
-  const uncappedInd = all.filter(p => isIndian(p) && !starIndIds.has(p.id) && !cappedIndIds.has(p.id)).slice(0, 40).map(p => ({ ...p, setNum: 5, setName: 'UNCAPPED INDIAN PLAYERS' }));
+  const uncappedInd = all.filter(p => isIndian(p) && !starIndIds.has(p.id) && !cappedIndIds.has(p.id)).slice(0, 50).map(p => ({ ...p, setNum: 5, setName: 'UNCAPPED INDIAN PLAYERS' }));
   const uncappedIndIds = new Set(uncappedInd.map(p => p.id));
 
-  const uncappedInt = all.filter(p => !isIndian(p) && !starIntIds.has(p.id) && !cappedIntIds.has(p.id)).slice(0, 40).map(p => ({ ...p, setNum: 6, setName: 'UNCAPPED INTERNATIONAL PLAYERS' }));
+  const uncappedInt = all.filter(p => !isIndian(p) && !starIntIds.has(p.id) && !cappedIntIds.has(p.id)).slice(0, 50).map(p => ({ ...p, setNum: 6, setName: 'UNCAPPED INTERNATIONAL PLAYERS' }));
 
   // Final List: 350 Players
   room.playerQueue = [
