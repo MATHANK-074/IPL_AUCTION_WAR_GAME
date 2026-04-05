@@ -74,7 +74,7 @@ function startAuction(roomId, players, io) {
   });
 
   // Improved Smart Categorization (Matches Client Logic)
-  const isStar = (p) => p.tier === 'Marquee' || p.tier === 'International Top' || (p.base_price >= 2.0);
+  const isStar = (p) => p.tier === 'Marquee' || p.tier === 'International Top' || p.tier === 'Star' || (p.base_price >= 2.0);
 
   const starInd = all.filter(p => isIndian(p) && isStar(p)).slice(0, 30).map(p => ({ ...p, setNum: 1, setName: 'STAR PLAYERS INDIA' }));
   const starIndIds = new Set(starInd.map(p => p.id));

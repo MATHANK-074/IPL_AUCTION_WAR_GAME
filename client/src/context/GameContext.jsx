@@ -8,20 +8,20 @@ export function GameProvider({ children }) {
   const [roomId, setRoomId] = useState(() => localStorage.getItem('ipl_room_id'));
   const [myTeamId, setMyTeamId] = useState(() => localStorage.getItem('ipl_team_id'));
   const [isAdmin, setIsAdmin] = useState(() => localStorage.getItem('ipl_is_admin') === 'true');
-  const [roomInfo, setRoomInfo] = useState(null);   // { status, teamIds, teams }
+  const [roomInfo, setRoomInfo] = useState(null);
   const [currentPlayer, setCurrentPlayer] = useState(null);
   const [timeLeft, setTimeLeft] = useState(10);
-  const [currentBid, setCurrentBid] = useState(null); // { teamId, amount }
+  const [currentBid, setCurrentBid] = useState(null);
   const [playerResult, setPlayerResult] = useState(null);
   const [playerIndex, setPlayerIndex] = useState(0);
   const [totalPlayers, setTotalPlayers] = useState(0);
-  const [squads, setSquads] = useState({});          // teamId -> squad array
-  const [teams, setTeams] = useState([]);            // from /teams REST
-  const [players, setPlayers] = useState([]);        // from /players REST
+  const [squads, setSquads] = useState({});
+  const [teams, setTeams] = useState([]);
+  const [players, setPlayers] = useState([]);
   const [error, setError] = useState(null);
   const [auctionFinished, setAuctionFinished] = useState(null);
 
-  // New Strategic State: Real-time analysis for all teams
+  // Team analytics
   const teamAnalytics = useMemo(() => {
     if (!roomInfo?.teams) return {};
     const analysis = {};
@@ -40,25 +40,21 @@ export function GameProvider({ children }) {
     return 'http://localhost:3001';
   }, []);
 
-  // Fetch static data
+  // Fetch data
   useEffect(() => {
-    fetch(`${API_URL}/teams`).then(r => r.json()).then(setTeams).catch(e => console.warn("Teams fetch failed:", e));
-    fetch(`${API_URL}/players`).then(r => r.json()).then(setPlayers).catch(e => console.warn("Players fetch failed:", e));
+    fetch(`${API_URL}/teams`).then(r => r.json()).then(setTeams).catch(console.warn);
+    fetch(`${API_URL}/players`).then(r => r.json()).then(setPlayers).catch(console.warn);
   }, [API_URL]);
 
-  // Socket event listeners — MUST run before re-sync so roomUpdate is captured
+  // Socket events
   useEffect(() => {
     const onConnect = () => {
-      console.log('📡 Connected to Command Center:', socket.id);
       const savedRoomId = localStorage.getItem('ipl_room_id');
       const savedTeamId = localStorage.getItem('ipl_team_id');
       if (savedRoomId && savedTeamId) {
         socket.emit('joinRoom', { roomId: savedRoomId, teamId: savedTeamId }, (resp) => {
           if (resp.error) {
-            console.warn('Persistence sync failed:', resp.error);
-            localStorage.removeItem('ipl_room_id');
-            localStorage.removeItem('ipl_team_id');
-            localStorage.removeItem('ipl_is_admin');
+            localStorage.clear();
             setRoomId(null);
             setMyTeamId(null);
             setIsAdmin(false);
@@ -85,42 +81,26 @@ export function GameProvider({ children }) {
       setTotalPlayers(totalPlayers);
     };
 
-    const onTimerTick = ({ timeLeft }) => setTimeLeft(timeLeft);
-    const onBidUpdate = ({ teamId, amount, timeLeft }) => {
-      setCurrentBid({ teamId, amount });
-      setTimeLeft(timeLeft);
-    };
-    const onRtmUsed = ({ teamId, amount }) => setCurrentBid({ teamId, amount });
-    const onPlayerResult = ({ result, player, teamId, amount, teams: updatedTeams }) => {
-      setPlayerResult({ result, player, teamId, amount });
-      if (updatedTeams) setRoomInfo(prev => prev ? { ...prev, teams: updatedTeams } : prev);
-    };
-    const onAuctionFinished = (summary) => setAuctionFinished(summary);
-
     socket.on('connect', onConnect);
     socket.on('roomUpdate', onRoomUpdate);
     socket.on('newPlayer', onNewPlayer);
-    socket.on('timerTick', onTimerTick);
-    socket.on('bidUpdate', onBidUpdate);
-    socket.on('rtmUsed', onRtmUsed);
-    socket.on('playerResult', onPlayerResult);
-    socket.on('auctionFinished', onAuctionFinished);
+    socket.on('timerTick', ({ timeLeft }) => setTimeLeft(timeLeft));
+    socket.on('bidUpdate', ({ teamId, amount, timeLeft }) => {
+      setCurrentBid({ teamId, amount });
+      setTimeLeft(timeLeft);
+    });
+    socket.on('rtmUsed', ({ teamId, amount }) => setCurrentBid({ teamId, amount }));
+    socket.on('playerResult', ({ result, player, teamId, amount, teams }) => {
+      setPlayerResult({ result, player, teamId, amount });
+      if (teams) setRoomInfo(prev => prev ? ({ ...prev, teams }) : prev);
+    });
+    socket.on('auctionFinished', setAuctionFinished);
 
     if (socket.connected) onConnect();
-
-    return () => {
-      socket.off('connect', onConnect);
-      socket.off('roomUpdate', onRoomUpdate);
-      socket.off('newPlayer', onNewPlayer);
-      socket.off('timerTick', onTimerTick);
-      socket.off('bidUpdate', onBidUpdate);
-      socket.off('rtmUsed', onRtmUsed);
-      socket.off('playerResult', onPlayerResult);
-      socket.off('auctionFinished', onAuctionFinished);
-    };
+    return () => socket.removeAllListeners();
   }, []);
 
-  // Sync admin state on roomInfo change — belt-and-suspenders
+  // Sync admin state
   useEffect(() => {
     if (roomInfo && myTeamId) {
       const admin = roomInfo.adminTeamId === myTeamId;
@@ -150,7 +130,7 @@ export function GameProvider({ children }) {
         if (resp.error) return reject(resp.error);
         localStorage.setItem('ipl_room_id', code);
         localStorage.setItem('ipl_team_id', teamId);
-        localStorage.removeItem('ipl_is_admin'); // joiners are not admins
+        localStorage.removeItem('ipl_is_admin');
         setRoomId(code);
         setMyTeamId(teamId);
         setIsAdmin(false);
@@ -158,7 +138,6 @@ export function GameProvider({ children }) {
       });
     });
   }, []);
-
 
   const startAuction = useCallback(() => {
     return new Promise((resolve, reject) => {
@@ -213,7 +192,7 @@ export function GameProvider({ children }) {
     });
   }, []);
 
-  // Fully client-side set categorization to bypass production network issues
+  // getSetList
   const getSetList = useCallback(() => {
     if (!players || players.length === 0) return null;
 
@@ -225,7 +204,6 @@ export function GameProvider({ children }) {
     ]);
     const isIndian = (p) => p.nationality === 'India';
 
-    // Important: Use a sorted approach for building the sets to ensure predictability
     const sourceList = (roomInfo?.playerQueue && roomInfo.playerQueue.length > 0) ? roomInfo.playerQueue : players;
     const sortedSource = [...sourceList].sort((a, b) => (a.id || 0) - (b.id || 0));
     const sets = {};
@@ -234,7 +212,7 @@ export function GameProvider({ children }) {
       let setNum = p.setNum;
       let setName = p.setName;
       if (!setNum) {
-        const isElite = p.tier === 'Marquee' || p.tier === 'International Top';
+        const isElite = p.tier === 'Marquee' || p.tier === 'International Top' || p.tier === 'Star' || p.base_price >= 2.0;
         if (isIndian(p) && isElite) { setNum = 1; setName = 'STAR PLAYERS INDIA'; }
         else if (!isIndian(p) && isElite) { setNum = 2; setName = 'STAR PLAYERS INTERNATIONAL'; }
         else if (isIndian(p)) { setNum = 3; setName = 'CAPPED INDIAN PLAYERS'; }
