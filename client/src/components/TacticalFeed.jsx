@@ -2,9 +2,12 @@ import { useEffect, useState, useRef } from 'react';
 import { useGame } from '../context/GameContext';
 
 export default function TacticalFeed() {
-  const { currentBid, currentPlayer, playerResult } = useGame();
+  const { currentBid, currentPlayer, playerResult, teamAnalytics, myTeamId } = useGame();
   const [logs, setLogs] = useState([]);
   const scrollRef = useRef(null);
+
+  const myAdvisor = teamAnalytics[myTeamId];
+  const topTip = myAdvisor?.tips?.[0] || "Strategic analysis in progress...";
 
   useEffect(() => {
     if (currentBid) {
@@ -46,6 +49,18 @@ export default function TacticalFeed() {
 
   return (
     <div className="flex-1 min-h-0 flex flex-col mt-6">
+      {/* AI Strategic Advisor Box */}
+      <div className="mb-6 p-4 rounded-2xl bg-yellow-400/[0.03] border border-yellow-400/10 relative overflow-hidden group">
+         <div className="absolute top-0 left-0 w-1 h-full bg-yellow-400/20" />
+         <div className="flex items-center gap-2 mb-2">
+            <span className="text-[8px] font-black text-yellow-400 uppercase tracking-[0.3em]">Strategic Advice</span>
+            <div className="w-1 h-1 rounded-full bg-yellow-400 animate-ping" />
+         </div>
+         <p className="text-[10px] font-bold text-white leading-relaxed italic group-hover:text-yellow-400 transition-colors duration-300">
+           "{topTip}"
+         </p>
+      </div>
+
       <div className="flex items-center gap-2 mb-3 px-2">
         <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
         <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">Live Tactical Feed</span>

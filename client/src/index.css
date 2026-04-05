@@ -219,6 +219,20 @@ body::before {
 ::-webkit-scrollbar-thumb { background: rgba(249, 205, 28, 0.3); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(249, 205, 28, 0.6); }
 
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 /* ── IPL TEAM COLOR BORDERS ── */
 .team-CSK  { --team-color: #F9CD1C; }
 .team-MI   { --team-color: #004BA0; }

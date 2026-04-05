@@ -1,5 +1,6 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import socket from '../socket';
+import { analyzeSquad } from '../utils/strategicAnalyzer';
 
 const GameContext = createContext(null);
 
@@ -19,6 +20,17 @@ export function GameProvider({ children }) {
   const [players, setPlayers] = useState([]);        // from /players REST
   const [error, setError] = useState(null);
   const [auctionFinished, setAuctionFinished] = useState(null);
+
+  // New Strategic State: Real-time analysis for all teams
+  const teamAnalytics = useMemo(() => {
+    if (!roomInfo?.teams) return {};
+    const analysis = {};
+    Object.keys(roomInfo.teams).forEach(id => {
+      const state = roomInfo.teams[id];
+      analysis[id] = analyzeSquad(state.squad || [], state.purse);
+    });
+    return analysis;
+  }, [roomInfo?.teams]);
 
   // Fetch static data
   useEffect(() => {
@@ -206,14 +218,22 @@ export function GameProvider({ children }) {
   const getTeamMeta = useCallback((id) => teams.find(t => t.id === id), [teams]);
   const getMyTeamState = useCallback(() => roomInfo?.teams?.[myTeamId], [roomInfo, myTeamId]);
 
+  const value = useMemo(() => ({
+    roomId, myTeamId, isAdmin, roomInfo, currentPlayer, timeLeft,
+    currentBid, playerResult, playerIndex, totalPlayers,
+    squads, teams, players, error, setError, auctionFinished,
+    createRoom, joinRoom, startAuction, placeBid, useRTM, fetchSquad, getRoom, stopAuction,
+    getTeamMeta, getMyTeamState, getSetList, teamAnalytics,
+  }), [
+    roomId, myTeamId, isAdmin, roomInfo, currentPlayer, timeLeft,
+    currentBid, playerResult, playerIndex, totalPlayers,
+    squads, teams, players, error, setError, auctionFinished,
+    createRoom, joinRoom, startAuction, placeBid, useRTM, fetchSquad, getRoom, stopAuction,
+    getTeamMeta, getMyTeamState, getSetList, teamAnalytics,
+  ]);
+
   return (
-    <GameContext.Provider value={{
-      roomId, myTeamId, isAdmin, roomInfo, currentPlayer, timeLeft,
-      currentBid, playerResult, playerIndex, totalPlayers,
-      squads, teams, players, error, setError, auctionFinished,
-      createRoom, joinRoom, startAuction, placeBid, useRTM, fetchSquad, getRoom, stopAuction,
-      getTeamMeta, getMyTeamState, getSetList,
-    }}>
+    <GameContext.Provider value={value}>
       {children}
     </GameContext.Provider>
   );

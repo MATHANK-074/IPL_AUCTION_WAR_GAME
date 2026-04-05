@@ -1,6 +1,7 @@
 import { useGame } from '../context/GameContext';
 import { useState } from 'react';
 import TacticalFeed from './TacticalFeed';
+import { getBudgetForecast } from '../utils/strategicAnalyzer';
 
 export default function BidPanel() {
   const { timeLeft, currentBid, currentPlayer, myTeamId, roomInfo, placeBid, useRTM, teams } = useGame();
@@ -14,6 +15,9 @@ export default function BidPanel() {
   const basePrice = currentPlayer?.base_price || 0.5;
   const lastBid = currentBid ? currentBid.amount : basePrice - 0.25;
   const nextBid = parseFloat((lastBid + 0.25).toFixed(2));
+
+  // Strategic Budget Forecast
+  const safeMaxBid = myState ? getBudgetForecast(myState.purse, myState.squad?.length || 0) : 0;
 
   // Bid button disabled conditions
   const noMoney = (myState?.purse || 0) < nextBid;
@@ -40,6 +44,25 @@ export default function BidPanel() {
   const strokeDashoffset = circumference * (1 - progress);
   const timerColor = timeLeft <= 3 ? '#FF3B5C' : timeLeft <= 6 ? '#F9CD1C' : '#00D2FF';
 
+  // Session Guard: Check if the user is actually in a room (Fixes "Capital Depleted" error)
+  if (!myState) return (
+    <div className="glass-dark p-8 rounded-[2.5rem] border-red-500/20 flex flex-col items-center justify-center text-center gap-4 h-full">
+       <div className="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center text-2xl animate-pulse">⚠️</div>
+       <div>
+          <p className="text-white font-black uppercase tracking-widest text-xs mb-1">Session Desynchronized</p>
+          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-relaxed">
+             Server was restarted. Your previous franchise status is lost.
+          </p>
+       </div>
+       <button 
+          onClick={() => window.location.href = '/'}
+          className="px-6 py-2 rounded-xl bg-red-500 text-white text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all shadow-lg shadow-red-500/20"
+       >
+          Re-initialize Portal
+       </button>
+    </div>
+  );
+
   return (
     <div className="glass-dark p-8 rounded-[2.5rem] border-white/5 shadow-2xl relative overflow-hidden h-full flex flex-col justify-between">
       {/* Background Decorative Element */}
@@ -51,7 +74,7 @@ export default function BidPanel() {
         </h3>
 
         {/* Timer Visualization */}
-        <div className="flex flex-col items-center mb-10 shrink-0">
+        <div className="flex flex-col items-center mb-8 shrink-0">
           <div className="relative w-40 h-40 group">
             <svg width="160" height="160" viewBox="0 0 160 160" className="-rotate-90">
               <circle cx="80" cy="80" r={radius} stroke="rgba(255,255,255,0.03)" strokeWidth="12" fill="none" />
@@ -75,25 +98,25 @@ export default function BidPanel() {
           </div>
         </div>
 
-        {/* Financial Status */}
-        {myState && (
-          <div className="glass p-5 rounded-3xl border-white/5 mb-4 relative group overflow-hidden shrink-0">
-            <div className={`absolute top-0 left-0 w-full h-1 transition-colors duration-500 ${myState.purse < 10 ? 'bg-red-500' : 'bg-yellow-400'}`} />
-            <div className="flex justify-between items-end">
-              <div className="text-left">
-                <p className="text-[9px] text-slate-500 font-black uppercase tracking-widest mb-1">Available Capital</p>
-                <p className={`text-4xl font-black italic leading-none ${myState.purse < 10 ? 'text-red-500 animate-pulse' : 'text-white'}`}
-                  style={{ fontFamily: 'Rajdhani, sans-serif' }}>
-                  ₹{myState.purse.toFixed(2)}<span className="text-xl text-slate-500 ml-1">CR</span>
-                </p>
-              </div>
-              <div className="text-right">
-                <p className="text-[9px] text-slate-500 font-black uppercase tracking-widest mb-1">Squad Space</p>
-                <p className="text-xl font-black text-white">{myState.squad?.length || 0}<span className="text-xs text-slate-500">/25</span></p>
-              </div>
+        {/* Financial Status & Forecast */}
+        <div className="glass p-5 rounded-3xl border-white/5 mb-4 relative group overflow-hidden shrink-0">
+          <div className={`absolute top-0 left-0 w-full h-1 transition-colors duration-500 ${myState.purse < 10 ? 'bg-red-500' : 'bg-yellow-400'}`} />
+          <div className="flex justify-between items-end gap-4 overflow-hidden">
+            <div className="text-left flex-1">
+              <p className="text-[9px] text-slate-500 font-black uppercase tracking-widest mb-1">Available Capital</p>
+              <p className={`text-3xl font-black italic leading-none truncate ${myState.purse < 10 ? 'text-red-500 animate-pulse' : 'text-white'}`}
+                style={{ fontFamily: 'Rajdhani, sans-serif' }}>
+                ₹{myState.purse.toFixed(2)}<span className="text-sm text-slate-500 ml-1">CR</span>
+              </p>
+            </div>
+            <div className="text-right border-l border-white/10 pl-4">
+               <p className="text-[7px] text-yellow-400/60 font-black uppercase tracking-widest mb-1">Strategic Max Bid</p>
+               <p className="text-lg font-black text-yellow-400 leading-none" style={{ fontFamily: 'Rajdhani, sans-serif' }}>
+                  ₹{safeMaxBid}<span className="text-[10px] ml-0.5">Cr</span>
+               </p>
             </div>
           </div>
-        )}
+        </div>
 
         {/* Live Intel / Tactical Feed */}
         <TacticalFeed />
@@ -139,7 +162,7 @@ export default function BidPanel() {
           <div className="animate-fade-up">
             <button 
               onClick={handleRTM}
-              className="w-full py-4 rounded-3xl bg-red-600/10 border border-red-600/30 text-red-500 font-black text-sm uppercase tracking-[0.2em] hover:bg-red-600 hover:text-white transition-all duration-300"
+              className="w-full py-4 rounded-3xl bg-red-600/10 border-2 border-red-500 text-red-500 font-black text-sm uppercase tracking-[0.2em] transition-all duration-300 shadow-[0_0_20px_rgba(239,68,68,0.3)] animate-rtm-glow hover:bg-red-600 hover:text-white"
             >
               🔄 EXECUTIVE RTM OPTION
             </button>

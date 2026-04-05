@@ -1,7 +1,7 @@
 import { useGame } from '../context/GameContext';
 
 export default function Dashboard({ onViewSquad }) {
-  const { roomInfo, teams } = useGame();
+  const { roomInfo, teams, teamAnalytics } = useGame();
 
   const teamsData = roomInfo?.teams || {};
   const teamIds = Object.keys(teamsData);
@@ -31,6 +31,7 @@ export default function Dashboard({ onViewSquad }) {
       <div className="flex-1 overflow-y-auto space-y-4 pr-2 custom-scrollbar">
         {teamIds.map(id => {
           const state = teamsData[id];
+          const analytics = teamAnalytics[id] || { power: {} };
           const meta = getTeamMeta(id);
           const lowBudget = (state.purse || 0) < 10;
           const pursePercent = Math.max(0, Math.min(100, ((state.purse || 0) / 100) * 100));
@@ -72,6 +73,13 @@ export default function Dashboard({ onViewSquad }) {
                     />
                   </div>
 
+                  {/* Strategic Power Meters */}
+                  <div className="grid grid-cols-3 gap-3 mb-4">
+                     <PowerBar label="BAT" val={analytics.power.batting || 0} color="#00D2FF" />
+                     <PowerBar label="PACE" val={analytics.power.pace || 0} color="#FF3B5C" />
+                     <PowerBar label="SPIN" val={analytics.power.spin || 0} color="#F9CD1C" />
+                  </div>
+
                   <div className="flex justify-between items-center">
                     <div className="grid grid-cols-4 gap-2">
                        <Metric val={state.roleCounts?.Batsman || 0} color="#00D2FF" label="B" />
@@ -98,6 +106,23 @@ function Metric({ val, color, label }) {
     <div className="flex items-baseline gap-0.5">
       <span className="text-[10px] font-black text-white" style={{ color }}>{val}</span>
       <span className="text-[7px] font-bold text-slate-600 uppercase">{label}</span>
+    </div>
+  );
+}
+
+function PowerBar({ label, val, color }) {
+  return (
+    <div className="flex flex-col gap-1">
+       <div className="flex justify-between items-center">
+          <span className="text-[6px] font-black text-slate-500 uppercase tracking-widest">{label}</span>
+          <span className="text-[6px] font-black text-white">{val}%</span>
+       </div>
+       <div className="h-0.5 bg-white/5 rounded-full relative overflow-hidden">
+          <div 
+             className="absolute inset-y-0 left-0 transition-all duration-700" 
+             style={{ width: `${val}%`, backgroundColor: color, boxShadow: `0 0 5px ${color}` }}
+          />
+       </div>
     </div>
   );
 }
