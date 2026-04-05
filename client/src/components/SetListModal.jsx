@@ -38,28 +38,26 @@ export default function SetListModal({ onClose }) {
     }, 15000);
 
     try {
-      console.log("🛰️ Fetching Sets Intelligence...");
-      const data = await getSetList();
-      clearTimeout(timer);
+      console.log("🛰️ Processing Local Sets Intelligence...");
+      const data = getSetList();
       
-      if (!data || (typeof data === 'object' && Object.keys(data).length === 0)) {
+      if (!data) {
+        // If data is null, it means players aren't loaded yet
+        setError("DATA VOID: Player intelligence not yet synchronized. Please wait a moment and retry.");
+      } else if (Object.keys(data).length === 0) {
         setError("DATA VOID: No player sets found in the database.");
-      } else if (data.error) {
-        setError(`ACCESS DENIED: ${data.error}`);
       } else {
         setSets(data);
         const keys = Object.keys(data).sort((a, b) => parseInt(a) - parseInt(b));
         if (keys.length > 0) setActiveTab(keys[0]);
       }
     } catch (e) {
-      clearTimeout(timer);
-      console.error("Set List Fetch Error:", e);
-      const errorMsg = typeof e === 'string' ? e : (e.error || e.message || "Failed to synchronize with central intelligence.");
-      setError(`INTEL FAILURE: ${errorMsg}`);
+      console.error("Set List Processing Error:", e);
+      setError(`INTEL FAILURE: ${e.message || "Failed to process visual intelligence."}`);
     } finally {
       setLoading(false);
     }
-  }, [getSetList, sets]);
+  }, [getSetList]);
 
   useEffect(() => {
     loadSets();

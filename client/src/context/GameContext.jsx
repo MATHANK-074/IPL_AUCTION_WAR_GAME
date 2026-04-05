@@ -32,12 +32,19 @@ export function GameProvider({ children }) {
     return analysis;
   }, [roomInfo?.teams]);
 
+  // Smart API Discovery
+  const API_URL = useMemo(() => {
+    if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL;
+    const socketUrl = import.meta.env.VITE_SOCKET_URL || '';
+    if (socketUrl) return socketUrl.replace(/\/$/, '').replace(/^ws/, 'http');
+    return 'http://localhost:3001';
+  }, []);
+
   // Fetch static data
   useEffect(() => {
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-    fetch(`${API_URL}/teams`).then(r => r.json()).then(setTeams);
-    fetch(`${API_URL}/players`).then(r => r.json()).then(setPlayers);
-  }, []);
+    fetch(`${API_URL}/teams`).then(r => r.json()).then(setTeams).catch(e => console.warn("Teams fetch failed:", e));
+    fetch(`${API_URL}/players`).then(r => r.json()).then(setPlayers).catch(e => console.warn("Players fetch failed:", e));
+  }, [API_URL]);
 
   // Socket event listeners — MUST run before re-sync so roomUpdate is captured
   useEffect(() => {
@@ -206,46 +213,50 @@ export function GameProvider({ children }) {
     });
   }, []);
 
-  const getSetList = useCallback(async () => {
-    const socketUrl = import.meta.env.VITE_SOCKET_URL || 'http://localhost:3001';
-    const API_URL = import.meta.env.VITE_API_URL || socketUrl.replace(/\/$/, '');
-    const savedRoomId = localStorage.getItem('ipl_room_id');
-    
-    console.log(`🛰️ Attempting Strategic Fetch from: ${API_URL}/sets/${savedRoomId}`);
+  // Fully client-side set categorization to bypass production network issues
+  const getSetList = useCallback(() => {
+    if (!players || players.length === 0) return null;
 
-    if (savedRoomId) {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
+    const WK_LIST = new Set([
+      "Virat Kohli", "MS Dhoni", "KL Rahul", "Rishabh Pant", "Sanju Samson", "Ishan Kishan", 
+      "Jos Buttler", "Quinton de Kock", "Nicholas Pooran", "Heinrich Klaasen", "Phil Salt", 
+      "Jitesh Sharma", "Dhruv Jurel", "Dinesh Karthik", "Wriddhiman Saha", "Abhishek Porel",
+      "Kumar Kushagra", "Shai Hope", "Tristan Stubbs", "Rahmanullah Gurbaz"
+    ]);
+    const isIndian = (p) => p.nationality === 'India';
 
-      try {
-        const resp = await fetch(`${API_URL}/sets/${savedRoomId}`, { signal: controller.signal });
-        clearTimeout(timeoutId);
-        if (resp.ok) {
-           const data = await resp.json();
-           if (!data.error) {
-             console.log("✅ Intel received via REST Channel");
-             return data;
-           }
-        }
-      } catch (e) {
-        clearTimeout(timeoutId);
-        console.warn("⚠️ REST Channel failed or timed out, falling back to Socket Signal:", e);
+    const sourceList = (roomInfo?.playerQueue && roomInfo.playerQueue.length > 0) ? roomInfo.playerQueue : players;
+    const sets = {};
+
+    sourceList.forEach(p => {
+      let setNum = p.setNum;
+      let setName = p.setName;
+      if (!setNum) {
+        if (isIndian(p) && p.tier === 'Marquee') { setNum = 1; setName = 'STAR PLAYERS INDIA'; }
+        else if (!isIndian(p) && p.tier === 'Marquee') { setNum = 2; setName = 'STAR PLAYERS INTERNATIONAL'; }
+        else if (isIndian(p)) { setNum = 3; setName = 'CAPPED INDIAN PLAYERS'; }
+        else if (!isIndian(p)) { setNum = 4; setName = 'CAPPED INTERNATIONAL PLAYERS'; }
+        else { setNum = 7; setName = 'OTHER ASSETS'; }
       }
-    }
 
-    // Socket fallback
-    return new Promise((resolve, reject) => {
-      console.log("📡 Requesting Intel via Socket Uplink...");
-      socket.emit('getSetList', {}, (resp) => {
-        if (resp && resp.error) {
-          console.error("❌ Socket Intel Rejection:", resp.error);
-          return reject(resp.error);
-        }
-        console.log("✅ Intel received via Socket Uplink");
-        resolve(resp);
+      if (!sets[setNum]) sets[setNum] = { name: setName, list: [] };
+
+      let status = 'UPCOMING';
+      if (roomInfo?.playerQueue && roomInfo.playerQueue.length > 0) {
+        status = (roomInfo.soldPlayers || []).some(s => (s.player?.id || s.id) === p.id) ? 'SOLD' : 
+                 (roomInfo.unsoldPlayers || []).some(u => u.id === p.id) ? 'UNSOLD' : 
+                 roomInfo.currentPlayer?.id === p.id ? 'ACTIVE' : 'UPCOMING';
+      }
+
+      sets[setNum].list.push({ 
+        id: p.id, name: p.name, 
+        role: WK_LIST.has(p.name) ? 'Wicket Keeper' : p.role,
+        base_price: p.base_price, status 
       });
     });
-  }, []);
+
+    return sets;
+  }, [players, roomInfo]);
 
   const getTeamMeta = useCallback((id) => teams.find(t => t.id === id), [teams]);
   const getMyTeamState = useCallback(() => roomInfo?.teams?.[myTeamId], [roomInfo, myTeamId]);
