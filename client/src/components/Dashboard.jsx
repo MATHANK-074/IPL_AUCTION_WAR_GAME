@@ -114,8 +114,8 @@ function PowerBar({ label, val, color }) {
   return (
     <div className="flex flex-col gap-1">
        <div className="flex justify-between items-center">
-          <span className="text-[6px] font-black text-slate-500 uppercase tracking-widest">{label}</span>
-          <span className="text-[6px] font-black text-white">{val}%</span>
+          <span className="text-[7px] font-black text-slate-500 uppercase tracking-widest">{label}</span>
+          <span className="text-[7px] font-black text-white">{val}%</span>
        </div>
        <div className="h-0.5 bg-white/5 rounded-full relative overflow-hidden">
           <div 

@@ -19,43 +19,47 @@ export default function PlayerCard({ player, currentBid, teams }) {
         <div className="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] pointer-events-none opacity-5"
           style={{ background: 'radial-gradient(circle, #fff 0%, transparent 50%)' }} />
 
-        {/* Role Badge */}
-        <div className="absolute top-6 right-6 z-20 flex flex-col items-end gap-2 text-right">
-          <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg border ${
-            player.role === 'Batsman' ? 'role-Batsman' : 
-            player.role === 'Bowler' ? 'role-Bowler' : 
-            player.role === 'Wicket Keeper' ? 'role-WK' : 'role-All-rounder'
+        {/* Role & Set Badge - Repositioned to corner with cleaner look */}
+        <div className="absolute top-4 left-6 z-20 flex items-center gap-3">
+          <span className={`px-3 py-1 rounded-md text-[8px] font-black uppercase tracking-[0.2em] shadow-lg border backdrop-blur-md ${
+            player.role === 'Batsman' ? 'bg-blue-500/20 text-blue-400 border-blue-500/30' : 
+            player.role === 'Bowler' ? 'bg-red-500/20 text-red-400 border-red-500/30' : 
+            player.role === 'Wicket Keeper' ? 'bg-green-500/20 text-green-400 border-green-500/30' : 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30'
           }`}>
             {player.role}
           </span>
           {player.setName && (
-            <span className="text-[8px] font-black text-yellow-500/80 uppercase tracking-widest bg-yellow-400/10 px-3 py-1 rounded-lg border border-yellow-400/20">
-               SET {player.setNum}: {player.setName}
+            <span className="text-[7px] font-bold text-white/40 uppercase tracking-widest border-l border-white/10 pl-3">
+               SET {player.setNum}
             </span>
           )}
         </div>
 
         {/* Player Identity - Focal Point */}
-        <div className="text-center relative z-20 mb-8 pt-4">
-          <div className="inline-block px-4 py-1 bg-yellow-400/10 backdrop-blur-md rounded-full border border-yellow-400/20 mb-4">
-            <span className="text-[10px] font-black text-yellow-500 uppercase tracking-[0.3em]">{player.nationality}</span>
+        <div className="text-center relative z-20 mb-6 pt-10">
+          <div className="inline-block px-3 py-0.5 bg-white/5 backdrop-blur-md rounded-full border border-white/10 mb-4">
+            <span className="text-[8px] font-black text-slate-400 uppercase tracking-[0.4em]">{player.nationality}</span>
           </div>
           
-          <h2 className="text-5xl font-black text-white italic tracking-tighter leading-none mb-4 uppercase" style={{ fontFamily: 'Rajdhani, sans-serif' }}>
-            {player.name}
-          </h2>
+          <div className="min-h-[100px] flex flex-col justify-center mb-4">
+            <h2 className={`font-black text-white italic tracking-tighter leading-[0.85] uppercase transition-all duration-500 ${
+              player.name.length > 15 ? 'text-3xl' : 'text-5xl'
+            }`} style={{ fontFamily: 'Rajdhani, sans-serif' }}>
+              {player.name}
+            </h2>
+          </div>
 
           <div className="flex items-center justify-center gap-4">
-             <span className="h-px w-8 bg-gradient-to-r from-transparent to-yellow-400/30" />
-             <p className="text-yellow-400 font-black text-[10px] tracking-[0.5em] uppercase">
-               {player.tier} • {player.ipl_team}
+             <span className="h-px w-6 bg-gradient-to-r from-transparent to-yellow-400/20" />
+             <p className="text-yellow-400/80 font-black text-[9px] tracking-[0.6em] uppercase">
+               {player.tier} <span className="text-white/20 mx-1">•</span> {player.ipl_team}
              </p>
-             <span className="h-px w-8 bg-gradient-to-l from-transparent to-yellow-400/30" />
+             <span className="h-px w-6 bg-gradient-to-l from-transparent to-yellow-400/20" />
           </div>
         </div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-3 gap-3 mb-8">
+        <div className="grid grid-cols-3 gap-2 px-2 mb-8">
           {[
             { label: 'MTCH', val: player.stats?.matches },
             { label: 'RUNS', val: player.stats?.runs },
