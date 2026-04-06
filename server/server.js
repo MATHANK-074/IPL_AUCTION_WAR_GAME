@@ -44,7 +44,12 @@ app.get('/sets/:roomId', (req, res) => {
     // Categorization logic same as socket
     try {
         const sourceList = (room && room.playerQueue && room.playerQueue.length > 0) ? room.playerQueue : [...players].sort((a,b) => a.id - b.id);
-        const sortedSource = [...sourceList].sort((a, b) => (a.id || 0) - (b.id || 0));
+        const sortedSource = [...sourceList].sort((a, b) => {
+            const setA = a.setNum || 99;
+            const setB = b.setNum || 99;
+            if (setA !== setB) return setA - setB;
+            return (a.id || 0) - (b.id || 0);
+        });
         
         const isStar = (p) => p.tier === 'Marquee' || p.tier === 'International Top' || p.tier === 'Star' || (p.base_price >= 2.0);
         
@@ -182,7 +187,12 @@ io.on('connection', (socket) => {
 
       // Use room.playerQueue if auction started, otherwise use master player list (Global ID Sort)
       const sourceList = (room.playerQueue && room.playerQueue.length > 0) ? room.playerQueue : [...players].sort((a,b) => a.id - b.id);
-      const sortedSource = [...sourceList].sort((a, b) => (a.id || 0) - (b.id || 0));
+      const sortedSource = [...sourceList].sort((a, b) => {
+          const setA = a.setNum || 99;
+          const setB = b.setNum || 99;
+          if (setA !== setB) return setA - setB;
+          return (a.id || 0) - (b.id || 0);
+      });
       
       const isStar = (p) => p.tier === 'Marquee' || p.tier === 'International Top' || p.tier === 'Star' || (p.base_price >= 2.0);
       

@@ -205,7 +205,13 @@ export function GameProvider({ children }) {
     const isIndian = (p) => p.nationality === 'India';
 
     const sourceList = (roomInfo?.playerQueue && roomInfo.playerQueue.length > 0) ? roomInfo.playerQueue : players;
-    const sortedSource = [...sourceList].sort((a, b) => (a.id || 0) - (b.id || 0));
+    // Strictly follow set order (setNum) then ID
+    const sortedSource = [...sourceList].sort((a, b) => {
+      const setA = a.setNum || 99;
+      const setB = b.setNum || 99;
+      if (setA !== setB) return setA - setB;
+      return (a.id || 0) - (b.id || 0);
+    });
     const sets = {};
     
     sortedSource.forEach(p => {
