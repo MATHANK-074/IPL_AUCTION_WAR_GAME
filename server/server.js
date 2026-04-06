@@ -42,7 +42,7 @@ app.get('/debug/:roomId', (req, res) => {
     const room = engine.ROOMS.get(roomId);
     if (!room) return res.status(404).json({ error: 'Room not found' });
     res.json({
-        engineVersion: 'v3-robust',
+        engineVersion: 'v3.1',
         status: room.status,
         playerIndex: room.currentIndex,
         queueLength: room.playerQueue ? room.playerQueue.length : 0,

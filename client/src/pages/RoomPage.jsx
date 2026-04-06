@@ -90,6 +90,11 @@ export default function RoomPage({ onRoomJoined }) {
             <p className="text-slate-400 text-[10px] font-bold tracking-[0.4em] uppercase">The Ultimate War Room</p>
             <span className="h-px w-8 bg-white/20"></span>
           </div>
+          <div className="mt-4 flex items-center justify-center">
+             <span className="px-3 py-1 rounded-full bg-yellow-400/10 border border-yellow-400/20 text-yellow-400 text-[8px] font-black tracking-widest uppercase animate-pulse">
+                Engine: v3.1 Stable
+             </span>
+          </div>
         </div>
 
         <div className="glass-dark p-8 rounded-[2rem] shadow-2xl border-white/5 relative overflow-hidden">

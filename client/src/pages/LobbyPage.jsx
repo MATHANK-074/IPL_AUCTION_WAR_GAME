@@ -40,6 +40,9 @@ export default function LobbyPage({ onStartAuction }) {
               <p className="text-slate-500 font-bold tracking-[0.3em] uppercase text-[10px]">
                 System Synchronized • Waiting for Mobilization
               </p>
+              <span className="px-2 py-0.5 rounded-md bg-yellow-400/10 border border-yellow-400/20 text-yellow-400 text-[7px] font-black tracking-widest uppercase">
+                Engine: v3.1
+              </span>
             </div>
           </div>
 
