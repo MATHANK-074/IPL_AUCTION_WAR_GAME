@@ -300,6 +300,10 @@ function getRoomInfo(roomId) {
     teamIds: Object.keys(room.teams),
     playerIndex: room.currentIndex,
     totalPlayers: room.playerQueue ? room.playerQueue.length : 0,
+    playerQueue: room.playerQueue || [],
+    soldPlayers: room.soldPlayers || [],
+    unsoldPlayers: room.unsoldPlayers || [],
+    currentPlayer: room.currentPlayer,
     adminTeamId: room.adminTeamId, // Return admin info
     teams: sanitizeTeams(room.teams),
   };
