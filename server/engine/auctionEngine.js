@@ -65,20 +65,22 @@ function startAuction(roomId, players, io) {
      "Kumar Kushagra", "Shai Hope", "Tristan Stubbs", "Rahmanullah Gurbaz"
   ]);
 
-  // Unified categorization function
+  // [v3] Unified & Robust categorization function
   const getCategory = (p) => {
-    const isInd = (p.nationality || "").trim() === 'India';
+    const nat = (p.nationality || "").toLowerCase().trim();
+    const isInd = nat === "india" || nat === "indian";
     const baseP = parseFloat(p.base_price || 0);
-    const isS = (p.tier === 'Marquee' || p.tier === 'International Top' || p.tier === 'Star' || baseP >= 2.0);
+    const tier = (p.tier || "").toLowerCase().trim();
+    const isS = (tier === 'marquee' || tier === 'international top' || tier === 'star' || baseP >= 2.0);
     
-    if (isInd && isS) return { num: 1, name: 'STAR PLAYERS INDIA' };
-    if (!isInd && isS) return { num: 2, name: 'STAR PLAYERS INTERNATIONAL' };
-    if (isInd) return { num: 3, name: 'CAPPED INDIAN PLAYERS' };
-    return { num: 4, name: 'CAPPED INTERNATIONAL PLAYERS' };
+    if (isInd && isS) return { num: 1, name: '★ [v3] STAR PLAYERS INDIA ★' };
+    if (!isInd && isS) return { num: 2, name: '★ [v3] STAR PLAYERS INT ★' };
+    if (isInd) return { num: 3, name: '★ [v3] CAPPED INDIAN ★' };
+    return { num: 4, name: '★ [v3] CAPPED INTERNATIONAL ★' };
   };
 
   // 1. Sort all players by ID first to ensure absolute determinism
-  let all = [...players].sort((a, b) => (a.id || 0) - (b.id || 0)).map(p => {
+  let all = [...players].sort((a, b) => (parseInt(a.id) || 0) - (parseInt(b.id) || 0)).map(p => {
     const cat = getCategory(p);
     return { 
       ...p, 
@@ -97,7 +99,7 @@ function startAuction(roomId, players, io) {
   // 3. Build the final queue - Strictly Set 1, 2, 3, 4
   room.playerQueue = [...s1, ...s2, ...s3, ...s4];
   
-  console.log(`✅ Auction Engine: Queue built with ${room.playerQueue.length} players across 4 sets.`);
+  console.log(`✅ Auction Engine [v3]: Queue built with ${room.playerQueue.length} players across 4 sets.`);
   
   room.status = 'auction';
   room.currentIndex = 0;

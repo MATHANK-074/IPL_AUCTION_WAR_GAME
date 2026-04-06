@@ -207,13 +207,16 @@ export function GameProvider({ children }) {
     const sourceList = (roomInfo?.playerQueue && roomInfo.playerQueue.length > 0) ? roomInfo.playerQueue : players;
     
     const getCategory = (p) => {
-      const isInd = (p.nationality || "").trim() === 'India';
+      const nat = (p.nationality || "").toLowerCase().trim();
+      const isInd = nat === "india" || nat === "indian";
       const baseP = parseFloat(p.base_price || 0);
-      const isS = (p.tier === 'Marquee' || p.tier === 'International Top' || p.tier === 'Star' || baseP >= 2.0);
-      if (isInd && isS) return { num: 1, name: 'STAR PLAYERS INDIA' };
-      if (!isInd && isS) return { num: 2, name: 'STAR PLAYERS INTERNATIONAL' };
-      if (isInd) return { num: 3, name: 'CAPPED INDIAN PLAYERS' };
-      return { num: 4, name: 'CAPPED INTERNATIONAL PLAYERS' };
+      const tier = (p.tier || "").toLowerCase().trim();
+      const isS = (tier === 'marquee' || tier === 'international top' || tier === 'star' || baseP >= 2.0);
+      
+      if (isInd && isS) return { num: 1, name: '★ [v3] STAR PLAYERS INDIA ★' };
+      if (!isInd && isS) return { num: 2, name: '★ [v3] STAR PLAYERS INT ★' };
+      if (isInd) return { num: 3, name: '★ [v3] CAPPED INDIAN ★' };
+      return { num: 4, name: '★ [v3] CAPPED INTERNATIONAL ★' };
     };
 
     const sets = {};
