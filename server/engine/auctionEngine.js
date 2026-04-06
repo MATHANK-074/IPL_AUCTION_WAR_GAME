@@ -65,46 +65,45 @@ function startAuction(roomId, players, io) {
      "Kumar Kushagra", "Shai Hope", "Tristan Stubbs", "Rahmanullah Gurbaz"
   ]);
 
-  const isIndian = (p) => p.nationality === 'India';
+  // Unified categorization function
+  const getCategory = (p) => {
+    const isInd = (p.nationality || "").trim() === 'India';
+    const baseP = parseFloat(p.base_price || 0);
+    const isS = (p.tier === 'Marquee' || p.tier === 'International Top' || p.tier === 'Star' || baseP >= 2.0);
+    
+    if (isInd && isS) return { num: 1, name: 'STAR PLAYERS INDIA' };
+    if (!isInd && isS) return { num: 2, name: 'STAR PLAYERS INTERNATIONAL' };
+    if (isInd) return { num: 3, name: 'CAPPED INDIAN PLAYERS' };
+    return { num: 4, name: 'CAPPED INTERNATIONAL PLAYERS' };
+  };
 
-  // Sort and Categorize into 350 Players (Global ID Sort First)
-  let all = [...players].sort((a, b) => a.id - b.id).map(p => {
-     if (wks.has(p.name)) p.role = 'Wicket Keeper';
-     return p;
+  // 1. Sort all players by ID first to ensure absolute determinism
+  let all = [...players].sort((a, b) => (a.id || 0) - (b.id || 0)).map(p => {
+    const cat = getCategory(p);
+    return { 
+      ...p, 
+      setNum: cat.num, 
+      setName: cat.name,
+      role: wks.has(p.name) ? 'Wicket Keeper' : p.role 
+    };
   });
 
-  // Improved Smart Categorization (Matches Client Logic)
-  const isStar = (p) => p.tier === 'Marquee' || p.tier === 'International Top' || p.tier === 'Star' || (p.base_price >= 2.0);
+  // 2. Build the sets based on the unified categories
+  const s1 = all.filter(p => p.setNum === 1).slice(0, 30);
+  const s2 = all.filter(p => p.setNum === 2).slice(0, 30);
+  const s3 = all.filter(p => p.setNum === 3).slice(0, 150);
+  const s4 = all.filter(p => p.setNum === 4).slice(0, 150);
 
-  const starInd = all.filter(p => isIndian(p) && isStar(p)).slice(0, 30).map(p => ({ ...p, setNum: 1, setName: 'STAR PLAYERS INDIA' }));
-  const starIndIds = new Set(starInd.map(p => p.id));
-
-  const starInt = all.filter(p => !isIndian(p) && isStar(p)).slice(0, 30).map(p => ({ ...p, setNum: 2, setName: 'STAR PLAYERS INTERNATIONAL' }));
-  const starIntIds = new Set(starInt.map(p => p.id));
-
-  const cappedInd = all.filter(p => isIndian(p) && !starIndIds.has(p.id)).slice(0, 150).map(p => ({ ...p, setNum: 3, setName: 'CAPPED INDIAN PLAYERS' }));
-  const cappedIndIds = new Set(cappedInd.map(p => p.id));
+  // 3. Build the final queue - Strictly Set 1, 2, 3, 4
+  room.playerQueue = [...s1, ...s2, ...s3, ...s4];
   
-  const cappedInt = all.filter(p => !isIndian(p) && !starIntIds.has(p.id)).slice(0, 150).map(p => ({ ...p, setNum: 4, setName: 'CAPPED INTERNATIONAL PLAYERS' }));
-  const cappedIntIds = new Set(cappedInt.map(p => p.id));
-
-  const uncappedInd = all.filter(p => isIndian(p) && !starIndIds.has(p.id) && !cappedIndIds.has(p.id)).slice(0, 50).map(p => ({ ...p, setNum: 5, setName: 'UNCAPPED INDIAN PLAYERS' }));
-  const uncappedIndIds = new Set(uncappedInd.map(p => p.id));
-
-  const uncappedInt = all.filter(p => !isIndian(p) && !starIntIds.has(p.id) && !cappedIntIds.has(p.id)).slice(0, 50).map(p => ({ ...p, setNum: 6, setName: 'UNCAPPED INTERNATIONAL PLAYERS' }));
-
-  // Final List: 350 Players (Strictly Ordered by Category and then ID)
-  room.playerQueue = [
-    ...starInd.sort((a, b) => a.id - b.id),
-    ...starInt.sort((a, b) => a.id - b.id),
-    ...cappedInd.sort((a, b) => a.id - b.id),
-    ...cappedInt.sort((a, b) => a.id - b.id),
-    ...uncappedInd.sort((a, b) => a.id - b.id),
-    ...uncappedInt.sort((a, b) => a.id - b.id)
-  ];
-
-  room.currentIndex = 0;
+  console.log(`✅ Auction Engine: Queue built with ${room.playerQueue.length} players across 4 sets.`);
+  
   room.status = 'auction';
+  room.currentIndex = 0;
+  room.currentPlayer = room.playerQueue[0];
+  room.soldPlayers = [];
+  room.unsoldPlayers = [];
   advanceToNext(roomId, io);
 }
 

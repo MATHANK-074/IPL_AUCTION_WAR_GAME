@@ -205,26 +205,21 @@ export function GameProvider({ children }) {
     const isIndian = (p) => p.nationality === 'India';
 
     const sourceList = (roomInfo?.playerQueue && roomInfo.playerQueue.length > 0) ? roomInfo.playerQueue : players;
-    // Strictly follow set order (setNum) then ID
-    const sortedSource = [...sourceList].sort((a, b) => {
-      const setA = a.setNum || 99;
-      const setB = b.setNum || 99;
-      if (setA !== setB) return setA - setB;
-      return (a.id || 0) - (b.id || 0);
-    });
+    
+    const getCategory = (p) => {
+      const isInd = (p.nationality || "").trim() === 'India';
+      const baseP = parseFloat(p.base_price || 0);
+      const isS = (p.tier === 'Marquee' || p.tier === 'International Top' || p.tier === 'Star' || baseP >= 2.0);
+      if (isInd && isS) return { num: 1, name: 'STAR PLAYERS INDIA' };
+      if (!isInd && isS) return { num: 2, name: 'STAR PLAYERS INTERNATIONAL' };
+      if (isInd) return { num: 3, name: 'CAPPED INDIAN PLAYERS' };
+      return { num: 4, name: 'CAPPED INTERNATIONAL PLAYERS' };
+    };
+
     const sets = {};
     
-    sortedSource.forEach(p => {
-      let setNum = p.setNum;
-      let setName = p.setName;
-      if (!setNum) {
-        const isElite = p.tier === 'Marquee' || p.tier === 'International Top' || p.tier === 'Star' || p.base_price >= 2.0;
-        if (isIndian(p) && isElite) { setNum = 1; setName = 'STAR PLAYERS INDIA'; }
-        else if (!isIndian(p) && isElite) { setNum = 2; setName = 'STAR PLAYERS INTERNATIONAL'; }
-        else if (isIndian(p)) { setNum = 3; setName = 'CAPPED INDIAN PLAYERS'; }
-        else { setNum = 4; setName = 'CAPPED INTERNATIONAL PLAYERS'; }
-      }
-
+    sourceList.forEach(p => {
+      const { num: setNum, name: setName } = getCategory(p);
       if (!sets[setNum]) sets[setNum] = { name: setName, list: [] };
       
       let status = 'UPCOMING';
@@ -233,11 +228,11 @@ export function GameProvider({ children }) {
                  (roomInfo.unsoldPlayers || []).some(u => u.id === p.id) ? 'UNSOLD' : 
                  roomInfo.currentPlayer?.id === p.id ? 'ACTIVE' : 'UPCOMING';
       }
-
+      
       sets[setNum].list.push({ 
-        id: p.id, name: p.name, 
+        ...p, 
         role: WK_LIST.has(p.name) ? 'Wicket Keeper' : p.role,
-        base_price: p.base_price, status 
+        status 
       });
     });
 

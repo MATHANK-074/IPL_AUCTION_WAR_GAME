@@ -36,51 +36,50 @@ app.get('/players', (req, res) => res.json(players));
 app.get('/teams', (req, res) => res.json(teams));
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
-// REST fallback for Set List
+// REST fallback for Set List with Diagnostic Ability
+app.get('/debug/:roomId', (req, res) => {
+    const { roomId } = req.params;
+    const room = engine.ROOMS.get(roomId);
+    if (!room) return res.status(404).json({ error: 'Room not found' });
+    res.json({
+        status: room.status,
+        playerIndex: room.currentIndex,
+        queueLength: room.playerQueue ? room.playerQueue.length : 0,
+        playerQueue: room.playerQueue || [],
+        playersInSet1: room.playerQueue?.filter(p => p.setNum === 1).length,
+        playersInSet2: room.playerQueue?.filter(p => p.setNum === 2).length,
+        playersInSet3: room.playerQueue?.filter(p => p.setNum === 3).length,
+        playersInSet4: room.playerQueue?.filter(p => p.setNum === 4).length,
+    });
+});
+
 app.get('/sets/:roomId', (req, res) => {
     const { roomId } = req.params;
     const room = engine.ROOMS.get(roomId);
     
-    // Categorization logic same as socket
     try {
-        const sourceList = (room && room.playerQueue && room.playerQueue.length > 0) ? room.playerQueue : [...players].sort((a,b) => a.id - b.id);
-        const sortedSource = [...sourceList].sort((a, b) => {
-            const setA = a.setNum || 99;
-            const setB = b.setNum || 99;
-            if (setA !== setB) return setA - setB;
-            return (a.id || 0) - (b.id || 0);
-        });
-        
-        const isStar = (p) => p.tier === 'Marquee' || p.tier === 'International Top' || p.tier === 'Star' || (p.base_price >= 2.0);
+        const getCategory = (p) => {
+            const isInd = (p.nationality || "").trim() === 'India';
+            const baseP = parseFloat(p.base_price || 0);
+            const isS = (p.tier === 'Marquee' || p.tier === 'International Top' || p.tier === 'Star' || baseP >= 2.0);
+            if (isInd && isS) return { num: 1, name: 'STAR PLAYERS INDIA' };
+            if (!isInd && isS) return { num: 2, name: 'STAR PLAYERS INTERNATIONAL' };
+            if (isInd) return { num: 3, name: 'CAPPED INDIAN PLAYERS' };
+            return { num: 4, name: 'CAPPED INTERNATIONAL PLAYERS' };
+        };
+
+        const sourceList = (room && room.playerQueue && room.playerQueue.length > 0) ? room.playerQueue : [...players].sort((a,b) => (a.id || 0) - (b.id || 0));
         
         const sets = {};
-        sortedSource.forEach(p => {
-            let setNum = p.setNum;
-            let setName = p.setName;
-            if (!setNum) {
-                if (isIndian(p) && isStar(p)) { setNum = 1; setName = 'STAR PLAYERS INDIA'; }
-                else if (!isIndian(p) && isStar(p)) { setNum = 2; setName = 'STAR PLAYERS INTERNATIONAL'; }
-                else if (isIndian(p)) { setNum = 3; setName = 'CAPPED INDIAN PLAYERS'; }
-                else { setNum = 4; setName = 'CAPPED INTERNATIONAL PLAYERS'; }
-            }
+        sourceList.forEach(p => {
+            let { num: setNum, name: setName } = getCategory(p);
             if (!sets[setNum]) sets[setNum] = { name: setName, list: [] };
-            
-            let status = 'UPCOMING';
-            if (room && room.playerQueue && room.playerQueue.length > 0) {
-                status = (room.soldPlayers || []).some(s => (s.player?.id || s.id) === p.id) ? 'SOLD' : 
-                         (room.unsoldPlayers || []).some(u => u.id === p.id) ? 'UNSOLD' : 
-                         room.currentPlayer?.id === p.id ? 'ACTIVE' : 'UPCOMING';
-            }
-
-            sets[setNum].list.push({ 
-                id: p.id, name: p.name, 
-                role: WK_LIST.has(p.name) ? 'Wicket Keeper' : p.role,
-                base_price: p.base_price, status 
-            });
+            sets[setNum].list.push(p);
         });
+        
         res.json(sets);
-    } catch (e) {
-        res.status(500).json({ error: e.message });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 });
 
@@ -169,67 +168,40 @@ io.on('connection', (socket) => {
   });
 
   // ── GET SET LIST ─────────────────────────────────────────────────
-  socket.on('getSetList', (_, callback) => {
+  socket.on('getSetList', (meta) => {
     try {
-      const meta = socketMeta.get(socket.id);
-      if (!meta) {
-        console.warn(`⚠️ getSetList blocked: Socket ${socket.id} is not in any room meta.`);
-        return callback && callback({ error: 'Not in a room' });
-      }
-      
       const room = engine.ROOMS.get(meta.roomId);
-      if (!room) {
-        console.warn(`⚠️ getSetList blocked: Room ${meta.roomId} not found in engine memory.`);
-        return callback && callback({ error: 'Room not found' });
-      }
+      if (!room) return;
 
-      console.log(`📡 Processing getSetList for Phase: ${room.status} in Room ${meta.roomId}`);
+      const getCategory = (p) => {
+        const isInd = (p.nationality || "").trim() === 'India';
+        const baseP = parseFloat(p.base_price || 0);
+        const isS = (p.tier === 'Marquee' || p.tier === 'International Top' || p.tier === 'Star' || baseP >= 2.0);
+        if (isInd && isS) return { num: 1, name: 'STAR PLAYERS INDIA' };
+        if (!isInd && isS) return { num: 2, name: 'STAR PLAYERS INTERNATIONAL' };
+        if (isInd) return { num: 3, name: 'CAPPED INDIAN PLAYERS' };
+        return { num: 4, name: 'CAPPED INTERNATIONAL PLAYERS' };
+      };
 
-      // Use room.playerQueue if auction started, otherwise use master player list (Global ID Sort)
-      const sourceList = (room.playerQueue && room.playerQueue.length > 0) ? room.playerQueue : [...players].sort((a,b) => a.id - b.id);
-      const sortedSource = [...sourceList].sort((a, b) => {
-          const setA = a.setNum || 99;
-          const setB = b.setNum || 99;
-          if (setA !== setB) return setA - setB;
-          return (a.id || 0) - (b.id || 0);
-      });
-      
-      const isStar = (p) => p.tier === 'Marquee' || p.tier === 'International Top' || p.tier === 'Star' || (p.base_price >= 2.0);
-      
+      const sourceList = (room.playerQueue && room.playerQueue.length > 0) ? room.playerQueue : [...players].sort((a,b) => (a.id || 0) - (b.id || 0));
       const sets = {};
-      sortedSource.forEach(p => {
-          let setNum = p.setNum;
-          let setName = p.setName;
-
-          // Fallback categorization if properties missing (before auction start)
-          if (!setNum) {
-              if (isIndian(p) && isStar(p)) { setNum = 1; setName = 'STAR PLAYERS INDIA'; }
-              else if (!isIndian(p) && isStar(p)) { setNum = 2; setName = 'STAR PLAYERS INTERNATIONAL'; }
-              else if (isIndian(p)) { setNum = 3; setName = 'CAPPED INDIAN PLAYERS'; }
-              else { setNum = 4; setName = 'CAPPED INTERNATIONAL PLAYERS'; }
-          }
-
-          if (!sets[setNum]) sets[setNum] = { name: setName, list: [] };
-          
-          let status = 'UPCOMING';
-          if (room.playerQueue && room.playerQueue.length > 0) {
-              status = (room.soldPlayers || []).some(s => (s.player?.id || s.id) === p.id) ? 'SOLD' : 
-                       (room.unsoldPlayers || []).some(u => u.id === p.id) ? 'UNSOLD' : 
-                       room.currentPlayer?.id === p.id ? 'ACTIVE' : 'UPCOMING';
-          }
-
-          sets[setNum].list.push({ 
-              id: p.id, 
-              name: p.name, 
-              role: WK_LIST.has(p.name) ? 'Wicket Keeper' : p.role,
-              base_price: p.base_price,
-              status 
-          });
+      sourceList.forEach(p => {
+        const { num: setNum, name: setName } = getCategory(p);
+        if (!sets[setNum]) sets[setNum] = { name: setName, list: [] };
+        
+        let status = 'UPCOMING';
+        if (room.playerQueue && room.playerQueue.length > 0) {
+            status = (room.soldPlayers || []).some(s => (s.player?.id || s.id) === p.id) ? 'SOLD' : 
+                     (room.unsoldPlayers || []).some(u => u.id === p.id) ? 'UNSOLD' : 
+                     room.currentPlayer?.id === p.id ? 'ACTIVE' : 'UPCOMING';
+        }
+        
+        sets[setNum].list.push({ ...p, status });
       });
-      callback(sets);
+
+      socket.emit('setList', sets);
     } catch (error) {
       console.error("Critical Server Error in getSetList:", error);
-      callback && callback({ error: 'Internal Server Error Categorizing Sets' });
     }
   });
 
