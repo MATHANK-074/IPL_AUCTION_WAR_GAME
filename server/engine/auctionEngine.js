@@ -67,8 +67,8 @@ function startAuction(roomId, players, io) {
 
   const isIndian = (p) => p.nationality === 'India';
 
-  // Sort and Categorize into 350 Players
-  let all = [...players].map(p => {
+  // Sort and Categorize into 350 Players (Global ID Sort First)
+  let all = [...players].sort((a, b) => a.id - b.id).map(p => {
      if (wks.has(p.name)) p.role = 'Wicket Keeper';
      return p;
   });
