@@ -42,7 +42,7 @@ app.get('/debug/:roomId', (req, res) => {
     const room = engine.ROOMS.get(roomId);
     if (!room) return res.status(404).json({ error: 'Room not found' });
     res.json({
-        engineVersion: 'v3.1',
+        engineVersion: 'v3.2 Stable',
         status: room.status,
         playerIndex: room.currentIndex,
         queueLength: room.playerQueue ? room.playerQueue.length : 0,
@@ -51,6 +51,22 @@ app.get('/debug/:roomId', (req, res) => {
         playersInSet2: room.playerQueue?.filter(p => p.setNum === 2).length,
         playersInSet3: room.playerQueue?.filter(p => p.setNum === 3).length,
         playersInSet4: room.playerQueue?.filter(p => p.setNum === 4).length,
+    });
+});
+
+app.get('/roomInfo/:roomId', (req, res) => {
+    const { roomId } = req.params;
+    const room = engine.ROOMS.get(roomId);
+    if (!room) return res.status(404).json({ error: 'Room not found' });
+    res.json({
+        status: room.status,
+        engineVersion: 'v3.2',
+        currentIndex: room.currentIndex,
+        totalPlayers: room.playerQueue ? room.playerQueue.length : 0,
+        playerQueue: room.playerQueue || [],
+        soldPlayers: room.soldPlayers || [],
+        unsoldPlayers: room.unsoldPlayers || [],
+        currentPlayer: room.currentPlayer
     });
 });
 
@@ -66,10 +82,10 @@ app.get('/sets/:roomId', (req, res) => {
             const tier = (p.tier || "").toLowerCase().trim();
             const isS = (tier === 'marquee' || tier === 'international top' || tier === 'star' || baseP >= 2.0);
             
-            if (isInd && isS) return { num: 1, name: '★ [v3] STAR PLAYERS INDIA ★' };
-            if (!isInd && isS) return { num: 2, name: '★ [v3] STAR PLAYERS INT ★' };
-            if (isInd) return { num: 3, name: '★ [v3] CAPPED INDIAN ★' };
-            return { num: 4, name: '★ [v3] CAPPED INTERNATIONAL ★' };
+            if (isInd && isS) return { num: 1, name: '★ [v3.2] STAR PLAYERS INDIA ★' };
+            if (!isInd && isS) return { num: 2, name: '★ [v3.2] STAR PLAYERS INT ★' };
+            if (isInd) return { num: 3, name: '★ [v3.2] CAPPED INDIAN ★' };
+            return { num: 4, name: '★ [v3.2] CAPPED INTERNATIONAL ★' };
         };
 
         const sourceList = (room && room.playerQueue && room.playerQueue.length > 0) ? room.playerQueue : [...players].sort((a,b) => (parseInt(a.id) || 0) - (parseInt(b.id) || 0));
@@ -184,10 +200,10 @@ io.on('connection', (socket) => {
         const tier = (p.tier || "").toLowerCase().trim();
         const isS = (tier === 'marquee' || tier === 'international top' || tier === 'star' || baseP >= 2.0);
         
-        if (isInd && isS) return { num: 1, name: '★ [v3] STAR PLAYERS INDIA ★' };
-        if (!isInd && isS) return { num: 2, name: '★ [v3] STAR PLAYERS INT ★' };
-        if (isInd) return { num: 3, name: '★ [v3] CAPPED INDIAN ★' };
-        return { num: 4, name: '★ [v3] CAPPED INTERNATIONAL ★' };
+        if (isInd && isS) return { num: 1, name: '★ [v3.2] STAR PLAYERS INDIA ★' };
+        if (!isInd && isS) return { num: 2, name: '★ [v3.2] STAR PLAYERS INT ★' };
+        if (isInd) return { num: 3, name: '★ [v3.2] CAPPED INDIAN ★' };
+        return { num: 4, name: '★ [v3.2] CAPPED INTERNATIONAL ★' };
       };
 
       const sourceList = (room.playerQueue && room.playerQueue.length > 0) ? room.playerQueue : [...players].sort((a,b) => (parseInt(a.id) || 0) - (parseInt(b.id) || 0));

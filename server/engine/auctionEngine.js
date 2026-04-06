@@ -65,7 +65,7 @@ function startAuction(roomId, players, io) {
      "Kumar Kushagra", "Shai Hope", "Tristan Stubbs", "Rahmanullah Gurbaz"
   ]);
 
-  // [v3] Unified & Robust categorization function
+  // [v3.2] Robust categorization function
   const getCategory = (p) => {
     const nat = (p.nationality || "").toLowerCase().trim();
     const isInd = nat === "india" || nat === "indian";
@@ -73,14 +73,14 @@ function startAuction(roomId, players, io) {
     const tier = (p.tier || "").toLowerCase().trim();
     const isS = (tier === 'marquee' || tier === 'international top' || tier === 'star' || baseP >= 2.0);
     
-    if (isInd && isS) return { num: 1, name: '★ [v3] STAR PLAYERS INDIA ★' };
-    if (!isInd && isS) return { num: 2, name: '★ [v3] STAR PLAYERS INT ★' };
-    if (isInd) return { num: 3, name: '★ [v3] CAPPED INDIAN ★' };
-    return { num: 4, name: '★ [v3] CAPPED INTERNATIONAL ★' };
+    if (isInd && isS) return { num: 1, name: '★ [v3.2] STAR PLAYERS INDIA ★' };
+    if (!isInd && isS) return { num: 2, name: '★ [v3.2] STAR PLAYERS INT ★' };
+    if (isInd) return { num: 3, name: '★ [v3.2] CAPPED INDIAN ★' };
+    return { num: 4, name: '★ [v3.2] CAPPED INTERNATIONAL ★' };
   };
 
-  // 1. Sort all players by ID first to ensure absolute determinism
-  let all = [...players].sort((a, b) => (parseInt(a.id) || 0) - (parseInt(b.id) || 0)).map(p => {
+  // 1. Map all players with category and role once
+  let categorized = players.map(p => {
     const cat = getCategory(p);
     return { 
       ...p, 
@@ -88,18 +88,26 @@ function startAuction(roomId, players, io) {
       setName: cat.name,
       role: wks.has(p.name) ? 'Wicket Keeper' : p.role 
     };
-  });
+  }).sort((a, b) => (parseInt(a.id) || 0) - (parseInt(b.id) || 0));
 
-  // 2. Build the sets based on the unified categories
-  const s1 = all.filter(p => p.setNum === 1).slice(0, 30);
-  const s2 = all.filter(p => p.setNum === 2).slice(0, 30);
-  const s3 = all.filter(p => p.setNum === 3).slice(0, 150);
-  const s4 = all.filter(p => p.setNum === 4).slice(0, 150);
-
-  // 3. Build the final queue - Strictly Set 1, 2, 3, 4
+  // 2. Build the final 360-player queue by priority
+  const s1 = categorized.filter(p => p.setNum === 1).slice(0, 30);
+  const s2 = categorized.filter(p => p.setNum === 2).slice(0, 30);
+  const s3 = categorized.filter(p => p.setNum === 3).slice(0, 150);
+  const s4 = categorized.filter(p => p.setNum === 4).slice(0, 150);
+  
   room.playerQueue = [...s1, ...s2, ...s3, ...s4];
   
-  console.log(`✅ Auction Engine [v3]: Queue built with ${room.playerQueue.length} players across 4 sets.`);
+  // 3. DIAGNOSTIC LOGGING (Visible in Railway logs)
+  console.log(`\n🚨 [v3.2] AUCTION START: Room ${roomId}`);
+  console.log(`📦 Queue Length: ${room.playerQueue.length}`);
+  console.log(`📊 Set Counts: S1:${s1.length}, S2:${s2.length}, S3:${s3.length}, S4:${s4.length}`);
+  if (room.playerQueue.length > 0) {
+      console.log(`🎯 FIRST 10 IN QUEUE:`);
+      room.playerQueue.slice(0, 10).forEach((p, i) => {
+          console.log(`[LOT ${i+1}] ID:${p.id} | NAME:${p.name} | CAT:${p.setNum}`);
+      });
+  }
   
   room.status = 'auction';
   room.currentIndex = 0;

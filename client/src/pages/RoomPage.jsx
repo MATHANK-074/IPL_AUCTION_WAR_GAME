@@ -92,7 +92,7 @@ export default function RoomPage({ onRoomJoined }) {
           </div>
           <div className="mt-4 flex items-center justify-center">
              <span className="px-3 py-1 rounded-full bg-yellow-400/10 border border-yellow-400/20 text-yellow-400 text-[8px] font-black tracking-widest uppercase animate-pulse">
-                Engine: v3.1 Stable
+                Engine: v3.2 Stable
              </span>
           </div>
         </div>
