@@ -93,14 +93,14 @@ function startAuction(roomId, players, io) {
 
   const uncappedInt = all.filter(p => !isIndian(p) && !starIntIds.has(p.id) && !cappedIntIds.has(p.id)).slice(0, 50).map(p => ({ ...p, setNum: 6, setName: 'UNCAPPED INTERNATIONAL PLAYERS' }));
 
-  // Final List: 350 Players
+  // Final List: 350 Players (Strictly Ordered by Category and then ID)
   room.playerQueue = [
-    ...starInd.sort(() => Math.random() - 0.5),
-    ...starInt.sort(() => Math.random() - 0.5),
-    ...cappedInd.sort(() => Math.random() - 0.5),
-    ...cappedInt.sort(() => Math.random() - 0.5),
-    ...uncappedInd.sort(() => Math.random() - 0.5),
-    ...uncappedInt.sort(() => Math.random() - 0.5)
+    ...starInd.sort((a, b) => a.id - b.id),
+    ...starInt.sort((a, b) => a.id - b.id),
+    ...cappedInd.sort((a, b) => a.id - b.id),
+    ...cappedInt.sort((a, b) => a.id - b.id),
+    ...uncappedInd.sort((a, b) => a.id - b.id),
+    ...uncappedInt.sort((a, b) => a.id - b.id)
   ];
 
   room.currentIndex = 0;

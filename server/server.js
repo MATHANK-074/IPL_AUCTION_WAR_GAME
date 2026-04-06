@@ -44,22 +44,25 @@ app.get('/sets/:roomId', (req, res) => {
     // Categorization logic same as socket
     try {
         const sourceList = (room && room.playerQueue && room.playerQueue.length > 0) ? room.playerQueue : players;
+        const sortedSource = [...sourceList].sort((a, b) => (a.id || 0) - (b.id || 0));
+        
+        const isStar = (p) => p.tier === 'Marquee' || p.tier === 'International Top' || p.tier === 'Star' || (p.base_price >= 2.0);
+        
         const sets = {};
-        sourceList.forEach(p => {
+        sortedSource.forEach(p => {
             let setNum = p.setNum;
             let setName = p.setName;
             if (!setNum) {
-                if (isIndian(p) && p.tier === 'Marquee') { setNum = 1; setName = 'STAR PLAYERS INDIA'; }
-                else if (!isIndian(p) && p.tier === 'Marquee') { setNum = 2; setName = 'STAR PLAYERS INTERNATIONAL'; }
+                if (isIndian(p) && isStar(p)) { setNum = 1; setName = 'STAR PLAYERS INDIA'; }
+                else if (!isIndian(p) && isStar(p)) { setNum = 2; setName = 'STAR PLAYERS INTERNATIONAL'; }
                 else if (isIndian(p)) { setNum = 3; setName = 'CAPPED INDIAN PLAYERS'; }
-                else if (!isIndian(p)) { setNum = 4; setName = 'CAPPED INTERNATIONAL PLAYERS'; }
-                else { setNum = 7; setName = 'OTHER ASSETS'; }
+                else { setNum = 4; setName = 'CAPPED INTERNATIONAL PLAYERS'; }
             }
             if (!sets[setNum]) sets[setNum] = { name: setName, list: [] };
             
             let status = 'UPCOMING';
             if (room && room.playerQueue && room.playerQueue.length > 0) {
-                status = (room.soldPlayers || []).some(s => s.player?.id === p.id) ? 'SOLD' : 
+                status = (room.soldPlayers || []).some(s => (s.player?.id || s.id) === p.id) ? 'SOLD' : 
                          (room.unsoldPlayers || []).some(u => u.id === p.id) ? 'UNSOLD' : 
                          room.currentPlayer?.id === p.id ? 'ACTIVE' : 'UPCOMING';
             }
@@ -179,26 +182,28 @@ io.on('connection', (socket) => {
 
       // Use room.playerQueue if auction started, otherwise use master player list
       const sourceList = (room.playerQueue && room.playerQueue.length > 0) ? room.playerQueue : players;
+      const sortedSource = [...sourceList].sort((a, b) => (a.id || 0) - (b.id || 0));
+      
+      const isStar = (p) => p.tier === 'Marquee' || p.tier === 'International Top' || p.tier === 'Star' || (p.base_price >= 2.0);
       
       const sets = {};
-      sourceList.forEach(p => {
+      sortedSource.forEach(p => {
           let setNum = p.setNum;
           let setName = p.setName;
 
           // Fallback categorization if properties missing (before auction start)
           if (!setNum) {
-              if (isIndian(p) && p.tier === 'Marquee') { setNum = 1; setName = 'STAR PLAYERS INDIA'; }
-              else if (!isIndian(p) && p.tier === 'Marquee') { setNum = 2; setName = 'STAR PLAYERS INTERNATIONAL'; }
+              if (isIndian(p) && isStar(p)) { setNum = 1; setName = 'STAR PLAYERS INDIA'; }
+              else if (!isIndian(p) && isStar(p)) { setNum = 2; setName = 'STAR PLAYERS INTERNATIONAL'; }
               else if (isIndian(p)) { setNum = 3; setName = 'CAPPED INDIAN PLAYERS'; }
-              else if (!isIndian(p)) { setNum = 4; setName = 'CAPPED INTERNATIONAL PLAYERS'; }
-              else { setNum = 7; setName = 'OTHER ASSETS'; }
+              else { setNum = 4; setName = 'CAPPED INTERNATIONAL PLAYERS'; }
           }
 
           if (!sets[setNum]) sets[setNum] = { name: setName, list: [] };
           
           let status = 'UPCOMING';
           if (room.playerQueue && room.playerQueue.length > 0) {
-              status = (room.soldPlayers || []).some(s => s.player?.id === p.id) ? 'SOLD' : 
+              status = (room.soldPlayers || []).some(s => (s.player?.id || s.id) === p.id) ? 'SOLD' : 
                        (room.unsoldPlayers || []).some(u => u.id === p.id) ? 'UNSOLD' : 
                        room.currentPlayer?.id === p.id ? 'ACTIVE' : 'UPCOMING';
           }
